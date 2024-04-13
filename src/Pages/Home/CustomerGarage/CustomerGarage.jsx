@@ -6,24 +6,28 @@ import { Link } from "react-router-dom";
 const CustomerGarage = () => {
   return (
     <Container2>
-      <div className="border-2 border-purple-100 h-[175px] mt-6 bg-fuchsia-50 border-dashed">
+      <div className="border-2 border-purple-100 lg:h-[175px] mt-6 bg-fuchsia-50 border-dashed">
         <div className="flex items-center justify-between px-2 py-2">
-          <div className="px-4">
-            <span className="flex items-center gap-2 text-xl text-purple-700 font-bold">
+          <div className="lg:px-4">
+            <span className="flex items-center gap-2 text-[8px] lg:text-xl text-purple-700 font-bold">
               <GiHomeGarage /> Your Garage
             </span>
-            <p className="text-4xl font-bold mb-3">
+            <p className="text-[12px] lg:text-4xl font-bold lg:mb-3">
               Start Tracking Your <br /> Car's Value
             </p>
             <Link to="/customerGarageDetails">
-              <button className="border-2 bg-purple-600 text-white rounded-lg hover:bg-white hover:text-black font-semibold px-2 py-1 ">
+              <button className="border-2 bg-purple-600 text-[8px] lg:text-xl text-white rounded-lg hover:bg-white hover:text-black font-semibold px-2 py-1 ">
                 Learn More
               </button>
             </Link>
           </div>
 
           <div>
-            <img src={YourGarageImg} className="lg:w-[250px]" alt="" />
+            <img
+              src={YourGarageImg}
+              className="w-[120px] lg:w-[250px]"
+              alt=""
+            />
           </div>
         </div>
       </div>
