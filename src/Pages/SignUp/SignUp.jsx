@@ -1,11 +1,88 @@
-import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Fragment, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import { FaGithub } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import Logo2 from "../../Components/Shared/Logo2";
+import useAuth from "../../Hooks/UseAuth";
+import { imageUpload } from "../../api/utils";
+import { getToken, saveUser } from "../../api/auth";
+import toast from "react-hot-toast";
+import { ImSpinner9 } from "react-icons/im";
 
 const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
+  // -------------------------Sign Up functionalities---------------------------------------
+  const [uploadButtonText, setUploadButtonText] = useState(
+    "Upload Profile Picture"
+  );
+
+  const { createUser, updateUserProfile, signInWithGoogle, loading } =
+    useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const image = form.image.files[0];
+
+    try {
+      // uploading img to imgBB
+
+      const imageData = await imageUpload(image);
+
+      // user registration
+      const result = await createUser(email, password);
+      // console.log(result);
+      // save username and profile photo
+      await updateUserProfile(name, imageData?.data?.display_url);
+
+      // save user data in database
+      const dbResponse = await saveUser(result?.user);
+      // console.log(dbResponse);
+      //5. get token
+      await getToken(result?.user?.email);
+      navigate("/");
+      closeSignUpModal(true);
+      setUploadButtonText("Upload Profile Picture");
+      toast.success("SignUp Successful");
+      // ----------------------------------------------------------------
+    } catch (err) {
+      // console.log(err);
+      toast.error(err?.message);
+    }
+  };
+
+  //---------------- handle Google Sign In --------------------
+  const handleGoogleSignIn = async () => {
+    try {
+      // user registration with google
+      const result = await signInWithGoogle();
+      // console.log(result);
+
+      // save user data in database
+      const dbResponse = await saveUser(result?.user);
+      // console.log(dbResponse);
+
+      //5. get token
+      await getToken(result?.user?.email);
+      navigate("/");
+      closeSignUpModal(true);
+      toast.success("SignUp Successful");
+      // ----------------------------------------------------------------
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
+  };
+  // ----------------------------------------------------------------
+  const handleImageChange = (image) => {
+    setUploadButtonText(image.name);
+  };
+
+  // ----------------------------------------------------------------
   return (
     <>
       <Transition appear show={isSignUpOpen} as={Fragment}>
@@ -40,7 +117,7 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
                         <Logo2 />
                       </p>
                       <div className="mb-8">
-                        <h1 className="my-3 text-4xl font-bold bg-gradient-to-br from-cyan-600 to-red-300 text-transparent bg-clip-text">
+                        <h1 className="my-3 text-4xl font-bold bg-gradient-to-br from-purple-600 to-green-200 text-transparent bg-clip-text">
                           Sign Up
                         </h1>
                         <p className="text-sm text-gray-400">
@@ -48,6 +125,7 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
                         </p>
                       </div>
                       <form
+                        onSubmit={handleSubmit}
                         noValidate=""
                         action=""
                         className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -65,34 +143,11 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
                               name="name"
                               id="name"
                               placeholder="Enter Your Name Here"
-                              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-purple-500 bg-gray-200 text-gray-900"
                               data-temp-mail-org="0"
                             />
                           </div>
 
-                          <div className=" bg-white w-full  m-auto rounded-lg">
-                            <div className="file_upload px-5 py-3 relative border-4 border-dotted border-black rounded-lg">
-                              <div className="flex flex-col w-max mx-auto text-center">
-                                <label>
-                                  <input
-                                    // onChange={(e) =>
-                                    //   handleImageChange(e.target.files[0])
-                                    // }
-                                    className="text-sm cursor-pointer w-36 hidden"
-                                    type="file"
-                                    name="image"
-                                    id="image"
-                                    accept="image/*"
-                                    hidden
-                                  />
-                                  <div className="bg-cyan-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-cyan-300">
-                                    {/* {uploadButtonText} */}
-                                    Upload Your Photo
-                                  </div>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
                           <div>
                             <label
                               htmlFor="email"
@@ -106,7 +161,7 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
                               id="email"
                               required
                               placeholder="Enter Your Email Here"
-                              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-purple-500 bg-gray-200 text-gray-900"
                               data-temp-mail-org="0"
                             />
                           </div>
@@ -126,18 +181,48 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
                               id="password"
                               required
                               placeholder="*******"
-                              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-purple-500 bg-gray-200 text-gray-900"
                             />
                           </div>
                         </div>
-
+                        <div className=" bg-white w-full  m-auto rounded-lg">
+                          <div className="file_upload px-5 py-3 relative border-4 border-dotted border-black rounded-lg">
+                            <div className="flex flex-col w-max mx-auto text-center">
+                              <label>
+                                <input
+                                  onChange={(e) =>
+                                    handleImageChange(e.target.files[0])
+                                  }
+                                  className="text-sm cursor-pointer w-36 hidden"
+                                  type="file"
+                                  name="image"
+                                  id="image"
+                                  accept="image/*"
+                                  hidden
+                                />
+                                <div className="bg-purple-800 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-purple-700">
+                                  {uploadButtonText}
+                                </div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
                         <div>
-                          <button
-                            type="submit"
-                            className="bg-cyan-500 w-full rounded-md py-3 text-white"
-                          >
-                            Submit
-                          </button>
+                          {loading ? (
+                            <button
+                              type="submit"
+                              className="bg-purple-800 w-full rounded-md py-3 text-white flex items-center justify-center"
+                            >
+                              <ImSpinner9 className="animate-spin" />
+                            </button>
+                          ) : (
+                            <button
+                              type="submit"
+                              className="bg-purple-800 w-full rounded-md py-3 text-white hover:bg-purple-700"
+                            >
+                              Submit
+                            </button>
+                          )}
                         </div>
                       </form>
                       <div className="flex items-center pt-4 space-x-1">
@@ -147,12 +232,15 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
                         </p>
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
                       </div>
-                      <div className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer">
+                      <div
+                        onClick={handleGoogleSignIn}
+                        className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer hover:bg-black hover:text-white"
+                      >
                         <FcGoogle size={32} />
 
                         <p>Continue with Google</p>
                       </div>
-                      <div className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer">
+                      <div className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer hover:bg-black hover:text-white">
                         <FaGithub size={32} />
 
                         <p>Continue with GitHub</p>
@@ -161,7 +249,7 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
                         Already have an account?
                         <Link
                           to="/login"
-                          className="hover:underline hover:text-cyan-500 text-gray-600"
+                          className="hover:underline hover:text-purple-500 text-gray-600"
                         >
                           Login
                         </Link>

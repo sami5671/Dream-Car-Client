@@ -5,10 +5,14 @@ import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaTag } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import FrequentlyAskedQuestion from "./FrequentlyAskedQuestion";
+import { Helmet } from "react-helmet-async";
 
 const CustomerGarageDetails = () => {
   return (
     <>
+      <Helmet>
+        <title> Dream Car || Your Garage</title>
+      </Helmet>
       <Container>
         {/* banner */}
         <div className="flex flex-col-reverse lg:flex-row justify-between">

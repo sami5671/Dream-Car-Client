@@ -50,7 +50,7 @@ const Banner = () => {
             </p>
           </div>
 
-          <div className="lg:w-[550px]">
+          <div className="lg:w-[550px] lg:mt-24">
             <Carousel
               autoPlay={true}
               stopOnHover={true}

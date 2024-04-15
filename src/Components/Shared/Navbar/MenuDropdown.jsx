@@ -5,11 +5,14 @@ import userDefaultImg from "../../../assets/Images/UserDefault.jpg";
 import { Link } from "react-router-dom";
 import Login from "../../../Pages/Login/Login";
 import SignUp from "../../../Pages/SignUp/SignUp";
+import useAuth from "../../../Hooks/UseAuth";
 
 const MenuDropdown = () => {
   // ----------------------------------------------------------------
+  const { user, logOut } = useAuth;
   const [isOpen, setIsOpen] = useState(false);
-  const user = false;
+
+  console.log(user);
   // ----------------------------------------------------------------
 
   // ------------------------Control the login modal----------------------------------------
@@ -54,7 +57,7 @@ const MenuDropdown = () => {
             <img
               className="rounded-full"
               referrerPolicy="no-referrer"
-              src={userDefaultImg}
+              src={user && user.photoURL ? user.photoURL : userDefaultImg}
               alt="profile"
               height="30"
               width="30"
