@@ -9,10 +9,10 @@ import useAuth from "../../../Hooks/UseAuth";
 
 const MenuDropdown = () => {
   // ----------------------------------------------------------------
-  const { user, logOut } = useAuth;
+  const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(user);
+  // console.log(user);
   // ----------------------------------------------------------------
 
   // ------------------------Control the login modal----------------------------------------
@@ -83,7 +83,10 @@ const MenuDropdown = () => {
                 >
                   Dashboard
                 </Link>
-                <div className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer">
+                <div
+                  onClick={logOut}
+                  className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
+                >
                   Logout
                 </div>
               </>

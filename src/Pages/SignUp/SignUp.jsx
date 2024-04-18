@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import { FaGithub } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
@@ -11,6 +11,11 @@ import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
 
 const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
+  // ----------------------------------------------------------------
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   // -------------------------Sign Up functionalities---------------------------------------
   const [uploadButtonText, setUploadButtonText] = useState(
     "Upload Profile Picture"
@@ -18,7 +23,6 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
 
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
     useAuth();
-  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,7 +48,7 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
       // console.log(dbResponse);
       //5. get token
       await getToken(result?.user?.email);
-      navigate("/");
+      navigate(from, { replace: true });
       closeSignUpModal(true);
       setUploadButtonText("Upload Profile Picture");
       toast.success("SignUp Successful");
@@ -68,7 +72,7 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
 
       //5. get token
       await getToken(result?.user?.email);
-      navigate("/");
+      navigate(from, { replace: true });
       closeSignUpModal(true);
       toast.success("SignUp Successful");
       // ----------------------------------------------------------------
@@ -248,7 +252,7 @@ const SignUp = ({ openSignUpModal, closeSignUpModal, isSignUpOpen }) => {
                       <p className="px-6 text-sm text-center text-gray-400">
                         Already have an account?
                         <Link
-                          to="/login"
+                          to="/loginPage"
                           className="hover:underline hover:text-purple-500 text-gray-600"
                         >
                           Login

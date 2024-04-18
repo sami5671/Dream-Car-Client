@@ -1,0 +1,46 @@
+[
+  {
+    "CarModel": "Tesla Model 3",
+    "CarCondition": "Used",
+    "Category": "Electric",
+    "TopSpeed": 300,
+    "FuelType": "Electric",
+    "Mileage": 25,
+    "Engine": "Electric Motor",
+    "CarPriceNew": 35000,
+    "CarPricePrevious": 25000,
+    "ExteriorColor": "Black",
+    "InteriorColor": "Beige",
+    "Drivetrain": "All-Wheel Drive",
+    "Transmission": "Automatic",
+    "Seating": 4,
+    "Images": [
+      "https://i.ibb.co/frw2sJ2/tesla4-removebg-preview.png",
+      "https://i.ibb.co/k026H4L/tesla3-removebg-preview.png",
+      "https://i.ibb.co/y655qYn/tesla2-removebg-preview.png",
+      "https://i.ibb.co/p0n9y92/tesla1-removebg-preview.png"
+    ]
+  },
+  {
+    "CarModel": "2023 Volkswagen Taos",
+    "CarCondition": "Brand New",
+    "Category": "Suv",
+    "TopSpeed": 360,
+    "FuelType": "Gas",
+    "Mileage": 31,
+    "Engine": "turbocharged 1.5-liter four-cylinder engine",
+    "CarPriceNew": 24155,
+    "CarPricePrevious": 29000,
+    "ExteriorColor": "Red",
+    "InteriorColor": "Black",
+    "Drivetrain": "All-Wheel Drive",
+    "Transmission": "Automatic",
+    "Seating": 5,
+    "Images": [
+      "https://i.ibb.co/Z2vqNTn/Suv1-removebg-preview.png",
+      "https://i.ibb.co/qnYdLrT/suv2-removebg-preview.png",
+      "https://i.ibb.co/NYT36Nk/suv3-removebg-preview.png",
+      "https://i.ibb.co/hdBD2Rz/suv4-removebg-preview.png"
+    ]
+  }
+]

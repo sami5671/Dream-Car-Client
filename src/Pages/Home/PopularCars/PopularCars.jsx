@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllCars } from "./../../../api/Cars";
+import { getBrandNewCar } from "./../../../api/Cars";
 import { useSearchParams } from "react-router-dom";
 import Loader from "../../../Components/Loader/Loader";
 import Container from "../../../Components/Shared/Container";
@@ -17,7 +17,7 @@ const PopularCars = () => {
 
   useEffect(() => {
     setLoading(true);
-    getAllCars().then((data) => {
+    getBrandNewCar().then((data) => {
       if (category) {
         const filtered = data.filter((item) => item.Category === category);
         setCars(filtered);
@@ -31,7 +31,7 @@ const PopularCars = () => {
   if (loading) {
     return <Loader />;
   }
-  //   console.log(cars);
+  console.log(cars);
   // =================================================================
   return (
     <Container>

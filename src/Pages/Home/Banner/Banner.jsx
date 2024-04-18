@@ -2,8 +2,20 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import BannerCarousalContainer from "./BannerCarousalContainer";
 import Container from "../../../Components/Shared/Container";
+import { useState } from "react";
+import Login from "../../Login/Login";
 
 const Banner = () => {
+  // ----------------------------------------------------------------
+
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+  const openLoginModal = () => {
+    setIsLoginOpen(true);
+  };
+  const closeLoginModal = () => {
+    setIsLoginOpen(false);
+  };
   // ----------------------------------------------------------------
   const banners = [
     {
@@ -44,7 +56,10 @@ const Banner = () => {
             </button>
             <p className="mt-1 ml-1">
               Already have an account?
-              <span className="font-bold underline cursor-pointer hover:decoration-white">
+              <span
+                onClick={openLoginModal}
+                className="font-bold underline cursor-pointer hover:decoration-white"
+              >
                 Sign in
               </span>
             </p>
@@ -67,6 +82,12 @@ const Banner = () => {
             </Carousel>
           </div>
         </div>
+
+        <Login
+          isLoginOpen={isLoginOpen}
+          openLoginModal={openLoginModal}
+          closeLoginModal={closeLoginModal}
+        />
       </Container>
     </>
   );

@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { FaGithub } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -8,8 +8,11 @@ import useAuth from "../../Hooks/UseAuth";
 import { getToken, saveUser } from "../../api/auth";
 import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
+import SignUp from "../SignUp/SignUp";
 
 const Login = ({ isLoginOpen, closeLoginModal }) => {
+  //================================================================
+
   // =================================================================
   const { signIn, signInWithGoogle, loading } = useAuth();
   const navigate = useNavigate();
@@ -97,7 +100,7 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
                       </p>
                       <div className="mb-8">
                         <h1 className="my-3 text-4xl font-bold bg-gradient-to-br from-purple-600 to-green-300 text-transparent bg-clip-text">
-                          Login Now
+                          Welcome To <br /> Dream Car
                         </h1>
                         <p className="text-sm text-gray-400">
                           Sign in to access your account
@@ -180,20 +183,23 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
                       </div>
                       <div
                         onClick={handleGoogleSignIn}
-                        className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+                        className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer hover:bg-black hover:text-white"
                       >
                         <FcGoogle size={32} />
 
                         <p>Continue with Google</p>
                       </div>
-                      <div className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer">
+                      <div className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer hover:bg-black hover:text-white">
                         <FaGithub size={32} />
 
                         <p>Continue with GitHub</p>
                       </div>
                       <p className="px-6 text-sm text-center text-gray-400">
                         Don&apos;t have an account yet?
-                        <Link className="hover:underline hover:text-cyan-500 text-gray-600">
+                        <Link
+                          to="/signUpPage"
+                          className="hover:underline hover:text-cyan-500 text-gray-600"
+                        >
                           Sign up
                         </Link>
                       </p>
