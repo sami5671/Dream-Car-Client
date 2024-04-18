@@ -3,8 +3,8 @@ import { getBrandNewCar } from "./../../../api/Cars";
 import { useSearchParams } from "react-router-dom";
 import Loader from "../../../Components/Loader/Loader";
 import Container from "../../../Components/Shared/Container";
-import CarCard from "./CarCard";
 import EmptyData from "../../../Components/EmptyData/EmptyData";
+import CarCard from "../../../Components/Shared/CarCard";
 
 const PopularCars = () => {
   // =================================================================
@@ -31,7 +31,7 @@ const PopularCars = () => {
   if (loading) {
     return <Loader />;
   }
-  console.log(cars);
+  // console.log(cars);
   // =================================================================
   return (
     <Container>

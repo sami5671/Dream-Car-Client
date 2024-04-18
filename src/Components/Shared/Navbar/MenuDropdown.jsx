@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { FaCar } from "react-icons/fa6";
-import { AiOutlineMenu } from "react-icons/ai";
+import { HiMenuAlt1 } from "react-icons/hi";
+
 import userDefaultImg from "../../../assets/Images/UserDefault.jpg";
 import { Link } from "react-router-dom";
 import Login from "../../../Pages/Login/Login";
 import SignUp from "../../../Pages/SignUp/SignUp";
 import useAuth from "../../../Hooks/UseAuth";
+
+import "./MenuDropdown.css";
 
 const MenuDropdown = () => {
   // ----------------------------------------------------------------
@@ -33,25 +36,32 @@ const MenuDropdown = () => {
   const closeSignUpModal = () => {
     setIsSignUpOpen(false);
   };
+
   // ----------------------------------------------------------------
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         {/* Become A Host btn */}
-        <div className="">
-          <button className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-[10px] lg:text-sm font-semibold rounded-full transition">
-            <span className="flex items-center gap-2 ">
-              Request for Member <FaCar className="text-cyan-500" />
-            </span>
-          </button>
-        </div>
+        {user ? (
+          <div className="hover:animate-pulse">
+            <button className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-[10px] lg:text-sm font-semibold rounded-full transition">
+              <span className="flex items-center gap-2 ">
+                Request for Member
+                <FaCar className="text-purple-800 " />
+              </span>
+            </button>
+          </div>
+        ) : (
+          " "
+        )}
 
         {/* Dropdown btn */}
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+          className={`p-4 md:py-1 md:px-2 rounded-full flex flex-row items-center gap-3 cursor-pointer  transition ${
+            user ? "animate-spinner" : " "
+          }`}
         >
-          <AiOutlineMenu />
           <div className="hidden md:block">
             {/* Avatar */}
             <img
@@ -63,6 +73,9 @@ const MenuDropdown = () => {
               width="30"
             />
           </div>
+          <span className="text-purple-800">
+            <HiMenuAlt1 />
+          </span>
         </div>
       </div>
       {isOpen && (

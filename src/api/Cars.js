@@ -11,6 +11,11 @@ export const getBrandNewCar = async () => {
   const { data } = await axiosSecure("/cars/brandNew");
   return data;
 };
+// get recondition new car
+export const getReconditionCar = async () => {
+  const { data } = await axiosSecure("/cars/recondition");
+  return data;
+};
 
 // get single car from database
 export const getCar = async (id) => {

@@ -3,6 +3,8 @@ import Categories from "../../Components/Categories/Categories";
 import Banner from "./Banner/Banner";
 import CustomerGarage from "./CustomerGarage/CustomerGarage";
 import PopularCars from "./PopularCars/PopularCars";
+import CategoriesRecondition from "../../Components/ReconditionCarCategories/CategoriesRecondition";
+import ReconditionCar from "./ReconditionCar/ReconditionCar";
 
 const Home = () => {
   return (
@@ -13,9 +15,13 @@ const Home = () => {
       {/* banner section */}
       <Banner />
       <CustomerGarage />
-      {/* car categories */}
+      {/* car categories Brand new*/}
       <Categories />
       <PopularCars />
+
+      {/* car categories recondition */}
+      <CategoriesRecondition />
+      <ReconditionCar />
     </div>
   );
 };

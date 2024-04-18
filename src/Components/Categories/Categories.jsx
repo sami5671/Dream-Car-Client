@@ -3,8 +3,6 @@ import Container from "../Shared/Container";
 import { categories } from "./CategoriesData";
 import CategoryBox from "./CategoryBox";
 
-// console.log(categories);
-
 const Categories = () => {
   // =================================================================
   const [params, setParams] = useSearchParams();
