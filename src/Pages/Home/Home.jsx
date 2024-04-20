@@ -5,8 +5,17 @@ import CustomerGarage from "./CustomerGarage/CustomerGarage";
 import PopularCars from "./PopularCars/PopularCars";
 import CategoriesRecondition from "../../Components/ReconditionCarCategories/CategoriesRecondition";
 import ReconditionCar from "./ReconditionCar/ReconditionCar";
+import { useState } from "react";
+import ToggleBtnCarType from "./ToggleBtnCarType";
 
 const Home = () => {
+  // =================================================================
+  const [selectedCarType, setSelectedCarType] = useState("brandNew");
+
+  const handleCarTypeSelection = (type) => {
+    setSelectedCarType(type);
+  };
+  // =================================================================
   return (
     <div>
       <Helmet>
@@ -15,13 +24,28 @@ const Home = () => {
       {/* banner section */}
       <Banner />
       <CustomerGarage />
-      {/* car categories Brand new*/}
-      <Categories />
-      <PopularCars />
 
-      {/* car categories recondition */}
-      <CategoriesRecondition />
-      <ReconditionCar />
+      {/* toggle btn*/}
+      <ToggleBtnCarType
+        handleCarTypeSelection={handleCarTypeSelection}
+        selectedCarType={selectedCarType}
+      />
+      {/* toggle btn*/}
+
+      {selectedCarType === "brandNew" && (
+        <>
+          {/* car categories Brand new*/}
+          <Categories />
+          <PopularCars />
+        </>
+      )}
+      {selectedCarType === "used" && (
+        <>
+          {/* car categories recondition */}
+          <CategoriesRecondition />
+          <ReconditionCar />
+        </>
+      )}
     </div>
   );
 };
