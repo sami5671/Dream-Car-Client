@@ -1,0 +1,28 @@
+.range-slider {
+  -webkit-appearance: none;
+  width: 80%;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to left, #560f9d, #ff69b4);
+  outline: none;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--tw-thumb-bg);
+  cursor: pointer;
+}
+
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--tw-thumb-bg);
+  cursor: pointer;
+}

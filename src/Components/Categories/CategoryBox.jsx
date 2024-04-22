@@ -22,7 +22,7 @@ const CategoryBox = ({ label, selected }) => {
   return (
     <div
       onClick={handleClick}
-      className={`flex flex-col items-center justify-center gap-2 p-3 border-2 rounded-lg hover:bg-slate-900 hover:text-white transition cursor-pointer ${
+      className={`flex flex-col items-center justify-center cd w-[100px] gap-2 p-3 border-2 rounded-lg hover:bg-slate-900 hover:text-white transition cursor-pointer ${
         selected ? "border-slate-700 text-neutral-800" : ""
       }`}
     >

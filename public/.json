@@ -42,5 +42,93 @@
       "https://i.ibb.co/NYT36Nk/suv3-removebg-preview.png",
       "https://i.ibb.co/hdBD2Rz/suv4-removebg-preview.png"
     ]
+  },
+  {
+    "CarModel": "2024 Mazda CX-30 2.5 Turbo",
+    "CarCondition": "Brand New",
+    "Category": "Suv",
+    "TopSpeed": 400,
+    "FuelType": "Octane",
+    "Mileage": 23,
+    "Engine": "turbocharged 1.5-liter four-cylinder engine",
+    "CarPriceNew": 34135,
+    "CarPricePrevious": 37800,
+    "ExteriorColor": "Dark Slate",
+    "InteriorColor": "Black",
+    "Drivetrain": "All-Wheel Drive",
+    "Transmission": "Automatic",
+    "Seating": 5,
+    "Images": [
+      "https://i.ibb.co/6wzPJYm/mazda4-removebg-preview.png",
+      "https://i.ibb.co/bdQ4fG1/mazda3-removebg-preview.png",
+      "https://i.ibb.co/h1jtbbV/mazda2-removebg-preview.png",
+      "https://i.ibb.co/hVvTz9Y/mazda1-removebg-preview.png"
+    ]
+  },
+  {
+    "CarModel": "2024 Chevrolet Trailblazer ACTIV",
+    "CarCondition": "Brand New",
+    "Category": "Suv",
+    "TopSpeed": 300,
+    "FuelType": "Gas",
+    "Mileage": 35,
+    "Engine": "turbocharged 1.5-liter four-cylinder engine",
+    "CarPriceNew": 25000,
+    "CarPricePrevious": 30800,
+    "ExteriorColor": "Blue",
+    "InteriorColor": "White",
+    "Drivetrain": "All-Wheel Drive",
+    "Transmission": "Automatic",
+    "Seating": 5,
+    "Images": [
+      "https://i.ibb.co/vwGTxsT/turbo4-removebg-preview.png",
+      "https://i.ibb.co/nzKGVZ1/turbo3-removebg-preview.png",
+      "https://i.ibb.co/3rZSztz/turbo2-removebg-preview.png",
+      "https://i.ibb.co/1XqmxZq/turbo1-removebg-preview.png"
+    ]
+  },
+  {
+    "CarModel": "2024 Kia Forte",
+    "CarCondition": "Used",
+    "Category": "Sedan",
+    "TopSpeed": 360,
+    "FuelType": "Gas",
+    "Mileage": 34,
+    "Engine": "Inline 4",
+    "CarPriceNew": 25000,
+    "CarPricePrevious": 30800,
+    "ExteriorColor": "Gray",
+    "InteriorColor": "White",
+    "Drivetrain": "Front wheel drive",
+    "Transmission": "Continuously variable-speed automatic",
+    "Seating": 4,
+    "Images": [
+      "https://i.ibb.co/4NdkHf8/kia3-removebg-preview.png",
+      "https://i.ibb.co/pJ369X5/kia4-removebg-preview.png",
+      "https://i.ibb.co/XWWGSbF/kia2-removebg-preview.png",
+      "https://i.ibb.co/bBfNJxJ/kia1-removebg-preview.png"
+    ]
+  },
+  {
+    "CarModel": "Honda Civic Si Sedan",
+    "CarCondition": "Brand New",
+    "Category": "Sedan",
+    "TopSpeed": 500,
+    "FuelType": "Gas",
+    "Mileage": 34,
+    "Engine": "Inline 4",
+    "CarPriceNew": 23950,
+    "CarPricePrevious": 30800,
+    "ExteriorColor": "Orange",
+    "InteriorColor": "Matte Black",
+    "Drivetrain": "Front wheel drive",
+    "Transmission": "Continuously variable-speed automatic",
+    "Seating": 5,
+    "Images": [
+      "https://i.ibb.co/gDbLhNg/honda4-removebg-preview.png",
+      "https://i.ibb.co/BnFrWrH/honda3-removebg-preview.png",
+      "https://i.ibb.co/DQ3pWyR/honda2-removebg-preview.png",
+      "https://i.ibb.co/M273c31/honda1-removebg-preview.png"
+    ]
   }
 ]

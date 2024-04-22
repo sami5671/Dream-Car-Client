@@ -11,5 +11,5 @@
 
 .animate-spinner {
   animation: spin 5s linear infinite;
-  border: 2px solid;
+  border: 3px solid;
 }

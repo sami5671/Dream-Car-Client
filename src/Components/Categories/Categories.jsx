@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Container from "../Shared/Container";
 import { categories } from "./CategoriesData";
 import CategoryBox from "./CategoryBox";
@@ -13,12 +13,14 @@ const Categories = () => {
   return (
     <Container>
       <div>
-        <h1 className="text-4xl lg:mt-20 font-bold mb-2">
-          Popular categories (Brand New)
+        <h1 className="text-4xl mt-4 lg:mt-12 font-bold mb-2">
+          Popular categories
         </h1>
-        <p className="text-slate-900 hover:text-purple-600 cursor-pointer hover:underline w-fit">
-          See all
-        </p>
+        <Link to="/carCollection">
+          <p className="text-slate-900 hover:text-purple-600 cursor-pointer hover:underline w-fit">
+            See all
+          </p>
+        </Link>
       </div>
       <div className="pt-4 pb-2 flex items-center gap-3 justify-between overflow-x-auto">
         {categories.map((item) => (

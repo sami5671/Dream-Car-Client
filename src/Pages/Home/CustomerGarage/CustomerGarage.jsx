@@ -6,7 +6,7 @@ const CustomerGarage = () => {
   return (
     <>
       <Container2>
-        <div className="border-2 border-purple-100 lg:h-[175px] mt-12 mb-12 lg:mt-24 bg-fuchsia-50 border-dashed">
+        <div className="border-2 border-purple-100 lg:h-[175px] mt-16 mb-12 lg:mt-24 bg-fuchsia-50 border-dashed">
           <div className="flex items-center justify-between px-2 py-2">
             <div className="lg:px-4">
               <span className="flex items-center gap-2 text-[8px] lg:text-xl text-purple-700 font-bold">

@@ -1,13 +1,12 @@
 import { useState } from "react";
+import { FaRegHeart } from "react-icons/fa";
 import { FaCar } from "react-icons/fa6";
-import { HiMenuAlt1 } from "react-icons/hi";
-
-import userDefaultImg from "../../../assets/Images/UserDefault.jpg";
+import allCars from "../../../assets/Images/garage.png";
+import userDefaultImg from "../../../assets/Images/userlogo.gif";
 import { Link } from "react-router-dom";
 import Login from "../../../Pages/Login/Login";
 import SignUp from "../../../Pages/SignUp/SignUp";
 import useAuth from "../../../Hooks/UseAuth";
-
 import "./MenuDropdown.css";
 
 const MenuDropdown = () => {
@@ -42,27 +41,35 @@ const MenuDropdown = () => {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         {/* Become A Host btn */}
-        {user ? (
+
+        {/* {user ? (
           <div className="hover:animate-pulse">
             <button className="disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-[10px] lg:text-sm font-semibold rounded-full transition">
               <span className="flex items-center gap-2 ">
-                Request for Member
+                Get Membership
                 <FaCar className="text-purple-800 " />
               </span>
             </button>
           </div>
         ) : (
           " "
-        )}
+        )} */}
 
+        {/* garage all car */}
+        <Link to="/carCollection">
+          <div className="cursor-pointer">
+            <img className="" height="30" width="30" src={allCars} alt="" />
+          </div>
+        </Link>
+        {/* garage all car */}
         {/* Dropdown btn */}
         <div
           onClick={() => setIsOpen(!isOpen)}
           className={`p-4 md:py-1 md:px-2 rounded-full flex flex-row items-center gap-3 cursor-pointer  transition ${
-            user ? "animate-spinner" : " "
+            user ? " " : " "
           }`}
         >
-          <div className="hidden md:block">
+          <div className="animate-spinner rounded-full ">
             {/* Avatar */}
             <img
               className="rounded-full"
@@ -73,10 +80,20 @@ const MenuDropdown = () => {
               width="30"
             />
           </div>
-          <span className="text-purple-800">
-            <HiMenuAlt1 />
-          </span>
         </div>
+        {/* for save car */}
+        <div className="">
+          <span className="text-purple-800">
+            <FaRegHeart className="text-xl lg:text-2xl cursor-pointer" />
+          </span>
+
+          <div className="absolute">
+            <p className="flex flex-col justify-center items-center font-semibold -mt-[30px] lg:-mt-[36px] ml-3 lg:ml-4 bg-purple-600 text-white w-4 h-4 lg:w-5 lg:h-5 rounded-badge">
+              1
+            </p>
+          </div>
+        </div>
+        {/* for save car */}
       </div>
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm">

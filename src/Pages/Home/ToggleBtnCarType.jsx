@@ -5,7 +5,7 @@ const ToggleBtnCarType = ({ handleCarTypeSelection, selectedCarType }) => {
   return (
     <>
       <Container>
-        <div className="flex flex-col items-center justify-center mt-28">
+        <div className="flex flex-col items-center justify-center mt-20 lg:mt-28">
           <div>
             <Logo />
           </div>

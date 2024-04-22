@@ -8,6 +8,7 @@ import LoginPage from "../Pages/Login/LoginPage";
 import CarDetails from "../Pages/CarDetailsPage/CarDetails";
 import { getCar } from "../api/Cars";
 import PrivateRoute from "./PrivateRoute";
+import CarCollection from "../Pages/CarCollectionPage/CarCollection";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/loginPage",
         element: <LoginPage />,
+      },
+      {
+        path: "carCollection",
+        element: <CarCollection />,
       },
       {
         path: "/carDetailsPage/:id",

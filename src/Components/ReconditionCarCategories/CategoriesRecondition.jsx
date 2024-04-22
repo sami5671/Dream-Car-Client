@@ -13,7 +13,7 @@ const CategoriesRecondition = () => {
       <Container>
         <div>
           {/* header */}
-          <div className="flex items-center justify-between mt-12 lg:mt-20">
+          <div className="flex items-center justify-between mt-12 lg:mt-12">
             <div>
               <h1 className="text-4xl font-bold mb-2">Recondition Car</h1>
             </div>
