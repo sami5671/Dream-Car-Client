@@ -13,6 +13,7 @@ const ReconditionCar = () => {
   const [params, setParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const category = params.get("reconditionCategory");
+
   // console.log(category);
 
   useEffect(() => {

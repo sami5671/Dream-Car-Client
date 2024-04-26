@@ -5,6 +5,8 @@ import Container from "../../Components/Shared/Container";
 import { getAllCars } from "../../api/Cars";
 import Logo from "../../Components/Shared/Logo";
 import "./CarSortInput.css";
+import { FaCar } from "react-icons/fa6";
+import Pagination from "../../Components/Pagination/Pagination";
 
 const CarCollection = () => {
   const [cars, setCars] = useState([]);
@@ -14,7 +16,8 @@ const CarCollection = () => {
   const [selectedColor, setSelectedColor] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(400000);
-  const [speed, setSpeed] = useState(535);
+  const [speed, setSpeed] = useState(560);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
@@ -46,6 +49,9 @@ const CarCollection = () => {
       case "speed":
         setSpeed(parseInt(value));
         break;
+      case "searchQuery":
+        setSearchQuery(value);
+        break;
       default:
         break;
     }
@@ -58,6 +64,7 @@ const CarCollection = () => {
     });
   }, []);
 
+  // console.log(cars);
   const filteredCars = cars.filter((car) => {
     const isUsedMatch = !filterUsed || car.CarCondition === "Used";
     const isBrandNewMatch = !filterBrandNew || car.CarCondition === "Brand New";
@@ -65,15 +72,36 @@ const CarCollection = () => {
     const isPriceMatch =
       car.CarPriceNew >= minPrice && car.CarPriceNew <= maxPrice;
     const isSpeedMatch = speed && car.TopSpeed <= speed;
+    const isSearchMatch =
+      car.Category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      car.CarModel.toLowerCase().includes(searchQuery.toLowerCase());
 
     return (
       isUsedMatch &&
       isBrandNewMatch &&
       isColorMatch &&
       isPriceMatch &&
-      isSpeedMatch
+      isSpeedMatch &&
+      isSearchMatch
     );
   });
+
+  // ============================Pagination=====================================
+  const [currentPage, setCurrentPage] = useState(1);
+  const [carsPerPage] = useState(6);
+
+  const indexOfLastCar = currentPage * carsPerPage;
+  const indexOfFirstCar = indexOfLastCar - carsPerPage;
+  const currentCars = filteredCars.slice(indexOfFirstCar, indexOfLastCar);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(filteredCars.length / carsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  // =================================================================
 
   return (
     <Container>
@@ -143,17 +171,23 @@ const CarCollection = () => {
               <option value="Black" className="bg-black text-white ">
                 Black
               </option>
+              <option value="White" className="bg-white text-black ">
+                White
+              </option>
+              <option value="Green" className="bg-green-500 text-white ">
+                Green
+              </option>
               <option value="Red" className="bg-red-500 text-white">
                 Red
               </option>
               <option value="Blue" className="bg-blue-500 text-white">
                 Blue
               </option>
-              <option value="Gray" className="bg-gray-500 text-white">
-                Gray
-              </option>
               <option value="Orange" className="bg-orange-500 text-white">
                 Orange
+              </option>
+              <option value="Gray" className="bg-gray-500 text-white">
+                Gray
               </option>
             </select>
           </div>
@@ -167,7 +201,7 @@ const CarCollection = () => {
               id="minPrice"
               name="minPrice"
               min="0"
-              max="100000"
+              max="500000"
               value={minPrice}
               onChange={handleFilterChange}
               className="w-full range-slider"
@@ -179,7 +213,7 @@ const CarCollection = () => {
               id="maxPrice"
               name="maxPrice"
               min="0"
-              max="100000"
+              max="400000"
               value={maxPrice}
               onChange={handleFilterChange}
               className="w-full range-slider"
@@ -205,9 +239,26 @@ const CarCollection = () => {
         {/* Sorting form */}
         {/* Car show */}
         <div className="w-full">
-          {filteredCars.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-6 gap-3">
-              {filteredCars.map((car) => (
+          <div className="mb-8">
+            <label htmlFor="searchQuery" className="font-bold text-xl">
+              Search Car:
+            </label>
+            <input
+              type="text"
+              id="searchQuery"
+              name="searchQuery"
+              placeholder="Model || Category"
+              value={searchQuery}
+              onChange={handleFilterChange}
+              className="border rounded py-1 px-2 lg:ml-2"
+            />
+            <p className="absolute -mt-6 ml-44 lg:ml-72">
+              <FaCar className="text-gray-500" />
+            </p>
+          </div>
+          {currentCars.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 2xl:grid-cols-6 gap-3">
+              {currentCars.map((car) => (
                 <CarCard key={car._id} car={car} />
               ))}
             </div>
@@ -221,7 +272,16 @@ const CarCollection = () => {
             </div>
           )}
         </div>
+
         {/* Car show */}
+      </div>
+      {/* Pagination */}
+      <div className="flex items-center justify-end">
+        <Pagination
+          pageNumbers={pageNumbers}
+          currentPage={currentPage}
+          paginate={paginate}
+        />
       </div>
     </Container>
   );

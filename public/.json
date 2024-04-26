@@ -130,5 +130,93 @@
       "https://i.ibb.co/DQ3pWyR/honda2-removebg-preview.png",
       "https://i.ibb.co/M273c31/honda1-removebg-preview.png"
     ]
+  },
+  {
+    "CarModel": "2024 Hyundai IONIQ 6 SE Sedan",
+    "CarCondition": "Used",
+    "Category": "Electric",
+    "TopSpeed": 560,
+    "FuelType": "Battery",
+    "Mileage": 40,
+    "Engine": "Inline 4",
+    "CarPriceNew": 37500,
+    "CarPricePrevious": 38500,
+    "ExteriorColor": "Red",
+    "InteriorColor": "White",
+    "Drivetrain": "All wheel drive",
+    "Transmission": "Automatic",
+    "Seating": 5,
+    "Images": [
+      "https://i.ibb.co/vYV5Mb3/hundai4-removebg-preview.png",
+      "https://i.ibb.co/QCXf9Vb/hundai3-removebg-preview.png",
+      "https://i.ibb.co/q0L4fqS/hundai2-removebg-preview.png",
+      "https://i.ibb.co/fYjtv8q/hundai1-removebg-preview.png"
+    ]
+  },
+  {
+    "CarModel": "Nissan Frontier PRO-4X Crew Cab",
+    "CarCondition": "Brand New",
+    "Category": "Pickup",
+    "TopSpeed": 170,
+    "FuelType": "Gas",
+    "Mileage": 30,
+    "Engine": "turbocharged 3.8 L",
+    "CarPriceNew": 31330,
+    "CarPricePrevious": 33500,
+    "ExteriorColor": "Gray",
+    "InteriorColor": "Black",
+    "Drivetrain": "Rear wheel drive",
+    "Transmission": "9-speed shiftable automatic",
+    "Seating": 5,
+    "Images": [
+      "https://i.ibb.co/4YSTty9/truck4-removebg-preview.png",
+      "https://i.ibb.co/C780QMh/truck3-removebg-preview.png",
+      "https://i.ibb.co/0q0LG7V/truck2-removebg-preview.png",
+      "https://i.ibb.co/GxFmXTj/truck1-removebg-preview.png"
+    ]
+  },
+  {
+    "CarModel": "2023 Lamborghini Urus Performante 4dr SUV",
+    "CarCondition": "Brand New",
+    "Category": "Luxury",
+    "TopSpeed": 470,
+    "FuelType": "Gas",
+    "Mileage": 18,
+    "Engine": "turbocharged 3.8 L",
+    "CarPriceNew": 229268,
+    "CarPricePrevious": 0,
+    "ExteriorColor": "Green",
+    "InteriorColor": "Black",
+    "Drivetrain": "All wheel drive",
+    "Transmission": "8-speed shiftable automatic",
+    "Seating": 5,
+    "Images": [
+      "https://i.ibb.co/QdRGScD/lambo4-removebg-preview.png",
+      "https://i.ibb.co/ZXzsR3j/lambo3-removebg-preview.png",
+      "https://i.ibb.co/vP50Z9T/lambo2-removebg-preview.png",
+      "https://i.ibb.co/5GXWv0s/lambo1-removebg-preview.png"
+    ]
+  },
+  {
+    "CarModel": "Rolls-Royce Cullinan 4dr SUV",
+    "CarCondition": "Brand New",
+    "Category": "Luxury",
+    "TopSpeed": 370,
+    "FuelType": "Gas",
+    "Mileage": 14,
+    "Engine": "turbocharged 3.8 L",
+    "CarPriceNew": 348500,
+    "CarPricePrevious": 0,
+    "ExteriorColor": "White",
+    "InteriorColor": "White",
+    "Drivetrain": "All wheel drive",
+    "Transmission": "8-speed automatic",
+    "Seating": 5,
+    "Images": [
+      "https://i.ibb.co/tZ1TjQC/rose1-removebg-preview.png",
+      "https://i.ibb.co/5T9ssCr/rose2-removebg-preview.png",
+      "https://i.ibb.co/LYLDDsq/rose3-removebg-preview.png",
+      "https://i.ibb.co/kg82mkL/rose4-removebg-preview.png"
+    ]
   }
 ]

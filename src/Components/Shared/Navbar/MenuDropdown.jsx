@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
-import { FaCar } from "react-icons/fa6";
 import allCars from "../../../assets/Images/garage.png";
 import userDefaultImg from "../../../assets/Images/userlogo.gif";
 import { Link } from "react-router-dom";

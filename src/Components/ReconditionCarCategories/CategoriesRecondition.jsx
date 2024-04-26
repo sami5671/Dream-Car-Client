@@ -17,13 +17,6 @@ const CategoriesRecondition = () => {
             <div>
               <h1 className="text-4xl font-bold mb-2">Recondition Car</h1>
             </div>
-            <div className="hidden lg:block">
-              <input
-                type="text"
-                placeholder="Search"
-                className="input input-bordered lg:w-96"
-              />
-            </div>
           </div>
           {/* header */}
           <p className="text-slate-900 hover:text-purple-600 cursor-pointer hover:underline w-fit">
