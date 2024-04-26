@@ -1,5 +1,3 @@
-import Container from "../Shared/Container";
-
 const Pagination = ({ pageNumbers, currentPage, paginate }) => {
   return (
     <>

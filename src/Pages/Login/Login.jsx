@@ -56,6 +56,7 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
       //5. get token
       await getToken(result?.user?.email);
       navigate(from, { replace: true });
+      closeLoginModal(true);
       toast.success("Login Successful");
       // ----------------------------------------------------------------
     } catch (err) {

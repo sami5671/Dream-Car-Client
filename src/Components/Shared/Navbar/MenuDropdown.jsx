@@ -6,14 +6,16 @@ import { Link } from "react-router-dom";
 import Login from "../../../Pages/Login/Login";
 import SignUp from "../../../Pages/SignUp/SignUp";
 import useAuth from "../../../Hooks/UseAuth";
+import { MdOutlineDashboard } from "react-icons/md";
+import { RiLogoutCircleLine } from "react-icons/ri";
+
 import "./MenuDropdown.css";
+import { FaUser } from "react-icons/fa6";
 
 const MenuDropdown = () => {
   // ----------------------------------------------------------------
   const { user, logOut } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
 
-  // console.log(user);
   // ----------------------------------------------------------------
 
   // ------------------------Control the login modal----------------------------------------
@@ -62,23 +64,61 @@ const MenuDropdown = () => {
         </Link>
         {/* garage all car */}
         {/* Dropdown btn */}
-        <div
-          onClick={() => setIsOpen(!isOpen)}
-          className={`p-4 md:py-1 md:px-2 rounded-full flex flex-row items-center gap-3 cursor-pointer  transition ${
-            user ? " " : " "
-          }`}
-        >
-          <div className="animate-spinner rounded-full ">
-            {/* Avatar */}
-            <img
-              className="rounded-full"
-              referrerPolicy="no-referrer"
-              src={user && user.photoURL ? user.photoURL : userDefaultImg}
-              alt="profile"
-              height="30"
-              width="30"
-            />
+        <div className="dropdown dropdown-end">
+          <div tabIndex={0} role="button" className="btn btn-circle avatar">
+            <div className="w-10 rounded-full animate-spinner">
+              <img
+                className="rounded-full"
+                referrerPolicy="no-referrer"
+                src={user && user.photoURL ? user.photoURL : userDefaultImg}
+                alt="profile"
+                height="30"
+                width="30"
+              />
+            </div>
           </div>
+          {user ? (
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-4 z-[1] p-2 shadow bg-base-100 rounded-box w-52 border-2"
+            >
+              <li>
+                <button className="text-purple-700 hover:text-black hover:font-bold">
+                  <span className="flex items-center gap-2">
+                    <FaUser /> Profile
+                  </span>
+                </button>
+              </li>
+              <li>
+                <button className="text-purple-700 hover:text-black hover:font-bold">
+                  <span className="flex items-center gap-2">
+                    <MdOutlineDashboard />
+                    Dashboard
+                  </span>
+                </button>
+              </li>
+              <li>
+                <button className="text-purple-700 hover:text-black hover:font-bold">
+                  <span className="flex items-center gap-2">
+                    <RiLogoutCircleLine />
+                    Logout
+                  </span>
+                </button>
+              </li>
+            </ul>
+          ) : (
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-12 z-[1] p-2 shadow-xl bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <button onClick={openLoginModal}>Login</button>
+              </li>
+              <li>
+                <button onClick={openSignUpModal}>Sign Up</button>
+              </li>
+            </ul>
+          )}
         </div>
         {/* for save car */}
         <div className="">
@@ -94,50 +134,7 @@ const MenuDropdown = () => {
         </div>
         {/* for save car */}
       </div>
-      {isOpen && (
-        <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm">
-          <div className="flex flex-col cursor-pointer">
-            <Link
-              to="/"
-              className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
-            >
-              Home
-            </Link>
 
-            {user ? (
-              <>
-                <Link
-                  to="/dashboard"
-                  className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
-                >
-                  Dashboard
-                </Link>
-                <div
-                  onClick={logOut}
-                  className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
-                >
-                  Logout
-                </div>
-              </>
-            ) : (
-              <>
-                <button
-                  onClick={openLoginModal}
-                  className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
-                >
-                  Login
-                </button>
-                <button
-                  onClick={openSignUpModal}
-                  className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
-                >
-                  Sign Up
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-      )}
       {/* <HostRequestModal
         isOpen={isModalOpen}
         closeModal={closeModal}
