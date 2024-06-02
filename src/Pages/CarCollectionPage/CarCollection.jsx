@@ -7,6 +7,7 @@ import Logo from "../../Components/Shared/Logo";
 import "./CarSortInput.css";
 import { FaCar } from "react-icons/fa6";
 import Pagination from "../../Components/Pagination/Pagination";
+import { Helmet } from "react-helmet-async";
 
 const CarCollection = () => {
   const [cars, setCars] = useState([]);
@@ -105,6 +106,9 @@ const CarCollection = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Dream Car || Car Collection</title>
+      </Helmet>
       <div className="flex flex-col  lg:flex-row gap-4">
         {/* Sorting form */}
         <div className="lg:w-[500px] lg:h-[600px] shadow-xl bg-gray-100 rounded-xl p-4">
@@ -257,7 +261,7 @@ const CarCollection = () => {
             </p>
           </div>
           {currentCars.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 2xl:grid-cols-6 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-3">
               {currentCars.map((car) => (
                 <CarCard key={car._id} car={car} />
               ))}

@@ -1,4 +1,5 @@
 import axiosSecure from ".";
+
 // fetch data from the mongodb database
 
 export const getAllCars = async () => {
@@ -22,3 +23,14 @@ export const getCar = async (id) => {
   const { data } = await axiosSecure(`/car/${id}`);
   return data;
 };
+
+// post favorite car and email to database
+export const postFavoriteCar = async (favoriteCarItem) => {
+  const { data } = await axiosSecure.post("/favoriteCar", favoriteCarItem);
+  return data;
+};
+
+// get User favorite car by email
+
+// tan stack query watch Hooks folder
+// =================================================================

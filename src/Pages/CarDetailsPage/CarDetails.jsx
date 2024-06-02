@@ -63,19 +63,19 @@ const CarDetails = () => {
             <h1 className="text-3xl font-bold mt-12"> key specification </h1>
             <div className="grid grid-cols-2 gap-3 mt-6">
               <div className="border-2 rounded-lg w-full p-2">
-                <p className="text-xl font-semibold">Electric</p>
+                <p className="text-xl font-semibold">{car?.FuelType}</p>
                 <p className="text-slate-500 text-[12px]">Fuel Type</p>
               </div>
               <div className="border-2 rounded-lg w-full p-2">
-                <p className="text-xl font-semibold">240km</p>
+                <p className="text-xl font-semibold">{car?.TopSpeed}Km</p>
                 <p className="text-slate-500 text-[12px]">Top Speed</p>
               </div>
               <div className="border-2 rounded-lg w-full p-2">
-                <p className="text-xl font-semibold">15km</p>
+                <p className="text-xl font-semibold">{car?.Mileage}Km</p>
                 <p className="text-slate-500 text-[12px]">Mileage</p>
               </div>
               <div className="border-2 rounded-lg w-full p-2">
-                <p className="text-xl font-semibold">Electric Motor</p>
+                <p className="text-xl font-semibold">{car?.Engine}</p>
                 <p className="text-slate-500 text-[12px]">Engine</p>
               </div>
             </div>
@@ -91,30 +91,30 @@ const CarDetails = () => {
                   {/* row 1 */}
                   <tr>
                     <td className="font-bold text-xl">Exterior color</td>
-                    <td>Star White</td>
+                    <td>{car?.ExteriorColor}</td>
                   </tr>
                   {/* row 2 */}
                   <tr>
                     <td className="font-bold text-xl">Interior color</td>
-                    <td>Black Onyx</td>
+                    <td>{car?.InteriorColor}</td>
                   </tr>
                   {/* row 3 */}
                   <tr>
                     <td className="font-bold text-xl">Drivetrain</td>
-                    <td>All-wheel Drive</td>
+                    <td>{car?.Drivetrain}</td>
                   </tr>
 
                   <tr>
                     <td className="font-bold text-xl">Transmission</td>
-                    <td>1-Speed Automatic</td>
+                    <td>{car?.Transmission}</td>
                   </tr>
                   <tr>
                     <td className="font-bold text-xl">Engine</td>
-                    <td>Electric</td>
+                    <td>{car?.Engine}</td>
                   </tr>
                   <tr>
                     <td className="font-bold text-xl">Mileage</td>
-                    <td>13 mi.</td>
+                    <td>{car?.Mileage} mi.</td>
                   </tr>
                 </tbody>
               </table>

@@ -9,6 +9,7 @@ import { getToken, saveUser } from "../../api/auth";
 import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
 import SignUp from "../SignUp/SignUp";
+import { FaSpinner } from "react-icons/fa";
 
 const Login = ({ isLoginOpen, closeLoginModal }) => {
   //================================================================
@@ -158,7 +159,8 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
                               type="submit"
                               className="bg-purple-800 w-full rounded-md py-3 text-white flex items-center justify-center"
                             >
-                              <ImSpinner9 className="animate-spin" />
+                              <FaSpinner className="animate-spin mr-2" />
+                              Loading...
                             </button>
                           ) : (
                             <button

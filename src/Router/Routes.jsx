@@ -9,6 +9,7 @@ import CarDetails from "../Pages/CarDetailsPage/CarDetails";
 import { getCar } from "../api/Cars";
 import PrivateRoute from "./PrivateRoute";
 import CarCollection from "../Pages/CarCollectionPage/CarCollection";
+import UserFavoriteCars from "../Pages/Users/UserFavoriteCars";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) => getCar(params.id),
+      },
+      {
+        path: "/userFavoriteCar",
+        element: (
+          <PrivateRoute>
+            <UserFavoriteCars />
+          </PrivateRoute>
+        ),
       },
     ],
   },

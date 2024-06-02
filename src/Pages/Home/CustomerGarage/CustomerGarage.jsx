@@ -16,7 +16,7 @@ const CustomerGarage = () => {
                 Start Tracking Your <br /> Car's Value
               </p>
               <Link to="/customerGarageDetails">
-                <button className="border-2 bg-purple-600 text-[8px] lg:text-xl text-white rounded-lg hover:bg-white hover:text-black font-semibold px-2 py-1 ">
+                <button className="border-2 bg-purple-600 text-[8px] lg:text-sm text-white rounded-lg hover:bg-white hover:text-black font-semibold px-2 py-1 ">
                   Learn More
                 </button>
               </Link>

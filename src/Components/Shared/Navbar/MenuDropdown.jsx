@@ -8,13 +8,16 @@ import SignUp from "../../../Pages/SignUp/SignUp";
 import useAuth from "../../../Hooks/UseAuth";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiLogoutCircleLine } from "react-icons/ri";
-
 import "./MenuDropdown.css";
 import { FaUser } from "react-icons/fa6";
+import UseUserFavoriteCar from "../../../Hooks/UseUserFavoriteCar";
 
 const MenuDropdown = () => {
   // ----------------------------------------------------------------
   const { user, logOut } = useAuth();
+
+  const [favoriteCar] = UseUserFavoriteCar();
+  // console.log(favoriteCar.length);
 
   // ----------------------------------------------------------------
 
@@ -98,7 +101,10 @@ const MenuDropdown = () => {
                 </button>
               </li>
               <li>
-                <button className="text-purple-700 hover:text-black hover:font-bold">
+                <button
+                  onClick={logOut}
+                  className="text-purple-700 hover:text-black hover:font-bold"
+                >
                   <span className="flex items-center gap-2">
                     <RiLogoutCircleLine />
                     Logout
@@ -121,17 +127,18 @@ const MenuDropdown = () => {
           )}
         </div>
         {/* for save car */}
-        <div className="">
-          <span className="text-purple-800">
-            <FaRegHeart className="text-xl lg:text-2xl cursor-pointer" />
-          </span>
-
-          <div className="absolute">
-            <p className="flex flex-col justify-center items-center font-semibold -mt-[30px] lg:-mt-[36px] ml-3 lg:ml-4 bg-purple-600 text-white w-4 h-4 lg:w-5 lg:h-5 rounded-badge">
-              1
-            </p>
+        <Link to="/userFavoriteCar">
+          <div className="">
+            <span className="text-purple-800">
+              <FaRegHeart className="text-xl lg:text-2xl cursor-pointer" />
+            </span>
+            <div className="absolute">
+              <p className="flex flex-col justify-center items-center font-semibold -mt-[30px] lg:-mt-[36px] ml-3 lg:ml-4 bg-purple-600 text-white w-4 h-4 lg:w-5 lg:h-5 rounded-badge">
+                {favoriteCar.length}
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
         {/* for save car */}
       </div>
 
