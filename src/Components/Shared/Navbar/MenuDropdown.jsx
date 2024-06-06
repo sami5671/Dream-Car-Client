@@ -7,9 +7,10 @@ import Login from "../../../Pages/Login/Login";
 import SignUp from "../../../Pages/SignUp/SignUp";
 import useAuth from "../../../Hooks/UseAuth";
 import { MdOutlineDashboard } from "react-icons/md";
-import { RiLogoutCircleLine } from "react-icons/ri";
+import { RiLoginCircleFill, RiLogoutCircleLine } from "react-icons/ri";
 import "./MenuDropdown.css";
 import { FaUser } from "react-icons/fa6";
+import { IoIosMan } from "react-icons/io";
 import UseUserFavoriteCar from "../../../Hooks/UseUserFavoriteCar";
 
 const MenuDropdown = () => {
@@ -93,12 +94,14 @@ const MenuDropdown = () => {
                 </button>
               </li>
               <li>
-                <button className="text-purple-700 hover:text-black hover:font-bold">
-                  <span className="flex items-center gap-2">
-                    <MdOutlineDashboard />
-                    Dashboard
-                  </span>
-                </button>
+                <Link to="/dashboard">
+                  <button className="text-purple-700 hover:text-black hover:font-bold">
+                    <span className="flex items-center gap-2">
+                      <MdOutlineDashboard />
+                      Dashboard
+                    </span>
+                  </button>
+                </Link>
               </li>
               <li>
                 <button
@@ -115,13 +118,25 @@ const MenuDropdown = () => {
           ) : (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-12 z-[1] p-2 shadow-xl bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-4 z-[1] p-2 shadow-2xl border-2 bg-base-100 rounded-box w-52"
             >
               <li>
-                <button onClick={openLoginModal}>Login</button>
+                <button
+                  onClick={openLoginModal}
+                  className="text-purple-500 font-semibold hover:text-black"
+                >
+                  <RiLoginCircleFill />
+                  Login
+                </button>
               </li>
               <li>
-                <button onClick={openSignUpModal}>Sign Up</button>
+                <button
+                  onClick={openSignUpModal}
+                  className="text-purple-500 font-semibold hover:text-black"
+                >
+                  <IoIosMan />
+                  Sign Up
+                </button>
               </li>
             </ul>
           )}
@@ -132,11 +147,15 @@ const MenuDropdown = () => {
             <span className="text-purple-800">
               <FaRegHeart className="text-xl lg:text-2xl cursor-pointer" />
             </span>
-            <div className="absolute">
-              <p className="flex flex-col justify-center items-center font-semibold -mt-[30px] lg:-mt-[36px] ml-3 lg:ml-4 bg-purple-600 text-white w-4 h-4 lg:w-5 lg:h-5 rounded-badge">
-                {favoriteCar.length}
-              </p>
-            </div>
+            {favoriteCar.length > 0 ? (
+              <div className="absolute">
+                <span className="flex flex-col justify-center items-center font-semibold px-2 -mt-[30px] lg:-mt-[36px] ml-3 lg:ml-4 bg-purple-600 text-white rounded-badge">
+                  {favoriteCar.length}
+                </span>
+              </div>
+            ) : (
+              " "
+            )}
           </div>
         </Link>
         {/* for save car */}

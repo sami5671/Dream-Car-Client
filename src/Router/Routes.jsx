@@ -10,6 +10,10 @@ import { getCar } from "../api/Cars";
 import PrivateRoute from "./PrivateRoute";
 import CarCollection from "../Pages/CarCollectionPage/CarCollection";
 import UserFavoriteCars from "../Pages/Users/UserFavoriteCars";
+import DashboardLayout from "../Layout/DashboardLayout";
+import AddCar from "../Components/Dashboard/Moderator/AddCar/AddCar";
+import ManageCar from "../Components/Dashboard/Moderator/MaanageCar/ManageCar";
+import ManageOrder from "../Components/Dashboard/Moderator/ManageOrder/ManageOrder";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +55,40 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UserFavoriteCars />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "add-car",
+        element: (
+          <PrivateRoute>
+            <AddCar />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-car",
+        element: (
+          <PrivateRoute>
+            <ManageCar />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-order",
+        element: (
+          <PrivateRoute>
+            <ManageOrder />
           </PrivateRoute>
         ),
       },

@@ -34,3 +34,17 @@ export const postFavoriteCar = async (favoriteCarItem) => {
 
 // tan stack query watch Hooks folder
 // =================================================================
+
+// delete user favorite car
+export const deleteFavoriteCar = async (id) => {
+  const { data } = await axiosSecure.delete(`/userFavoriteCar/${id}`);
+  return data;
+};
+
+// delete user all favorite car
+export const deleteFavoriteCars = async (ids) => {
+  const res = await axiosSecure.delete("/deleteFavoriteCars", {
+    data: { carIds: ids },
+  });
+  return res.data;
+};
