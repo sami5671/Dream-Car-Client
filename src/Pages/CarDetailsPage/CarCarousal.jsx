@@ -9,16 +9,16 @@ const CarCarousal = ({ car }) => {
     <>
       <Carousel showStatus={false} thumbWidth={80} showArrows={false}>
         <div>
-          <img src={car?.Images?.[0]} />
+          <img src={car?.Images?.[0]?.url} />
         </div>
         <div>
-          <img src={car?.Images?.[1]} />
+          <img src={car?.Images?.[1]?.url} />
         </div>
         <div>
-          <img src={car?.Images?.[2]} />
+          <img src={car?.Images?.[2]?.url} />
         </div>
         <div>
-          <img src={car?.Images?.[3]} />
+          <img src={car?.Images?.[3]?.url} />
         </div>
       </Carousel>
     </>

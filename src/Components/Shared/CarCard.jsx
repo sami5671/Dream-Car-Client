@@ -42,7 +42,7 @@ const CarCard = ({ car }) => {
         <Link to={`/carDetailsPage/${car?._id}`}>
           <div>
             <img
-              src={car?.Images?.[3]}
+              src={car?.Images?.[1]?.url}
               className="w-[250px] h-[150px] group-hover:scale-110 transition object-cover "
               alt="Img"
             />
