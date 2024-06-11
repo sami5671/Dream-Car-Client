@@ -1,16 +1,7 @@
-import { useState } from "react";
-import { uploadCloudinary } from "../../../../api/utils";
 import { categories } from "../../../Categories/CategoriesData";
-import { addCar } from "../../../../api/Cars";
-import toast from "react-hot-toast";
-import uploadImg from "../../../../assets/Images/upload.gif";
 
-const AddCar = () => {
-  const [images, setImages] = useState([]);
-  const [uploadButtonText, setUploadButtonText] = useState("Upload Car Images");
-  const [loading, setLoading] = useState(false);
-  const [img, setImg] = useState([]);
-
+const AddCarForm = ({ handleSubmit }) => {
+  // =================================================================
   const carCondition = [
     {
       id: 1,
@@ -66,51 +57,9 @@ const AddCar = () => {
     },
   ];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      let arr = [];
-      for (let i = 0; i < images.length; i++) {
-        const data = await uploadCloudinary(images[i]);
-        arr.push(data);
-      }
-      setImg(arr);
-      setUploadButtonText("Successfully uploaded!");
-
-      const form = e.target;
-      const carData = {
-        CarModel: form.carModel.value,
-        CarCondition: form.carCondition.value,
-        Category: form.category.value,
-        TopSpeed: form.topSpeed.value,
-        FuelType: form.fuel.value,
-        Mileage: form.mileage.value,
-        Engine: form.engineCategory.value,
-        CarPriceNew: form.newPrice.value,
-        CarPricePrevious: form.previousPrice.value,
-        ExteriorColor: form.exteriorColor.value,
-        InteriorColor: form.interiorColor.value,
-        Drivetrain: form.drivetrain.value,
-        Transmission: form.transmission.value,
-        Seating: form.seating.value,
-        Images: img,
-      };
-
-      const data = await addCar(carData);
-      toast.success("Car added successfully");
-      // console.log(carData);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // =================================================================
   return (
-    <div>
-      {/*add car form */}
+    <>
       <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
         <div className="mb-12">
           <h1 className="text-2xl font-bold text-purple-700 underline">
@@ -168,12 +117,12 @@ const AddCar = () => {
               </div>
               <div className="flex justify-between gap-2">
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="topSpeed" className="block text-gray-600">
+                  <label htmlFor="speed" className="block text-gray-600">
                     Top Speed
                   </label>
                   <input
                     className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
-                    name="topSpeed"
+                    name="speed"
                     type="number"
                     placeholder="Top Speed"
                     required
@@ -187,7 +136,7 @@ const AddCar = () => {
                   <input
                     className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
                     name="fuel"
-                    type="text"
+                    type="number"
                     placeholder="Fuel Type"
                     required
                   />
@@ -252,13 +201,16 @@ const AddCar = () => {
                   <div className="flex flex-col w-max mx-auto text-center">
                     <label>
                       <input
-                        type="file"
+                        // onChange={(e) => handleImageChange(e.target.files[0])}
                         className="text-sm cursor-pointer w-36 hidden"
-                        multiple={true}
-                        onChange={(e) => setImages(e.target.files)}
+                        type="file"
+                        name="image"
+                        id="image"
+                        accept="image/*"
+                        hidden
                       />
                       <div className="bg-purple-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-purple-500">
-                        {uploadButtonText}
+                        {/* {uploadButtonText} */}
                       </div>
                     </label>
                   </div>
@@ -306,7 +258,7 @@ const AddCar = () => {
                   <input
                     className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
                     name="exteriorColor"
-                    type="text"
+                    type="number"
                     placeholder="Exterior Color"
                     required
                   />
@@ -322,7 +274,7 @@ const AddCar = () => {
                   <input
                     className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
                     name="interiorColor"
-                    type="text"
+                    type="number"
                     placeholder="Interior Color"
                     required
                   />
@@ -357,23 +309,16 @@ const AddCar = () => {
             </div>
           </div>
 
-          <div className="mt-6">
-            {loading ? (
-              <button className="w-full border-2 py-2 border-dashed border-purple-800">
-                <span className="flex justify-center">
-                  <img src={uploadImg} width={30} alt="" />
-                </span>
-              </button>
-            ) : (
-              <button className="w-full border-2 bg-purple-600 py-2 text-white font-bold">
-                <span>Add Car</span>
-              </button>
-            )}
-          </div>
+          <button
+            type="submit"
+            className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-purple-500"
+          >
+            Add Car
+          </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
-export default AddCar;
+export default AddCarForm;

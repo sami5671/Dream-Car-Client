@@ -48,3 +48,9 @@ export const deleteFavoriteCars = async (ids) => {
   });
   return res.data;
 };
+
+// add car to database
+export const addCar = async (carData) => {
+  const { data } = await axiosSecure.post("/addCar", carData);
+  return data;
+};

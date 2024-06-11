@@ -20,4 +20,5 @@ export const uploadCloudinary = async (file) => {
     formData
   );
   return { publicId: data?.public_id, url: data?.secure_url };
+  // return data;
 };
