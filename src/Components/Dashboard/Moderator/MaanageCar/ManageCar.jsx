@@ -4,6 +4,7 @@ import update from "../../../../assets/Images/update.png";
 import deleteImg from "../../../../assets/Images/delete.png";
 import { categories } from "../../../Categories/CategoriesData";
 import { useState } from "react";
+import CarDetailsModal from "./CarDetailsModal";
 
 const ManageCar = () => {
   // =================================================================
@@ -11,6 +12,8 @@ const ManageCar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectCategory, setSelectCategory] = useState("");
   const [selectCondition, setSelectCondition] = useState("");
+  const [isDetailOpen, setDetailOpen] = useState(false);
+  const [selectedCar, setSelectedCar] = useState([]);
   // console.log(allCar);
 
   const conditionCar = [
@@ -23,6 +26,15 @@ const ManageCar = () => {
       type: "Brand New",
     },
   ];
+
+  const handleOpenDetails = (item) => {
+    setSelectedCar(item);
+    setDetailOpen(true);
+  };
+  const handleCloseDetails = () => {
+    setDetailOpen(false);
+    setSelectedCar(null);
+  };
 
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -139,6 +151,7 @@ const ManageCar = () => {
                 <td>
                   <img
                     src={details}
+                    onClick={() => handleOpenDetails(item)}
                     className="cursor-pointer"
                     width={35}
                     alt=""
@@ -165,6 +178,12 @@ const ManageCar = () => {
           </tbody>
         </table>
       </div>
+
+      <CarDetailsModal
+        car={selectedCar}
+        isOpen={isDetailOpen}
+        handleCloseDetails={handleCloseDetails}
+      />
     </>
   );
 };
