@@ -1,54 +1,57 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import EmptyData from "../../Components/EmptyData/EmptyData";
 import CarCard from "../../Components/Shared/CarCard";
 import Container from "../../Components/Shared/Container";
-import { getAllCars } from "../../api/Cars";
 import Logo from "../../Components/Shared/Logo";
 import "./CarSortInput.css";
 import { FaCar } from "react-icons/fa6";
 import Pagination from "../../Components/Pagination/Pagination";
 import { Helmet } from "react-helmet-async";
+import UseAllCar from "../../Hooks/UseAllCar";
 
 const CarCollection = () => {
-  const [cars, setCars] = useState([]);
-  const [filterAllCar, setFilterAllCar] = useState(false);
+  const [allCar] = UseAllCar();
+  console.log(allCar);
+
+  const [filterAllCar, setFilterAllCar] = useState(true);
   const [filterBrandNew, setFilterBrandNew] = useState(false);
   const [filterUsed, setFilterUsed] = useState(false);
   const [selectedColor, setSelectedColor] = useState("");
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(400000);
-  const [speed, setSpeed] = useState(560);
+  const [maxPrice, setMaxPrice] = useState(500000);
+  const [topSpeed, setTopSpeed] = useState(1000);
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
+    console.log(name, value);
     switch (name) {
       case "filterAllCar":
-        setFilterAllCar(value);
+        setFilterAllCar(true);
         setFilterBrandNew(false);
+        setFilterUsed(false);
+        break;
+      case "filterBrandNew":
+        setFilterBrandNew(true);
+        setFilterAllCar(false);
         setFilterUsed(false);
         break;
       case "filterUsed":
-        setFilterUsed(value);
+        setFilterUsed(true);
         setFilterAllCar(false);
         setFilterBrandNew(false);
-        break;
-      case "filterBrandNew":
-        setFilterBrandNew(value);
-        setFilterAllCar(false);
-        setFilterUsed(false);
         break;
       case "selectedColor":
         setSelectedColor(value);
         break;
       case "minPrice":
-        setMinPrice(parseInt(value));
+        setMinPrice(Number(value));
         break;
       case "maxPrice":
-        setMaxPrice(parseInt(value));
+        setMaxPrice(Number(value));
         break;
-      case "speed":
-        setSpeed(parseInt(value));
+      case "topSpeed":
+        setTopSpeed(Number(value));
         break;
       case "searchQuery":
         setSearchQuery(value);
@@ -58,36 +61,46 @@ const CarCollection = () => {
     }
   };
 
-  useEffect(() => {
-    getAllCars().then((data) => {
-      setCars(data);
-      setFilterAllCar(data);
-    });
-  }, []);
+  const filteredCars = allCar.filter((car) => {
+    const carPrice = Number(car.CarPriceNew.replace(/,/g, ""));
+    const carTopSpeed = Number(car.TopSpeed);
+    const matchesSearchQuery =
+      (car.Model &&
+        car.Model.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (car.Category &&
+        car.Category.toLowerCase().includes(searchQuery.toLowerCase()));
 
-  // console.log(cars);
-  const filteredCars = cars.filter((car) => {
-    const isUsedMatch = !filterUsed || car.CarCondition === "Used";
-    const isBrandNewMatch = !filterBrandNew || car.CarCondition === "Brand New";
-    const isColorMatch = !selectedColor || car.ExteriorColor === selectedColor;
-    const isPriceMatch =
-      car.CarPriceNew >= minPrice && car.CarPriceNew <= maxPrice;
-    const isSpeedMatch = speed && car.TopSpeed <= speed;
-    const isSearchMatch =
-      car.Category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      car.CarModel.toLowerCase().includes(searchQuery.toLowerCase());
-
-    return (
-      isUsedMatch &&
-      isBrandNewMatch &&
-      isColorMatch &&
-      isPriceMatch &&
-      isSpeedMatch &&
-      isSearchMatch
-    );
+    if (filterAllCar) {
+      return (
+        matchesSearchQuery &&
+        (!selectedColor || car.ExteriorColor === selectedColor) &&
+        carPrice >= minPrice &&
+        carPrice <= maxPrice &&
+        carTopSpeed <= topSpeed
+      );
+    }
+    if (filterBrandNew && car.CarCondition === "Brand New") {
+      return (
+        matchesSearchQuery &&
+        (!selectedColor || car.ExteriorColor === selectedColor) &&
+        carPrice >= minPrice &&
+        carPrice <= maxPrice &&
+        carTopSpeed <= topSpeed
+      );
+    }
+    if (filterUsed && car.CarCondition === "Used") {
+      return (
+        matchesSearchQuery &&
+        (!selectedColor || car.ExteriorColor === selectedColor) &&
+        carPrice >= minPrice &&
+        carPrice <= maxPrice &&
+        carTopSpeed <= topSpeed
+      );
+    }
+    return false;
   });
 
-  // ============================Pagination=====================================
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [carsPerPage] = useState(6);
 
@@ -102,14 +115,12 @@ const CarCollection = () => {
     pageNumbers.push(i);
   }
 
-  // =================================================================
-
   return (
     <Container>
       <Helmet>
         <title>Dream Car || Car Collection</title>
       </Helmet>
-      <div className="flex flex-col  lg:flex-row gap-4">
+      <div className="flex flex-col lg:flex-row gap-4">
         {/* Sorting form */}
         <div className="lg:w-[500px] lg:h-[600px] shadow-xl bg-gray-100 rounded-xl p-4">
           <div className="flex flex-col justify-center items-center">
@@ -169,16 +180,14 @@ const CarCollection = () => {
               onChange={handleFilterChange}
               className="border rounded py-1 px-2 ml-2"
             >
-              <option value="">
-                <span className="font-semibold">All Colors </span>
-              </option>
-              <option value="Black" className="bg-black text-white ">
+              <option value="">All Colors</option>
+              <option value="Black" className="bg-black text-white">
                 Black
               </option>
-              <option value="White" className="bg-white text-black ">
+              <option value="White" className="bg-white text-black">
                 White
               </option>
-              <option value="Green" className="bg-green-500 text-white ">
+              <option value="Green" className="bg-green-500 text-white">
                 Green
               </option>
               <option value="Red" className="bg-red-500 text-white">
@@ -217,7 +226,7 @@ const CarCollection = () => {
               id="maxPrice"
               name="maxPrice"
               min="0"
-              max="400000"
+              max="500000"
               value={maxPrice}
               onChange={handleFilterChange}
               className="w-full range-slider"
@@ -226,14 +235,14 @@ const CarCollection = () => {
           </div>
           <div className="mb-2 mt-6">
             <h1 className="text-xl font-bold">Top Speed:</h1>
-            <p className="mt-3 font-semibold">Speed: {speed} km/h</p>
+            <p className="mt-3 font-semibold">Speed: {topSpeed} km/h</p>
             <input
               type="range"
-              id="speed"
-              name="speed"
+              id="topSpeed"
+              name="topSpeed"
               min="0"
               max="1000"
-              value={speed}
+              value={topSpeed}
               onChange={handleFilterChange}
               className="w-full range-slider"
               style={{ "--tw-thumb-bg": "#8a2be2" }}
@@ -261,31 +270,25 @@ const CarCollection = () => {
             </p>
           </div>
           {currentCars.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {currentCars.map((car) => (
                 <CarCard key={car._id} car={car} />
               ))}
             </div>
           ) : (
-            <div className="flex items-center justify-center min-h-[calc(100vh-300px)]">
-              <EmptyData
-                center={true}
-                title="Sorry!!😔😔 This category cars are not available"
-                subtitle="Please Select Other Categories."
-              />
+            <div className="flex justify-center items-center h-[600px]">
+              <EmptyData message="No cars found matching your criteria." />
             </div>
           )}
+          {filteredCars.length > 6 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={pageNumbers.length}
+              paginate={paginate}
+            />
+          )}
         </div>
-
         {/* Car show */}
-      </div>
-      {/* Pagination */}
-      <div className="flex items-center justify-end">
-        <Pagination
-          pageNumbers={pageNumbers}
-          currentPage={currentPage}
-          paginate={paginate}
-        />
       </div>
     </Container>
   );

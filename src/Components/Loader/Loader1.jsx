@@ -1,12 +1,12 @@
 import loaderimg from "../../assets/Images/loadderimg.gif";
 
-const Loader = () => {
+const Loader1 = () => {
   return (
-    <div className="h-screen flex flex-col justify-center items-center">
+    <div className="lg:h-[350px] flex flex-col justify-center items-center">
       {/* <ImSpinner2 size={100} color="purple" className="animate-spin" /> */}
       <img src={loaderimg} alt="" />
     </div>
   );
 };
 
-export default Loader;
+export default Loader1;

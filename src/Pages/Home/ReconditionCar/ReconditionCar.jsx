@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Container from "../../../Components/Shared/Container";
 import { useSearchParams } from "react-router-dom";
 import { getReconditionCar } from "../../../api/Cars";
-import Loader from "../../../Components/Loader/Loader";
 import CarCard from "../../../Components/Shared/CarCard";
 import EmptyData from "../../../Components/EmptyData/EmptyData";
+import Loader1 from "../../../Components/Loader/Loader1";
 
 const ReconditionCar = () => {
   // =================================================================
@@ -30,7 +30,7 @@ const ReconditionCar = () => {
   }, [category]);
 
   if (loading) {
-    return <Loader />;
+    return <Loader1 />;
   }
 
   // =================================================================
@@ -38,7 +38,7 @@ const ReconditionCar = () => {
     <>
       <Container>
         {cars.length > 0 ? (
-          <div className="pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
+          <div className="pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {cars?.map((car) => (
               <CarCard key={car._id} car={car}></CarCard>
             ))}

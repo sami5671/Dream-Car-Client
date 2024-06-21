@@ -12,7 +12,7 @@ export const categoriesRecondition = [
     img: "https://i.ibb.co/tLYrkGR/sedan.png",
   },
   {
-    label: "Truck",
+    label: "Pickup",
     img: "https://i.ibb.co/HCxrcMd/truck.png",
   },
   {

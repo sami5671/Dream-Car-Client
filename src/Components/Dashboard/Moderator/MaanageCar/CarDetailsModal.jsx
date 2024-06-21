@@ -6,7 +6,7 @@ const CarDetailsModal = ({ isOpen, handleCloseDetails, car }) => {
   console.log(car);
 
   const carModel = car?.CarModel;
-  const modalImg = car?.Images?.[1];
+  const modalImg = car?.Images?.[3]?.url;
   const condition = car?.CarCondition;
   const category = car?.Category;
   const topSpeed = car?.TopSpeed;

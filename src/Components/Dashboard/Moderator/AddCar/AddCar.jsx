@@ -9,7 +9,6 @@ const AddCar = () => {
   const [images, setImages] = useState([]);
   const [uploadButtonText, setUploadButtonText] = useState("Upload Car Images");
   const [loading, setLoading] = useState(false);
-  const [img, setImg] = useState([]);
 
   const carCondition = [
     {
@@ -24,50 +23,39 @@ const AddCar = () => {
   const Drivetrain = [
     {
       id: 1,
-      label: "Front-Wheel Drive (FWD)",
+      label: "(FWD) Front-Wheel Drive",
     },
     {
       id: 2,
-      label: "Rear-Wheel Drive (RWD)",
+      label: "(RWD) Rear-Wheel Drive",
     },
     {
       id: 3,
-      label: "All-Wheel Drive (AWD)",
+      label: "(AWD) All-Wheel Drive",
     },
     {
       id: 4,
-      label: "Four-Wheel Drive (4WD)",
+      label: "(4WD) Four-Wheel Drive",
     },
     {
       id: 5,
-      label: "Electric Drivetrain (EV)",
+      label: "(EV) Electric Drivetrain",
     },
   ];
   const Transmission = [
     {
       id: 1,
-      label: "Manual Transmission",
+      label: "Manual",
     },
     {
       id: 2,
-      label: "Automatic Transmission",
-    },
-    {
-      id: 3,
-      label: "Continuously Variable Transmission (CVT)",
-    },
-    {
-      id: 4,
-      label: "Dual-Clutch Transmission (DCT)",
-    },
-    {
-      id: 5,
-      label: "Semi-Automatic Transmission (SAT)",
+      label: "Automatic",
     },
   ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = e.target;
     setLoading(true);
 
     try {
@@ -75,17 +63,17 @@ const AddCar = () => {
       for (let i = 0; i < images.length; i++) {
         const data = await uploadCloudinary(images[i]);
         arr.push(data);
+        console.log(arr);
       }
-      setImg(arr);
       setUploadButtonText("Successfully uploaded!");
 
-      const form = e.target;
       const carData = {
         CarModel: form.carModel.value,
         CarCondition: form.carCondition.value,
         Category: form.category.value,
         TopSpeed: form.topSpeed.value,
         FuelType: form.fuel.value,
+        FuelCapacity: form.fuelCapacity.value,
         Mileage: form.mileage.value,
         Engine: form.engineCategory.value,
         CarPriceNew: form.newPrice.value,
@@ -95,12 +83,12 @@ const AddCar = () => {
         Drivetrain: form.drivetrain.value,
         Transmission: form.transmission.value,
         Seating: form.seating.value,
-        Images: img,
+        Images: arr,
       };
 
       const data = await addCar(carData);
       toast.success("Car added successfully");
-      // console.log(carData);
+      console.log(data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -192,6 +180,18 @@ const AddCar = () => {
                     required
                   />
                 </div>
+                <div className="space-y-1 text-sm">
+                  <label htmlFor="fuelCapacity" className="block text-gray-600">
+                    Fuel Capacity
+                  </label>
+                  <input
+                    className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
+                    name="fuelCapacity"
+                    type="number"
+                    placeholder="Fuel Capacity"
+                    required
+                  />
+                </div>
               </div>
 
               <div className="space-y-1 text-sm">
@@ -272,7 +272,7 @@ const AddCar = () => {
                   <input
                     className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
                     name="newPrice"
-                    type="number"
+                    type="text"
                     placeholder="New Price"
                     required
                   />
@@ -288,7 +288,7 @@ const AddCar = () => {
                   <input
                     className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
                     name="previousPrice"
-                    type="number"
+                    type="text"
                     placeholder="Previous Price"
                     required
                   />

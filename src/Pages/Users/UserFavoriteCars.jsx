@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 const UserFavoriteCars = () => {
   const [favoriteCar, refetch] = UseUserFavoriteCar();
 
+  // console.log(favoriteCar);
+
   const handleDeleteAllCars = async () => {
     const carIds = favoriteCar.map((car) => car._id);
     // console.log(carIds);

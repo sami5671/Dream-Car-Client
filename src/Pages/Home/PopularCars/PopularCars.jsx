@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getBrandNewCar } from "./../../../api/Cars";
 import { useSearchParams } from "react-router-dom";
-import Loader from "../../../Components/Loader/Loader";
 import Container from "../../../Components/Shared/Container";
 import EmptyData from "../../../Components/EmptyData/EmptyData";
 import CarCard from "../../../Components/Shared/CarCard";
+import Loader1 from "../../../Components/Loader/Loader1";
 
 const PopularCars = () => {
   // =================================================================
@@ -29,7 +29,7 @@ const PopularCars = () => {
   }, [category]);
 
   if (loading) {
-    return <Loader />;
+    return <Loader1 />;
   }
   // console.log(cars);
   // =================================================================

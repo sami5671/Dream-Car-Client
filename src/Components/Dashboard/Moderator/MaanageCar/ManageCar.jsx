@@ -140,8 +140,8 @@ const ManageCar = () => {
                 </td>
                 <td>
                   <div className="">
-                    <div className="w-36 h-16">
-                      <img src={item?.Images?.[3]} alt="" />
+                    <div className="w-36 h-18">
+                      <img src={item?.Images?.[3]?.url} alt="" />
                     </div>
                   </div>
                 </td>
