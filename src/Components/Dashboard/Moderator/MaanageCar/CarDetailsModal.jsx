@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import "../../../Shared/Navbar/MenuDropdown.css";
 
 const CarDetailsModal = ({ isOpen, handleCloseDetails, car }) => {
-  console.log(car);
+  // console.log(car);
 
   const carModel = car?.CarModel;
   const modalImg = car?.Images?.[3]?.url;

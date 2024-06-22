@@ -13,7 +13,7 @@ const CarCard = ({ car }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [, refetch] = UseUserFavoriteCar();
-  console.log(car);
+  // console.log(car);
 
   const handleFavoriteCar = async () => {
     if (user && user.email) {
@@ -35,7 +35,7 @@ const CarCard = ({ car }) => {
   };
 
   return (
-    <div className="bg-slate-100 w-[290px] py-4 px-2 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
+    <div className="bg-slate-100 w-[300px] py-4 px-2 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
       {/* here is the card head */}
       <div className="flex justify-between gap-2">
         <div>
@@ -45,7 +45,7 @@ const CarCard = ({ car }) => {
         <div>
           <button
             onClick={() => handleFavoriteCar()}
-            className="flex items-end justify-end py-2 pr-2"
+            className="flex items-end justify-end py-2 pr-2 hover:animate-bounce"
           >
             <FaHeart className="text-gray-400 hover:text-red-600 transition-colors duration-300" />
           </button>
@@ -64,17 +64,11 @@ const CarCard = ({ car }) => {
       <div className="flex gap-3 mt-4">
         <div className="flex gap-1 items-center">
           <img className="w-[25px]" src={fuel} alt="" />
-          {car?.FuelCapacity ? (
-            <p className="text-slate-500 font-bold">{car?.FuelCapacity}L</p>
-          ) : (
-            <p>
-              <FcElectricity />
-            </p>
-          )}
+          <p className="text-slate-500 font-bold">{car?.FuelCapacity}</p>
         </div>
         <div className="flex gap-1">
           <img className="w-[25px]" src={driving} alt="" />
-          <p className="text-slate-500 font-bold">{car?.Transmission}</p>
+          <p className="text-slate-500 font-bold ">{car?.Transmission}</p>
         </div>
         <div className="flex gap-1">
           <img className="w-[25px]" src={people} alt="" />

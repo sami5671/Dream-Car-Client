@@ -1,7 +1,6 @@
 import axiosSecure from ".";
 
 // fetch data from the mongodb database
-
 export const getAllCars = async () => {
   const { data } = await axiosSecure("/cars");
   return data;
@@ -49,8 +48,20 @@ export const deleteFavoriteCars = async (ids) => {
   return res.data;
 };
 
-// add car to database
+// ------------------moderator api------------------------- (add car to database)
 export const addCar = async (carData) => {
   const { data } = await axiosSecure.post("/addCar", carData);
+  return data;
+};
+
+// update a car info
+export const updateCarInfo = async (id, carData) => {
+  const { data } = await axiosSecure.patch(`/updateCar/${id}`, carData);
+  return data;
+};
+
+// delete a car
+export const deleteCar = async (id) => {
+  const { data } = await axiosSecure.delete(`/deleteCar/${id}`);
   return data;
 };

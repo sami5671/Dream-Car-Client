@@ -14,6 +14,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import AddCar from "../Components/Dashboard/Moderator/AddCar/AddCar";
 import ManageCar from "../Components/Dashboard/Moderator/MaanageCar/ManageCar";
 import ManageOrder from "../Components/Dashboard/Moderator/ManageOrder/ManageOrder";
+import UpdateCar from "../Components/Dashboard/Moderator/MaanageCar/UpdateCar";
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +84,15 @@ export const router = createBrowserRouter([
             <ManageCar />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "update-car/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateCar />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => getCar(params.id),
       },
       {
         path: "manage-order",

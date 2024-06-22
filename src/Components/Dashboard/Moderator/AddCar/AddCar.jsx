@@ -187,7 +187,7 @@ const AddCar = () => {
                   <input
                     className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
                     name="fuelCapacity"
-                    type="number"
+                    type="text"
                     placeholder="Fuel Capacity"
                     required
                   />

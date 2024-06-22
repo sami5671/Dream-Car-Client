@@ -5,6 +5,9 @@ import deleteImg from "../../../../assets/Images/delete.png";
 import { categories } from "../../../Categories/CategoriesData";
 import { useState } from "react";
 import CarDetailsModal from "./CarDetailsModal";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { deleteCar } from "../../../../api/Cars";
 
 const ManageCar = () => {
   // =================================================================
@@ -58,6 +61,34 @@ const ManageCar = () => {
       : true;
     return matchModel && matchCategory && matchCondition;
   });
+
+  // function for delete car
+  const handleDeleteCar = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCar(id).then((res) => {
+          console.log(res);
+          if (res.deletedCount > 0) {
+            // console.log(res);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Contest has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
   // =================================================================
   return (
     <>
@@ -119,10 +150,10 @@ const ManageCar = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="text-center font-semibold text-xl">
+            <tr className="font-semibold text-xl">
               <th>No</th>
               <th>Model</th>
-              <th>Image</th>
+              <th className="text-center">Image</th>
               <th>Category</th>
               <th>Condition</th>
               <th>Price</th>
@@ -158,15 +189,18 @@ const ManageCar = () => {
                   />
                 </td>
                 <td>
-                  <img
-                    src={update}
-                    className="cursor-pointer"
-                    width={35}
-                    alt=""
-                  />
+                  <Link to={`/dashboard/update-car/${item?._id}`}>
+                    <img
+                      src={update}
+                      className="cursor-pointer"
+                      width={35}
+                      alt=""
+                    />
+                  </Link>
                 </td>
                 <td>
                   <img
+                    onClick={() => handleDeleteCar(item?._id)}
                     src={deleteImg}
                     className="cursor-pointer"
                     width={35}
