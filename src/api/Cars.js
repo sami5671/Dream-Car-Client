@@ -65,3 +65,14 @@ export const deleteCar = async (id) => {
   const { data } = await axiosSecure.delete(`/deleteCar/${id}`);
   return data;
 };
+
+//---------- payment method (create payment intent for stripe payment)-----------------
+export const createPaymentIntent = async (price) => {
+  const { data } = await axiosSecure.post("/create-payment-intent", price);
+  return data;
+};
+// save buying info in db
+export const saveSoldCarInfo = async (paymentInfo) => {
+  const { data } = await axiosSecure.post("/soldCars", paymentInfo);
+  return data;
+};

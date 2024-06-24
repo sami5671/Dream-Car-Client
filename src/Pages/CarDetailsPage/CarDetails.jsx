@@ -34,7 +34,7 @@ const CarDetails = () => {
           <title>Car Type || {car?.CarModel}</title>
         </Helmet>
 
-        <div className="flex flex-col lg:flex-row items-start justify-center gap-6 lg:mt-10">
+        <div className="flex flex-col lg:flex-row items-start justify-center gap-6 lg:mt-2">
           <div className="w-full lg:w-2/3">
             <CarCarousal car={car} />
 
@@ -195,7 +195,7 @@ const CarDetails = () => {
             </div>
           </div>
           {/* --------- */}
-          <div className="w-full lg:w-1/3 p-4 bg-gray-100 rounded-lg lg:mt-44">
+          <div className="w-full lg:w-1/3 p-4 bg-gray-100 rounded-lg lg:mt-10">
             {/* stripe payment will be START here */}
             <Payment car={car} />
             {/* stripe payment will be ENDhere */}

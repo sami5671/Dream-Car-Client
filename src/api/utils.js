@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosSecure from ".";
 
 export const imageUpload = async (image) => {
   const formData = new FormData();
