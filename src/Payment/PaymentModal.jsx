@@ -2,8 +2,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import CheckoutForm from "./CheckoutForm";
 
-const PaymentModal = ({ car, closeModal, isOpen }) => {
-  //   console.log(car);
+const PaymentModal = ({ car, closeModal, isOpen, customerInfo }) => {
+  console.log(customerInfo);
+  console.log(car);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -40,12 +41,52 @@ const PaymentModal = ({ car, closeModal, isOpen }) => {
                     <span>Buy</span> {car?.CarModel}
                   </p>
                 </Dialog.Title>
-
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
+                  <div>
+                    <img src={car?.Images?.[2]?.url} alt="" />
+                  </div>
+                  <p className="text-xl font-bold text-gray-500">
                     Price: $ {car?.CarPriceNew}
                   </p>
                 </div>
+                {/* customer data */}
+                <div>
+                  <div className="mt-8">
+                    <h2 className="text-xl font-semibold">
+                      Customer Information
+                    </h2>
+                    <table className="min-w-full border-collapse block md:table mt-4">
+                      <thead className="block md:table-header-group">
+                        <tr className="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative ">
+                          <th className="bg-purple-600 text-xl p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                            Type
+                          </th>
+                          <th className="bg-purple-600 p-2 text-xl text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                            Customer Data
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="block md:table-row-group">
+                        {Object.keys(customerInfo).map((key) => (
+                          <tr
+                            key={key}
+                            className="bg-purple-100 border border-grey-500 md:border-none block md:table-row"
+                          >
+                            <td className="p-2 md:border font-semibold text-[16px] md:border-grey-500 text-left block md:table-cell">
+                              {key
+                                .replace(/([A-Z])/g, " $1")
+                                .replace(/^./, (str) => str.toUpperCase())}
+                            </td>
+                            <td className="p-2 md:border  md:border-grey-500 text-left block md:table-cell">
+                              {customerInfo[key]}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                {/* customer data */}
                 <hr className="mt-8 " />
                 {/* Card data form */}
                 {/* checkout form */}

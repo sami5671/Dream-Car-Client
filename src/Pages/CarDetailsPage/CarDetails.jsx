@@ -195,7 +195,7 @@ const CarDetails = () => {
             </div>
           </div>
           {/* --------- */}
-          <div className="w-full lg:w-1/3 p-4 bg-gray-100 rounded-lg lg:mt-[210px]">
+          <div className="w-full lg:w-1/3 p-4 bg-gray-100 rounded-lg lg:mt-44">
             {/* stripe payment will be START here */}
             <Payment car={car} />
             {/* stripe payment will be ENDhere */}
