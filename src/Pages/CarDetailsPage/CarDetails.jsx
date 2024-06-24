@@ -4,17 +4,20 @@ import { useLoaderData } from "react-router-dom";
 import CarCarousal from "./CarCarousal";
 import { FaRegHeart } from "react-icons/fa6";
 import { useEffect, useState } from "react";
+import CarDetailsBanner from "./CarDetailsBanner";
+import category from "../../assets/Images/category.png";
+import topSpeed from "../../assets/Images/topSpeed.png";
+import fuelCapacity from "../../assets/Images/fuel.png";
+import engine from "../../assets/Images/engine.png";
+import Payment from "../../Payment/Payment";
 
 const CarDetails = () => {
-  // =================================================================
   const car = useLoaderData();
-  // console.log(car);
 
   const [carPrice, setCarPrice] = useState(0);
   const newP = car?.CarPriceNew;
   const PreviousP = car?.CarPricePrevious;
 
-  // it is used -->(Now, the logic to calculate carPrice will be executed after the initial render and whenever newP or PreviousP changes.)
   useEffect(() => {
     if (PreviousP && newP && newP < PreviousP) {
       const priceDrop = PreviousP - newP;
@@ -22,34 +25,35 @@ const CarDetails = () => {
     }
   }, [PreviousP, newP]);
 
-  // console.log(carPrice);
-  // =================================================================
-
+  // console.log(car);
   return (
     <>
+      <CarDetailsBanner car={car} />
       <Container>
         <Helmet>
           <title>Car Type || {car?.CarModel}</title>
         </Helmet>
 
-        <div className="flex flex-col lg:flex-row items-start justify-center gap-6">
-          {/* car specification */}
-          <div className="w-full">
+        <div className="flex flex-col lg:flex-row items-start justify-center gap-6 lg:mt-10">
+          <div className="w-full lg:w-2/3">
             <CarCarousal car={car} />
 
-            {/* info */}
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-8">
               <div>
                 <p className="text-slate-500">{car?.CarCondition}</p>
-                <h1 className="text-3xl">{car?.CarModel}</h1>
+                <h1 className="lg:text-4xl font-bold bg-gradient-to-br from-purple-600 to-green-900 text-transparent bg-clip-text">
+                  {car?.CarModel}
+                </h1>
                 <p className="mt-4">
-                  <span className="font-bold text-4xl">
+                  <span className="font-semibold text-2xl">
                     ${car?.CarPriceNew}
                   </span>
-                  <span>{carPrice > 0 ? `$${carPrice} price drop` : " "}</span>
+                  <span className="text-red-600">
+                    {carPrice > 0 ? ` ($${carPrice} price drop)` : ""}
+                  </span>
                 </p>
               </div>
-              <div>
+              <div className="mt-8">
                 <button className="border-2 border-purple-900 hover:border-dotted px-3 py-1 rounded-full">
                   <span className="flex items-center gap-2">
                     <FaRegHeart /> Save
@@ -57,147 +61,144 @@ const CarDetails = () => {
                 </button>
               </div>
             </div>
-            {/* info */}
 
-            {/* key specification */}
-            <h1 className="text-3xl font-bold mt-12"> key specification </h1>
-            <div className="grid grid-cols-2 gap-3 mt-6">
-              <div className="border-2 rounded-lg w-full p-2">
-                <p className="text-xl font-semibold">{car?.FuelType}</p>
-                <p className="text-slate-500 text-[12px]">Fuel Type</p>
+            <h1 className="text-3xl font-bold mt-12 bg-gradient-to-br from-purple-600 to-green-900 text-transparent bg-clip-text">
+              Key Specifications
+            </h1>
+            <div className="mt-2">
+              <hr />
+              <hr />
+            </div>
+            <div className="grid grid-cols-2 gap-6 mt-6">
+              <div className="border-2 bg-slate-50 flex items-center gap-4 py-2 px-2 rounded-xl">
+                <img src={category} className="w-[80px] h-[80px] " alt="" />
+                <div>
+                  <p className="font-bold text-xl">Category</p>
+                  <p className="text-purple-900 font-semibold">
+                    {car?.Category}
+                  </p>
+                </div>
               </div>
-              <div className="border-2 rounded-lg w-full p-2">
-                <p className="text-xl font-semibold">{car?.TopSpeed}Km</p>
-                <p className="text-slate-500 text-[12px]">Top Speed</p>
+              <div className="border-2 bg-slate-50 flex items-center gap-4 py-2 px-2 rounded-xl">
+                <img src={topSpeed} className="w-[80px] h-[80px] " alt="" />
+                <div>
+                  <p className="font-bold text-xl">Top Speed</p>
+                  <p className="text-purple-900 font-semibold">
+                    {car?.TopSpeed} Km
+                  </p>
+                </div>
               </div>
-              <div className="border-2 rounded-lg w-full p-2">
-                <p className="text-xl font-semibold">{car?.Mileage}Km</p>
-                <p className="text-slate-500 text-[12px]">Mileage</p>
+              <div className="border-2 bg-slate-50 flex items-center gap-4 py-2 px-2 rounded-xl">
+                <img src={fuelCapacity} className="w-[80px] h-[80px] " alt="" />
+                <div>
+                  <p className="font-bold text-xl">Fuel Capacity</p>
+                  <p className="text-purple-900 font-semibold">
+                    {car?.FuelCapacity}
+                  </p>
+                </div>
               </div>
-              <div className="border-2 rounded-lg w-full p-2">
-                <p className="text-xl font-semibold">{car?.Engine}</p>
-                <p className="text-slate-500 text-[12px]">Engine</p>
+              <div className="border-2 bg-slate-50 flex items-center gap-4 py-2 px-2 rounded-xl">
+                <img src={engine} className="w-[80px] h-[80px] " alt="" />
+                <div>
+                  <p className="font-bold text-xl">Engine</p>
+                  <p className="text-purple-900 font-semibold">{car?.Engine}</p>
+                </div>
               </div>
             </div>
-            {/* key specification */}
 
-            {/* basics */}
-            <h1 className="text-4xl font-bold mt-12">Basics</h1>
-            <div className="overflow-x-auto mt-6">
-              <table className="table">
-                {/* head */}
-
+            <h1 className="text-4xl font-bold mt-12  bg-gradient-to-br from-purple-600 to-green-900 text-transparent bg-clip-text">
+              Basics
+            </h1>
+            <div className="mt-2">
+              <hr />
+              <hr />
+            </div>
+            <div className="overflow-x-auto mt-6 bg-slate-100 px-4 py-2 rounded-lg">
+              <table className="table-auto w-full text-left">
                 <tbody>
-                  {/* row 1 */}
-                  <tr>
-                    <td className="font-bold text-xl">Exterior color</td>
-                    <td>{car?.ExteriorColor}</td>
-                  </tr>
-                  {/* row 2 */}
-                  <tr>
-                    <td className="font-bold text-xl">Interior color</td>
-                    <td>{car?.InteriorColor}</td>
-                  </tr>
-                  {/* row 3 */}
-                  <tr>
-                    <td className="font-bold text-xl">Drivetrain</td>
-                    <td>{car?.Drivetrain}</td>
-                  </tr>
-
-                  <tr>
-                    <td className="font-bold text-xl">Transmission</td>
-                    <td>{car?.Transmission}</td>
-                  </tr>
-                  <tr>
-                    <td className="font-bold text-xl">Engine</td>
-                    <td>{car?.Engine}</td>
-                  </tr>
-                  <tr>
-                    <td className="font-bold text-xl">Mileage</td>
-                    <td>{car?.Mileage} mi.</td>
-                  </tr>
+                  {[
+                    { label: "Exterior color", value: car?.ExteriorColor },
+                    { label: "Interior color", value: car?.InteriorColor },
+                    { label: "Drivetrain", value: car?.Drivetrain },
+                    { label: "Transmission", value: car?.Transmission },
+                    { label: "Engine", value: car?.Engine },
+                    { label: "Mileage", value: `${car?.Mileage} mi.` },
+                  ].map((basic, idx) => (
+                    <tr key={idx}>
+                      <td className="font-bold text-xl py-2">{basic.label}</td>
+                      <td>{basic.value}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
-            {/* basics */}
 
-            {/* features */}
-            <h1 className="font-bold text-4xl mt-12">Features</h1>
-            <div className="overflow-x-auto">
-              <table className="table">
+            <h1 className="font-bold text-4xl mt-12 bg-gradient-to-br from-purple-600 to-green-900 text-transparent bg-clip-text ">
+              Features
+            </h1>
+            <div className="mt-2">
+              <hr />
+              <hr />
+            </div>
+            <div className="overflow-x-auto mt-6 bg-slate-100 rounded-lg px-4 py-4">
+              <table className="table-auto w-full text-left">
                 <tbody>
-                  {/* row 1 */}
-                  <tr>
-                    <td className="font-bold text-xl">Convenience</td>
-                    <td>
-                      Adaptive Cruise Control <br /> Heated Seats <br /> Heated
-                      Steering Wheel <br /> Navigation System
-                    </td>
-                  </tr>
-                  {/* row 2 */}
-                  <tr>
-                    <td className="font-bold text-xl">Entertainment</td>
-                    <td>
-                      Bluetooth® <br /> HomeLink <br /> Premium Sound System
-                    </td>
-                  </tr>
-                  {/* row 3 */}
-                  <tr>
-                    <td className="font-bold text-xl">Exterior</td>
-                    <td>Alloy Wheels</td>
-                  </tr>
-                  <tr>
-                    <td className="font-bold text-xl">Safety</td>
-                    <td>
-                      Backup Camera <br /> Blind Spot Monitor <br /> Brake
-                      Assist
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="font-bold text-xl">Seating</td>
-                    <td>
-                      Leather Seats <br /> Memory Seat
-                    </td>
-                  </tr>
+                  {[
+                    {
+                      category: "Convenience",
+                      features: [
+                        "Adaptive Cruise Control",
+                        "Heated Seats",
+                        "Heated Steering Wheel",
+                        "Navigation System",
+                      ],
+                    },
+                    {
+                      category: "Entertainment",
+                      features: [
+                        "Bluetooth®",
+                        "HomeLink",
+                        "Premium Sound System",
+                      ],
+                    },
+                    { category: "Exterior", features: ["Alloy Wheels"] },
+                    {
+                      category: "Safety",
+                      features: [
+                        "Backup Camera",
+                        "Blind Spot Monitor",
+                        "Brake Assist",
+                      ],
+                    },
+                    {
+                      category: "Seating",
+                      features: ["Leather Seats", "Memory Seat"],
+                    },
+                  ].map((feature, idx) => (
+                    <tr key={idx}>
+                      <td className="font-bold text-xl py-2">
+                        {feature.category}
+                      </td>
+                      <td>{feature.features.join(", ")}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
-            {/* features */}
 
-            {/* seller Info */}
-            <h1 className="text-4xl font-bold mt-12">Seller Info</h1>
-            {/* seller Info */}
+            <h1 className="text-4xl font-bold mt-12  bg-gradient-to-br from-purple-600 to-green-900 text-transparent bg-clip-text">
+              Seller Info
+            </h1>
+            <div className="mt-2">
+              <hr />
+              <hr />
+            </div>
           </div>
-          {/* checkout form */}
-          <div className="w-full">
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-              quibusdam laudantium dolorum. Culpa quia veniam dolores tempore
-              architecto quae sint minus dolorem est, inventore eaque
-              doloremque! Accusamus, voluptate recusandae consequuntur maiores
-              tempora in! Harum temporibus nesciunt obcaecati dicta autem a nisi
-              vero nostrum incidunt dolorem totam ullam eum repudiandae
-              laudantium, eius illum officia magnam est voluptate culpa.
-              Repudiandae praesentium neque consequuntur quisquam repellat
-              molestias hic! Reiciendis reprehenderit asperiores voluptates
-              assumenda, esse rerum eaque pariatur adipisci cupiditate tempora
-              quam temporibus in accusantium, doloremque quae tempore commodi
-              facere culpa aperiam perspiciatis dignissimos et unde iure
-              explicabo. Pariatur, minus amet suscipit atque natus reprehenderit
-              porro minima cum maiores? Vitae molestiae architecto ea eius
-              tenetur corrupti, autem facere delectus, veritatis sequi labore
-              nihil laboriosam fugit debitis sed, aperiam excepturi itaque
-              placeat impedit ipsam. Quasi dolore repellendus error voluptate
-              perferendis asperiores dignissimos, eligendi officia inventore
-              numquam, suscipit repellat quam quidem earum corrupti iste esse!
-              Deleniti sequi temporibus praesentium possimus quas omnis
-              repudiandae exercitationem quos quasi minus asperiores at dolorum
-              voluptates nisi reprehenderit autem, corporis nesciunt repellat
-              accusamus eligendi iusto? Eos officia ducimus quidem esse dolore
-              saepe atque iste soluta eaque laboriosam quam laborum velit
-              eligendi consequuntur corrupti neque, quisquam culpa modi
-              obcaecati? Quia, harum molestias!
-            </p>
+          {/* --------- */}
+          <div className="w-full lg:w-1/3 p-4 bg-gray-100 rounded-lg lg:mt-[210px]">
+            {/* stripe payment will be START here */}
+            <Payment car={car} />
+            {/* stripe payment will be ENDhere */}
           </div>
         </div>
       </Container>

@@ -9,12 +9,12 @@ import CarDetails from "../Pages/CarDetailsPage/CarDetails";
 import { getCar } from "../api/Cars";
 import PrivateRoute from "./PrivateRoute";
 import CarCollection from "../Pages/CarCollectionPage/CarCollection";
-import UserFavoriteCars from "../Pages/Users/UserFavoriteCars";
 import DashboardLayout from "../Layout/DashboardLayout";
 import AddCar from "../Components/Dashboard/Moderator/AddCar/AddCar";
 import ManageCar from "../Components/Dashboard/Moderator/MaanageCar/ManageCar";
 import ManageOrder from "../Components/Dashboard/Moderator/ManageOrder/ManageOrder";
 import UpdateCar from "../Components/Dashboard/Moderator/MaanageCar/UpdateCar";
+import UserFavoriteCars from "./../Components/Dashboard/Users/UserFavoriteCars";
 
 export const router = createBrowserRouter([
   {

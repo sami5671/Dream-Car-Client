@@ -1,27 +1,65 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-const CarCarousal = ({ car }) => {
-  // =================================================================
-  console.log(car);
+import React, { useState } from "react";
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "./CarCarousal.css";
+import CarCarosualModal from "./CarCarosualModal";
 
-  // =================================================================
+const CarCarousal = ({ car }) => {
+  const [modalImage, setModalImage] = useState(null);
+  const [isDetailOpen, setDetailOpen] = useState(false);
+
+  const handleOpenDetails = (image) => {
+    setModalImage(image);
+    setDetailOpen(true);
+  };
+  const handleCloseDetails = () => {
+    setDetailOpen(false);
+    setModalImage(null);
+  };
+
+  // const handleImageClick = (image) => {
+  //   setModalImage(image);
+  //   console.log(image);
+  // };
+
+  if (!car || !car.Images || car.Images.length === 0) {
+    return <p>No images available</p>;
+  }
+
   return (
-    <>
-      <Carousel showStatus={false} thumbWidth={80} showArrows={false}>
-        <div>
-          <img src={car?.Images?.[0]?.url} />
-        </div>
-        <div>
-          <img src={car?.Images?.[1]?.url} />
-        </div>
-        <div>
-          <img src={car?.Images?.[2]?.url} />
-        </div>
-        <div>
-          <img src={car?.Images?.[3]?.url} />
-        </div>
-      </Carousel>
-    </>
+    <div className="car-carousel">
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={50}
+        slidesPerView={3}
+        navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("slide change")}
+      >
+        {car.Images.map((image, index) => (
+          <SwiperSlide key={index} className="swiper-slide">
+            <img
+              src={image.url}
+              alt={`Car image ${index + 1}`}
+              className="carousel-image cursor-pointer"
+              onClick={() => handleOpenDetails(image.url)}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <CarCarosualModal
+        car={car}
+        modalImage={modalImage}
+        isOpen={isDetailOpen}
+        handleCloseDetails={handleCloseDetails}
+      />
+    </div>
   );
 };
 

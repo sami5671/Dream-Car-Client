@@ -1,10 +1,10 @@
 import { MdDelete } from "react-icons/md";
-import { deleteFavoriteCar } from "../../api/Cars";
 import toast from "react-hot-toast";
-import UseUserFavoriteCar from "../../Hooks/UseUserFavoriteCar";
-import fuel from "../../assets/Images/fuel.png";
-import driving from "../../assets/Images/driving.png";
-import people from "../../assets/Images/group.png";
+import fuel from "../../../assets/Images/fuel.png";
+import driving from "../../../assets/Images/driving.png";
+import people from "../../../assets/Images/group.png";
+import { deleteFavoriteCar } from "../../../api/Cars";
+import UseUserFavoriteCar from "../../../Hooks/UseUserFavoriteCar";
 
 const UserFavoriteCarCard = ({ car }) => {
   const [, refetch] = UseUserFavoriteCar();

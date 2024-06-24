@@ -1,10 +1,10 @@
 import { FaStar } from "react-icons/fa";
-import Container from "../../Components/Shared/Container";
-import UseUserFavoriteCar from "../../Hooks/UseUserFavoriteCar";
-import UserFavoriteCarCard from "./UserFavoriteCarCard";
-import EmptyData from "../../Components/EmptyData/EmptyData";
-import { deleteFavoriteCars } from "../../api/Cars";
 import toast from "react-hot-toast";
+import UseUserFavoriteCar from "./../../../Hooks/UseUserFavoriteCar";
+import Container from "../../Shared/Container";
+import EmptyData from "./../../EmptyData/EmptyData";
+import UserFavoriteCarCard from "./UserFavoriteCarCard";
+import { deleteFavoriteCars } from "./../../../api/Cars";
 
 const UserFavoriteCars = () => {
   const [favoriteCar, refetch] = UseUserFavoriteCar();
