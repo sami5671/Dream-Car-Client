@@ -76,3 +76,8 @@ export const saveSoldCarInfo = async (paymentInfo) => {
   const { data } = await axiosSecure.post("/soldCars", paymentInfo);
   return data;
 };
+// get single sold card details
+export const getOneSoldCarDetail = async (id) => {
+  const { data } = await axiosSecure(`/orderDetail/${id}`);
+  return data;
+};

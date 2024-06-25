@@ -6,7 +6,7 @@ import CustomerGarageDetails from "../Pages/Home/CustomerGarage/CustomerGarageDe
 import SignUpPage from "../Pages/SignUp/SignUpPage";
 import LoginPage from "../Pages/Login/LoginPage";
 import CarDetails from "../Pages/CarDetailsPage/CarDetails";
-import { getCar } from "../api/Cars";
+import { getCar, getOneSoldCarDetail } from "../api/Cars";
 import PrivateRoute from "./PrivateRoute";
 import CarCollection from "../Pages/CarCollectionPage/CarCollection";
 import DashboardLayout from "../Layout/DashboardLayout";
@@ -15,6 +15,7 @@ import ManageCar from "../Components/Dashboard/Moderator/MaanageCar/ManageCar";
 import ManageOrder from "../Components/Dashboard/Moderator/ManageOrder/ManageOrder";
 import UpdateCar from "../Components/Dashboard/Moderator/MaanageCar/UpdateCar";
 import UserFavoriteCars from "./../Components/Dashboard/Users/UserFavoriteCars";
+import OrderDetails from "../Components/Dashboard/Moderator/ManageOrder/OrderDetails";
 
 export const router = createBrowserRouter([
   {
@@ -101,6 +102,15 @@ export const router = createBrowserRouter([
             <ManageOrder />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "order-details/:id",
+        element: (
+          <PrivateRoute>
+            <OrderDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => getOneSoldCarDetail(params.id),
       },
     ],
   },

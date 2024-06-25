@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import Container from "../../Components/Shared/Container";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import CarCarousal from "./CarCarousal";
-import { FaRegHeart } from "react-icons/fa6";
+import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import CarDetailsBanner from "./CarDetailsBanner";
 import category from "../../assets/Images/category.png";
@@ -10,9 +10,17 @@ import topSpeed from "../../assets/Images/topSpeed.png";
 import fuelCapacity from "../../assets/Images/fuel.png";
 import engine from "../../assets/Images/engine.png";
 import Payment from "../../Payment/Payment";
+import SSLCommerce from "../../Payment/SSLCommerce/SSLCommerce";
+import { postFavoriteCar } from "../../api/Cars";
+import toast from "react-hot-toast";
+import useAuth from "../../Hooks/UseAuth";
+import UseUserFavoriteCar from "../../Hooks/UseUserFavoriteCar";
 
 const CarDetails = () => {
   const car = useLoaderData();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [, refetch] = UseUserFavoriteCar();
 
   const [carPrice, setCarPrice] = useState(0);
   const newP = car?.CarPriceNew;
@@ -25,6 +33,24 @@ const CarDetails = () => {
     }
   }, [PreviousP, newP]);
 
+  const handleFavoriteCar = async () => {
+    if (user && user.email) {
+      const favoriteCarItem = {
+        favoriteCar: car,
+        email: user.email,
+      };
+      // console.log(favoriteCarItem);
+      postFavoriteCar(favoriteCarItem).then((res) => {
+        // console.log(res);
+        if (res.acknowledged === true) {
+          refetch();
+          toast.success(`${car?.CarModel} Added to the favorite`);
+        }
+      });
+    } else {
+      navigate("/loginPage");
+    }
+  };
   // console.log(car);
   return (
     <>
@@ -54,9 +80,13 @@ const CarDetails = () => {
                 </p>
               </div>
               <div className="mt-8">
-                <button className="border-2 border-purple-900 hover:border-dotted px-3 py-1 rounded-full">
+                <button
+                  onClick={handleFavoriteCar}
+                  className="border-2 border-purple-900 hover:bg-purple-800 hover:text-white px-3 py-1 rounded-full"
+                >
                   <span className="flex items-center gap-2">
-                    <FaRegHeart /> Save
+                    <FaHeart className="text-gray-400 hover:animate-bounce hover:text-red-600 transition-colors duration-300" />{" "}
+                    Save
                   </span>
                 </button>
               </div>
@@ -199,6 +229,7 @@ const CarDetails = () => {
             {/* stripe payment will be START here */}
             <Payment car={car} />
             {/* stripe payment will be ENDhere */}
+            <SSLCommerce />
           </div>
         </div>
       </Container>

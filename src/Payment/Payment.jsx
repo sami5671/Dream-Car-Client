@@ -116,7 +116,7 @@ const Payment = ({ car }) => {
           </p>
         </div>
 
-        <div>
+        <div className="mt-4">
           <p className=" font-bold">Month / Year / CCV</p>
           <p>12 / 30 / 12345</p>
         </div>
@@ -125,12 +125,12 @@ const Payment = ({ car }) => {
             onClick={handleOpenModal}
             className="text-center cursor-pointer font-semibold bg-purple-700 text-white px-2 py-2 rounded-lg hover:bg-purple-600"
           >
-            <button>Stripe Payment Gateway</button>
+            <button>Stripe Payment</button>
           </p>
         </div>
-
-        <PaymentModal closeModal={handleCloseModal} isOpen={isOpen} car={car} />
       </div>
+
+      <PaymentModal closeModal={handleCloseModal} isOpen={isOpen} car={car} />
     </>
   );
 };

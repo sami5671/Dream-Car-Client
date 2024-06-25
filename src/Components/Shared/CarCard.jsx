@@ -7,7 +7,6 @@ import UseUserFavoriteCar from "../../Hooks/UseUserFavoriteCar";
 import fuel from "../../assets/Images/fuel.png";
 import driving from "../../assets/Images/driving.png";
 import people from "../../assets/Images/group.png";
-import { FcElectricity } from "react-icons/fc";
 
 const CarCard = ({ car }) => {
   const { user } = useAuth();

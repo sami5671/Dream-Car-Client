@@ -30,7 +30,7 @@ const CheckoutForm = ({ closeModal, car }) => {
   const [receiverPhoneNumber, setReceiverPhoneNumber] = useState("");
 
   // =================================================================
-  console.log(car);
+  console.log(user);
 
   const carPrice = parseFloat(car?.CarPriceNew);
 
@@ -123,6 +123,8 @@ const CheckoutForm = ({ closeModal, car }) => {
         transactionId: paymentIntent.id,
         date: new Date(),
         email: user.email,
+        photo: user.photoURL,
+        status: "succeeded",
         customerInfo,
         car,
       };
@@ -135,6 +137,7 @@ const CheckoutForm = ({ closeModal, car }) => {
         const text = `Booking Successful! ${paymentIntent.id}`;
         toast.success(text);
         // navigate("/dashboard/my-bookings");
+        closeModal();
       } catch (err) {
         console.log(err);
         toast.error(err.message);
@@ -232,7 +235,7 @@ const CheckoutForm = ({ closeModal, car }) => {
                 name="billerEmail"
                 type="text"
                 placeholder="Biller Email"
-                required
+                disabled
                 defaultValue={user?.email}
               />
             </div>
