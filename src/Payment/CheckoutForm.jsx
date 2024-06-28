@@ -124,7 +124,7 @@ const CheckoutForm = ({ closeModal, car }) => {
         date: new Date(),
         email: user.email,
         photo: user.photoURL,
-        status: "succeeded",
+        status: "processing",
         customerInfo,
         car,
       };

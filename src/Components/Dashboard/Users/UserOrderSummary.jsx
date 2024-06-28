@@ -1,10 +1,10 @@
-import { useState } from "react";
 import jsPDF from "jspdf";
+import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
-const OrderDetails = () => {
+const UserOrderSummary = () => {
   const order = useLoaderData();
-  console.log(order);
+  //   console.log(order);
   const [loader, setLoader] = useState(false);
 
   const downloadPDF = () => {
@@ -79,13 +79,17 @@ const OrderDetails = () => {
                 </td>
               </tr>
               <tr>
-                <td className="px-6 py-4 font-medium text-gray-900">Date</td>
+                <td className="px-6 py-4 font-medium text-gray-900">
+                  Order Date
+                </td>
                 <td className="px-6 py-4 text-gray-500">
                   {new Date(order.date).toLocaleString()}
                 </td>
               </tr>
               <tr>
-                <td className="px-6 py-4 font-medium text-gray-900">Status</td>
+                <td className="px-6 py-4 font-medium text-gray-900">
+                  Shipping Status
+                </td>
                 <td className="px-6 py-4 text-gray-500">{order.status}</td>
               </tr>
               <tr>
@@ -180,7 +184,7 @@ const OrderDetails = () => {
           </table>
 
           <div className="flex justify-between mt-6">
-            <Link to="/dashboard/manage-order">
+            <Link to="/dashboard/my-shipping">
               {" "}
               <button className="px-4 py-2 bg-red-800 hover:bg-red-600 text-white font-bold rounded-lg">
                 Previous Page
@@ -200,4 +204,4 @@ const OrderDetails = () => {
   );
 };
 
-export default OrderDetails;
+export default UserOrderSummary;

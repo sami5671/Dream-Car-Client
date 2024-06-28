@@ -9,11 +9,17 @@ import useAuth from "../../../Hooks/UseAuth";
 import Logo2 from "../../Shared/Logo2";
 import MenuItem from "./MenuItem";
 import ModeratorMenu from "./ModeratorMenu";
+import UserMenu from "./UserMenu";
+import AdminMenu from "./AdminMenu";
+import UseAdmin from "../../../Hooks/UseAdmin";
+import UseModerator from "../../../Hooks/UseModerator";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
-  const moderator = true;
+  const [isAdmin] = UseAdmin();
+  const [isModerator] = UseModerator();
+  // console.log(isAdmin);
   // =================================================================
   const handleToggle = () => {
     setActive(!isActive);
@@ -57,18 +63,20 @@ const Sidebar = () => {
             {/* If a user is host */}
             {/* {role === "host" ? <ToggleBtn toggleHandler={toggleHandler} /> : ""} */}
             <nav>
-              {moderator ? <ModeratorMenu /> : " "}
+              {isAdmin ? (
+                <AdminMenu />
+              ) : isModerator ? (
+                <ModeratorMenu />
+              ) : (
+                <UserMenu />
+              )}
+
               <MenuItem icon={FaHome} label="Home" address="/" />
               <MenuItem
                 icon={IoCarSport}
                 label="All Cars"
                 address="/carCollection"
               />
-
-              {/*HOST Menu Items */}
-              {/* {role === "host" ? toggle ? <HostMenu /> : <GuestMenu /> : ""}
-              {role === "admin" && <AdminMenu />}
-              {role === "guest" && <GuestMenu />} */}
             </nav>
           </div>
         </div>

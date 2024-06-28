@@ -3,9 +3,11 @@ import axiosSecure from ".";
 // save user info into the database
 export const saveUser = async (user) => {
   const currentUser = {
+    name: user.displayName,
     email: user.email,
-    role: "guest",
-    status: "Verified",
+    photo: user.photoURL,
+    firebaseUserId: user.uid,
+    role: "user",
   };
   const { data } = await axiosSecure.put(`/users/${user?.email}`, currentUser);
   return data;

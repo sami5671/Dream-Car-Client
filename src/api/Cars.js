@@ -81,3 +81,32 @@ export const getOneSoldCarDetail = async (id) => {
   const { data } = await axiosSecure(`/orderDetail/${id}`);
   return data;
 };
+
+// update order status
+export const updateOrderStatus = async (id, status) => {
+  const { data } = await axiosSecure.patch(`/orderStatus/${id}`, { status });
+  return data;
+};
+
+// ============================user related api=====================================
+// get single sold card details for a user
+export const getSoldCarForUser = async (id) => {
+  const { data } = await axiosSecure(`/userOrderSummary/${id}`);
+  return data;
+};
+export const addUserCar = async (carData) => {
+  const { data } = await axiosSecure.post("/addUserCar", carData);
+  return data;
+};
+
+//================================ admin related api functions====================
+
+export const updateUserRole = async (id, role) => {
+  const { data } = await axiosSecure.patch(`/updateUserRole/${id}`, { role });
+  return data;
+};
+
+export const deleteUser = async (id) => {
+  const { data } = await axiosSecure.delete(`/deleteUser/${id}`);
+  return data;
+};

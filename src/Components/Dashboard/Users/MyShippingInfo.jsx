@@ -1,62 +1,18 @@
-import { useState } from "react";
-import UseToGetSoldCars from "../../../../Hooks/UseToGetSoldCars";
-import updatelogo from "../../../../assets/Images/update.png";
-import customerDetails from "../../../../assets/Images/customerDetails.png";
-import orderDetails from "../../../../assets/Images/orderDetails.png";
-import processing from "../../../../assets/Images/processingOrder.gif";
-import packing from "../../../../assets/Images/packingOrder.gif";
-import shipping from "../../../../assets/Images/ontheway.gif";
-import delivered from "../../../../assets/Images/delivered.gif";
-import CustomerDetailsModal from "./CustomerDetailsModal";
 import { Link } from "react-router-dom";
-import OrderStatusModal from "./OrderStatusModal";
-import { toast } from "react-hot-toast";
-import { updateOrderStatus } from "../../../../api/Cars";
-
-const ManageOrder = () => {
-  const [soldCars, refetch] = UseToGetSoldCars();
-
-  const [isOpenCustomer, setIsOpenCustomer] = useState(false);
-  const [customer, setCustomer] = useState({});
-  const [updateOrder, setUpdateOrder] = useState(false);
-  const [selectedOrderId, setSelectedOrderId] = useState(null);
-
-  const handleOpenModalCustomer = (customer) => {
-    setIsOpenCustomer(true);
-    setCustomer(customer);
-  };
-  const CloseModalCustomer = () => {
-    setIsOpenCustomer(false);
-  };
-
-  const handleOpenUpdateOrder = (id) => {
-    setSelectedOrderId(id);
-    setUpdateOrder(true);
-  };
-
-  const handleCloseUpdateOrder = () => {
-    setUpdateOrder(false);
-    setSelectedOrderId(null);
-  };
-
-  const modalHandler = async (status) => {
-    // console.log(status, selectedOrderId);
-    try {
-      const data = await updateOrderStatus(selectedOrderId, status);
-      refetch();
-      toast.success(`${status} order updated successfully`);
-    } catch (err) {
-      console.log(err);
-      toast.error(err.message);
-    } finally {
-      setUpdateOrder(false);
-    }
-  };
+import UseToGetSoldCarByEmail from "../../../Hooks/UseToGetSoldCarByEmail";
+import processing from "../../../assets/Images/processingOrder.gif";
+import packing from "../../../assets/Images/packingOrder.gif";
+import shipping from "../../../assets/Images/ontheway.gif";
+import delivered from "../../../assets/Images/delivered.gif";
+import orderDetails from "../../../assets/Images/orderDetails.png";
+const MyShippingInfo = () => {
+  const [soldCarByEmail] = UseToGetSoldCarByEmail();
+  console.log(soldCarByEmail);
 
   return (
     <div>
       <h1 className="text-center mb-12 text-2xl text-purple-800 font-bold">
-        Manage Order
+        My Shipping Info
         <hr />
       </h1>
 
@@ -68,27 +24,26 @@ const ManageOrder = () => {
               <th className="px-4 py-2">No.</th>
               <th className="px-4 py-2">Biller Name</th>
               <th className="px-4 py-2">Biller Email</th>
-              <th className="px-4 py-2">Image</th>
-              <th className="px-4 py-2">Update Status</th>
-              <th className="px-4 py-2">Customer Details</th>
+              <th className="px-4 py-2">Img</th>
+              <th className="px-4 py-2">Car Model</th>
+              <th className="px-4 py-2 text-center">Car Img</th>
+
               <th className="px-4 py-2">Order Details</th>
               <th className="px-4 py-2">Shipping Status</th>
             </tr>
           </thead>
           <tbody>
             {/* rows */}
-            {soldCars.map((item, index) => (
+            {soldCarByEmail.map((item, index) => (
               <tr
                 key={item._id}
                 className="text-black hover:bg-slate-200 transition-colors"
               >
                 <td className="px-4 py-2">{index + 1}</td>
-                <td className="text-center">
-                  {item?.customerInfo?.billerName}
-                </td>
+                <td className="">{item?.customerInfo?.billerName}</td>
                 <td>{item?.email}</td>
                 <td>
-                  <div className="flex items-center justify-center">
+                  <div className="">
                     <img
                       className="rounded-full h-12 w-12"
                       src={item?.photo}
@@ -96,33 +51,19 @@ const ManageOrder = () => {
                     />
                   </div>
                 </td>
+
+                <td>{item?.car?.CarModel}</td>
                 <td>
-                  <div
-                    onClick={() => handleOpenUpdateOrder(item?._id)}
-                    className="flex items-center justify-center cursor-pointer"
-                  >
-                    <img
-                      className="rounded-full h-10 w-10"
-                      src={updatelogo}
-                      alt="Update Logo"
-                    />
+                  <div className="">
+                    <div className="w-36 h-18">
+                      <img src={item?.car?.Images?.[2]?.url} alt="" />
+                    </div>
                   </div>
                 </td>
+
                 <td>
-                  <div
-                    onClick={() => handleOpenModalCustomer(item.customerInfo)}
-                    className="flex items-center justify-center cursor-pointer"
-                  >
-                    <img
-                      className="rounded-full h-10 w-10"
-                      src={customerDetails}
-                      alt="Customer Details"
-                    />
-                  </div>
-                </td>
-                <td>
-                  <Link to={`/dashboard/order-details/${item?._id}`}>
-                    <div className="flex items-center justify-center cursor-pointer">
+                  <Link to={`/dashboard/user-order-summary/${item?._id}`}>
+                    <div className="cursor-pointer">
                       <img
                         className="rounded-full h-10 w-10"
                         src={orderDetails}
@@ -132,7 +73,7 @@ const ManageOrder = () => {
                   </Link>
                 </td>
                 <td>
-                  <div className="flex items-center justify-center cursor-pointer">
+                  <div className="cursor-pointer">
                     {item?.status === "processing" && (
                       <>
                         <p className="text-blue-700 font-bold mr-1">
@@ -184,7 +125,7 @@ const ManageOrder = () => {
           </tbody>
         </table>
       </div>
-      <CustomerDetailsModal
+      {/* <CustomerDetailsModal
         isOpenCustomer={isOpenCustomer}
         CloseModalCustomer={CloseModalCustomer}
         customer={customer}
@@ -193,9 +134,9 @@ const ManageOrder = () => {
         updateOrder={updateOrder}
         handleCloseUpdateOrder={handleCloseUpdateOrder}
         modalHandler={modalHandler}
-      />
+      /> */}
     </div>
   );
 };
 
-export default ManageOrder;
+export default MyShippingInfo;

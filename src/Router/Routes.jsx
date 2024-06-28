@@ -6,7 +6,7 @@ import CustomerGarageDetails from "../Pages/Home/CustomerGarage/CustomerGarageDe
 import SignUpPage from "../Pages/SignUp/SignUpPage";
 import LoginPage from "../Pages/Login/LoginPage";
 import CarDetails from "../Pages/CarDetailsPage/CarDetails";
-import { getCar, getOneSoldCarDetail } from "../api/Cars";
+import { getCar, getOneSoldCarDetail, getSoldCarForUser } from "../api/Cars";
 import PrivateRoute from "./PrivateRoute";
 import CarCollection from "../Pages/CarCollectionPage/CarCollection";
 import DashboardLayout from "../Layout/DashboardLayout";
@@ -16,6 +16,13 @@ import ManageOrder from "../Components/Dashboard/Moderator/ManageOrder/ManageOrd
 import UpdateCar from "../Components/Dashboard/Moderator/MaanageCar/UpdateCar";
 import UserFavoriteCars from "./../Components/Dashboard/Users/UserFavoriteCars";
 import OrderDetails from "../Components/Dashboard/Moderator/ManageOrder/OrderDetails";
+import MyShippingInfo from "../Components/Dashboard/Users/MyShippingInfo";
+import UserOrderSummary from "../Components/Dashboard/Users/UserOrderSummary";
+import ManageUsers from "../Components/Dashboard/Admin/ManageUsers/ManageUsers";
+import ModeratorRoute from "./ModeratorRoute";
+import AdminRoute from "./AdminRoute";
+import AddUserCar from "../Components/Dashboard/Users/AddUserCar";
+import UserGarage from "../Components/Dashboard/Users/UserGarage";
 
 export const router = createBrowserRouter([
   {
@@ -70,11 +77,14 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // moderator routes
       {
         path: "add-car",
         element: (
           <PrivateRoute>
-            <AddCar />
+            <ModeratorRoute>
+              <AddCar />
+            </ModeratorRoute>
           </PrivateRoute>
         ),
       },
@@ -82,7 +92,9 @@ export const router = createBrowserRouter([
         path: "manage-car",
         element: (
           <PrivateRoute>
-            <ManageCar />
+            <ModeratorRoute>
+              <ManageCar />
+            </ModeratorRoute>
           </PrivateRoute>
         ),
       },
@@ -90,7 +102,9 @@ export const router = createBrowserRouter([
         path: "update-car/:id",
         element: (
           <PrivateRoute>
-            <UpdateCar />
+            <ModeratorRoute>
+              <UpdateCar />
+            </ModeratorRoute>
           </PrivateRoute>
         ),
         loader: ({ params }) => getCar(params.id),
@@ -99,7 +113,9 @@ export const router = createBrowserRouter([
         path: "manage-order",
         element: (
           <PrivateRoute>
-            <ManageOrder />
+            <ModeratorRoute>
+              <ManageOrder />
+            </ModeratorRoute>
           </PrivateRoute>
         ),
       },
@@ -107,10 +123,57 @@ export const router = createBrowserRouter([
         path: "order-details/:id",
         element: (
           <PrivateRoute>
-            <OrderDetails />
+            <ModeratorRoute>
+              <OrderDetails />
+            </ModeratorRoute>
           </PrivateRoute>
         ),
         loader: ({ params }) => getOneSoldCarDetail(params.id),
+      },
+      //users dashboard
+      {
+        path: "add-user-car",
+        element: (
+          <PrivateRoute>
+            <AddUserCar />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "user-garage",
+        element: (
+          <PrivateRoute>
+            <UserGarage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-shipping",
+        element: (
+          <PrivateRoute>
+            <MyShippingInfo />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "user-order-summary/:id",
+        element: (
+          <PrivateRoute>
+            <UserOrderSummary />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => getSoldCarForUser(params.id),
+      },
+      // admin  routes
+      {
+        path: "manage-users",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
     ],
   },
