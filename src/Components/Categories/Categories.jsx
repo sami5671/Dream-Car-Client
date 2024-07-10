@@ -13,7 +13,7 @@ const Categories = () => {
   return (
     <Container>
       <div>
-        <h1 className="text-4xl mt-4 lg:mt-12 font-bold mb-2">
+        <h1 className="text-2xl lg:text-4xl mt-8 lg:mt-8 font-bold mb-2">
           Popular categories
         </h1>
         <Link to="/carCollection">

@@ -4,7 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const UserOrderSummary = () => {
   const order = useLoaderData();
-  //   console.log(order);
+  console.log(order);
   const [loader, setLoader] = useState(false);
 
   const downloadPDF = () => {
@@ -30,7 +30,7 @@ const UserOrderSummary = () => {
     doc.text(`Biller Phone: ${order.customerInfo.billerPhone}`, 20, 90);
 
     // Receiver Information
-    doc.text("Receiver Information", 20, 100);
+    doc.text("Receiver Information", 110, 100, { align: "center" });
     doc.text(`Receiver Name: ${order.customerInfo.receiverName}`, 20, 110);
     doc.text(
       `Shipping Address: ${order.customerInfo.shippingAddress}`,
@@ -45,6 +45,9 @@ const UserOrderSummary = () => {
     doc.text(`Car Model: ${order.car.CarModel}`, 20, 160);
     doc.text(`Car Condition: ${order.car.CarCondition}`, 20, 170);
     doc.text(`Category: ${order.car.Category}`, 20, 180);
+
+    doc.text(`Price: $${order.car.CarPriceNew}`, 20, 190);
+    doc.text(`Engine: ${order.car.Engine}`, 20, 200);
 
     // Add more details as needed
 
@@ -179,6 +182,16 @@ const UserOrderSummary = () => {
                 <td className="px-6 py-4 text-gray-500">
                   {order.car.Category}
                 </td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-medium text-gray-900">Price</td>
+                <td className="px-6 py-4 text-gray-500">
+                  ${order.car.CarPriceNew}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-medium text-gray-900">Engine</td>
+                <td className="px-6 py-4 text-gray-500">{order.car.Engine}</td>
               </tr>
             </tbody>
           </table>

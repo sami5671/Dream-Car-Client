@@ -1,6 +1,6 @@
 import MenuItem from "./MenuItem";
 import { PiUsersThreeFill } from "react-icons/pi";
-
+import { GiHomeGarage } from "react-icons/gi";
 const AdminMenu = () => {
   return (
     <div>
@@ -8,6 +8,11 @@ const AdminMenu = () => {
         icon={PiUsersThreeFill}
         label="Manage Users"
         address="manage-users"
+      />
+      <MenuItem
+        icon={GiHomeGarage}
+        label="User Added Cars"
+        address="user-car-accept"
       />
       <hr />
       <hr />

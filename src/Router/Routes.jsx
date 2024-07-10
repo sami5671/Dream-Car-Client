@@ -6,7 +6,12 @@ import CustomerGarageDetails from "../Pages/Home/CustomerGarage/CustomerGarageDe
 import SignUpPage from "../Pages/SignUp/SignUpPage";
 import LoginPage from "../Pages/Login/LoginPage";
 import CarDetails from "../Pages/CarDetailsPage/CarDetails";
-import { getCar, getOneSoldCarDetail, getSoldCarForUser } from "../api/Cars";
+import {
+  getCar,
+  getOneSoldCarDetail,
+  getSecondHandCar,
+  getSoldCarForUser,
+} from "../api/Cars";
 import PrivateRoute from "./PrivateRoute";
 import CarCollection from "../Pages/CarCollectionPage/CarCollection";
 import DashboardLayout from "../Layout/DashboardLayout";
@@ -23,6 +28,8 @@ import ModeratorRoute from "./ModeratorRoute";
 import AdminRoute from "./AdminRoute";
 import AddUserCar from "../Components/Dashboard/Users/AddUserCar";
 import UserGarage from "../Components/Dashboard/Users/UserGarage";
+import UserCarAcceptance from "../Components/Dashboard/Admin/ManageCarAccept/UserCarAcceptance";
+import UpdateUserAddedCar from "../Components/Dashboard/Users/UpdateUserAddedCar";
 
 export const router = createBrowserRouter([
   {
@@ -148,6 +155,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "user-addedCar-update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateUserAddedCar />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => getSecondHandCar(params.id),
+      },
+      {
         path: "my-shipping",
         element: (
           <PrivateRoute>
@@ -171,6 +187,16 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "user-car-accept",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <UserCarAcceptance />
             </AdminRoute>
           </PrivateRoute>
         ),

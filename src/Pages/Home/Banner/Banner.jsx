@@ -4,6 +4,7 @@ import BannerCarousalContainer from "./BannerCarousalContainer";
 import Container from "../../../Components/Shared/Container";
 import { useState } from "react";
 import Login from "../../Login/Login";
+import "./Banner.css";
 
 const Banner = () => {
   // ----------------------------------------------------------------
@@ -39,56 +40,54 @@ const Banner = () => {
   // ----------------------------------------------------------------
   return (
     <>
-      <Container>
-        <div className="flex flex-col-reverse lg:flex-row justify-between">
-          <div className="mt-16 lg:w-1/2">
-            <h1 className="text-3xl lg:text-5xl font-bold mt-6 lg:mt-0">
-              Imagine Your Possibilities
-            </h1>
-            <h3 className="lg:text-[16px] font-semibold mt-5 lg:mt-4 text-slate-500 w-[490px]">
-              Add your car. Track its value.Or Buy Brand New Car Add your car to
-              Your Garage to track its market value and cash in when the time is
-              right to sell.
-            </h3>
+      <div className="flex flex-col lg:flex-row justify-between bg-image text-white">
+        <div className="lg:w-1/2 lg:px-12 px-4 py-2 mt-8">
+          <h1 className="text-4xl lg:text-5xl font-bold lg:mt-0">
+            Imagine Your Possibilities
+          </h1>
+          <h3 className="text-sm lg:text-[16px] font-semibold mt-5 lg:mt-4 text-slate-300 lg:w-[490px]">
+            Add your car. Track its value. Or Buy Brand New Car Add your car to
+            Your Garage to track its market value and cash in when the time is
+            right to sell.
+          </h3>
 
-            <button className="px-5 py-2 font-bold rounded-full mt-12 lg:mt-28 bg-purple-600 text-white border-2 hover:text-purple-700 hover:bg-slate-200 hover:border-purple-600 hover:border-dotted">
-              Get Started
-            </button>
-            <p className="mt-1 ml-1 text-slate-600">
-              Already have an account?
-              <span
-                onClick={openLoginModal}
-                className="font-bold underline cursor-pointer hover:decoration-white"
-              >
-                Sign in
-              </span>
-            </p>
-          </div>
-
-          <div className="lg:w-[620px] lg:mt-24">
-            <Carousel
-              autoPlay={true}
-              stopOnHover={true}
-              infiniteLoop={true}
-              showStatus={false}
-              showThumbs={false}
-              showArrows={false}
-              showIndicators={false}
-              transitionTime={500}
+          <button className="px-5 py-2 font-bold rounded-full mt-6 lg:mt-12 bg-blue-600 text-white hover:text-purple-700 hover:bg-slate-200 hover:border-purple-600 hover:border-dotted">
+            Get Started
+          </button>
+          <p className="mt-1 ml-1">
+            Already have an account?
+            <span
+              onClick={openLoginModal}
+              className="font-bold underline cursor-pointer hover:decoration-white"
             >
-              {banners.map((banner, index) => (
-                <BannerCarousalContainer key={index} image={banner.image} />
-              ))}
-            </Carousel>
-          </div>
+              Sign in
+            </span>
+          </p>
         </div>
 
-        <Login
-          isLoginOpen={isLoginOpen}
-          openLoginModal={openLoginModal}
-          closeLoginModal={closeLoginModal}
-        />
-      </Container>
+        <div className="lg:w-[620px] lg:mt-24">
+          <Carousel
+            autoPlay={true}
+            stopOnHover={true}
+            infiniteLoop={true}
+            showStatus={false}
+            showThumbs={false}
+            showArrows={false}
+            showIndicators={false}
+            transitionTime={500}
+          >
+            {banners.map((banner, index) => (
+              <BannerCarousalContainer key={index} image={banner.image} />
+            ))}
+          </Carousel>
+        </div>
+      </div>
+
+      <Login
+        isLoginOpen={isLoginOpen}
+        openLoginModal={openLoginModal}
+        closeLoginModal={closeLoginModal}
+      />
     </>
   );
 };

@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import EmptyData from "../../Components/EmptyData/EmptyData";
 import CarCard from "../../Components/Shared/CarCard";
 import Container from "../../Components/Shared/Container";
-import Logo from "../../Components/Shared/Logo";
+
 import "./CarSortInput.css";
 import { FaCar } from "react-icons/fa6";
 import Pagination from "../../Components/Pagination/Pagination";
 import { Helmet } from "react-helmet-async";
 import UseAllCar from "../../Hooks/UseAllCar";
+import Logo2 from "../../Components/Shared/Logo2";
 
 const CarCollection = () => {
   const [allCar] = UseAllCar();
@@ -125,7 +126,7 @@ const CarCollection = () => {
         <div className="lg:w-[500px] lg:h-[600px] shadow-xl bg-gray-100 rounded-xl p-4">
           <div className="flex flex-col justify-center items-center">
             <p>
-              <Logo />
+              <Logo2 />
             </p>
             <h2 className="font-semibold text-purple-800">Filter Cars</h2>
           </div>

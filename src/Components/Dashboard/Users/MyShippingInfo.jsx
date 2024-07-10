@@ -26,8 +26,8 @@ const MyShippingInfo = () => {
               <th className="px-4 py-2">Biller Email</th>
               <th className="px-4 py-2">Img</th>
               <th className="px-4 py-2">Car Model</th>
+              <th className="px-4 py-2">Car Price</th>
               <th className="px-4 py-2 text-center">Car Img</th>
-
               <th className="px-4 py-2">Order Details</th>
               <th className="px-4 py-2">Shipping Status</th>
             </tr>
@@ -40,7 +40,9 @@ const MyShippingInfo = () => {
                 className="text-black hover:bg-slate-200 transition-colors"
               >
                 <td className="px-4 py-2">{index + 1}</td>
-                <td className="">{item?.customerInfo?.billerName}</td>
+                <td className="font-semibold">
+                  {item?.customerInfo?.billerName}
+                </td>
                 <td>{item?.email}</td>
                 <td>
                   <div className="">
@@ -53,6 +55,7 @@ const MyShippingInfo = () => {
                 </td>
 
                 <td>{item?.car?.CarModel}</td>
+                <td className="font-bold">${item?.car?.CarPriceNew}</td>
                 <td>
                   <div className="">
                     <div className="w-36 h-18">

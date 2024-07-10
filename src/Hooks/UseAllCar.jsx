@@ -1,9 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "./UseAuth";
 import axiosSecure from "../api";
 
 const UseAllCar = () => {
-  const { user } = useAuth();
   const { data: allCar = [], refetch } = useQuery({
     queryKey: ["allCar"],
     queryFn: async () => {

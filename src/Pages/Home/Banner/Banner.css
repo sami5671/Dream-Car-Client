@@ -1,0 +1,7 @@
+.bg-image {
+  background-image: url("https://i.ibb.co/M7v40Hh/b2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+}

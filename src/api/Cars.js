@@ -98,6 +98,24 @@ export const addUserCar = async (carData) => {
   const { data } = await axiosSecure.post("/addUserCar", carData);
   return data;
 };
+export const deleteUserAddedCar = async (id) => {
+  const { data } = await axiosSecure.delete(`/deleteUserAddedCar/${id}`);
+  return data;
+};
+
+// get single second hand car from database
+export const getSecondHandCar = async (id) => {
+  const { data } = await axiosSecure(`/userAddedCarUpdate/${id}`);
+  return data;
+};
+
+export const updateUserAddedCarInfo = async (id, carData) => {
+  const { data } = await axiosSecure.patch(
+    `/updateUserAddedCar/${id}`,
+    carData
+  );
+  return data;
+};
 
 //================================ admin related api functions====================
 
@@ -108,5 +126,13 @@ export const updateUserRole = async (id, role) => {
 
 export const deleteUser = async (id) => {
   const { data } = await axiosSecure.delete(`/deleteUser/${id}`);
+  return data;
+};
+
+export const updateUserCarStatus = async (id, status) => {
+  console.log(id, status);
+  const { data } = await axiosSecure.patch(`/updateUserCarStatus/${id}`, {
+    status,
+  });
   return data;
 };

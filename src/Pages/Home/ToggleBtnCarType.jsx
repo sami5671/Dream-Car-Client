@@ -1,5 +1,5 @@
 import Container from "../../Components/Shared/Container";
-import Logo from "../../Components/Shared/Logo";
+import Logo2 from "../../Components/Shared/Logo2";
 
 const ToggleBtnCarType = ({ handleCarTypeSelection, selectedCarType }) => {
   return (
@@ -7,7 +7,7 @@ const ToggleBtnCarType = ({ handleCarTypeSelection, selectedCarType }) => {
       <Container>
         <div className="flex flex-col items-center justify-center mt-20 lg:mt-28">
           <div>
-            <Logo />
+            <Logo2 />
           </div>
           <div className="flex">
             <button

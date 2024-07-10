@@ -1,23 +1,26 @@
-import UseToGetUserAddedCarByEmail from "../../../Hooks/UseToGetUserAddedCarByEmail";
-import details from "../../../assets/Images/details.png";
-import update from "../../../assets/Images/update.png";
-import deleteImg from "../../../assets/Images/delete.png";
-import pending from "../../../assets/Images/pending.gif";
-import approve from "../../../assets/Images/approve.gif";
-import cancel from "../../../assets/Images/cancel.gif";
-import { Link } from "react-router-dom";
+import UseToGetAllUserAddedCar from "../../../../Hooks/UseToGetAllUserAddedCar";
+import details from "../../../../assets/Images/details.png";
+import update from "../../../../assets/Images/update.png";
+import deleteImg from "../../../../assets/Images/delete.png";
+import pending from "../../../../assets/Images/pending.gif";
+import cancel from "../../../../assets/Images/cancel.gif";
+import approve from "../../../../assets/Images/approve.gif";
+import CarDetailsModal from "../../Moderator/MaanageCar/CarDetailsModal";
 import { useState } from "react";
-import CarDetailsModal from "../Moderator/MaanageCar/CarDetailsModal";
-import { deleteUserAddedCar } from "../../../api/Cars";
+import {
+  addCar,
+  deleteUserAddedCar,
+  updateUserCarStatus,
+} from "../../../../api/Cars";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import CarStatusModal from "./CarStatusModal";
 
-const UserGarage = () => {
-  const [userAddedCarByEmail, refetch] = UseToGetUserAddedCarByEmail();
-  // console.log(userAddedCarByEmail);
-
+const UserCarAcceptance = () => {
+  const [allUserAddedCar, refetch] = UseToGetAllUserAddedCar();
   const [isDetailOpen, setDetailOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState([]);
+  const [carData, setCarData] = useState([]);
 
   const handleOpenDetails = (item) => {
     setSelectedCar(item);
@@ -27,6 +30,45 @@ const UserGarage = () => {
     setDetailOpen(false);
     setSelectedCar(null);
   };
+
+  const [selectedCarId, setSelectedCarId] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  // console.log(users);
+  const handleOpenModal = (id, car) => {
+    setSelectedCarId(id);
+    setCarData(car);
+    setIsOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsOpen(false);
+    setSelectedCarId(null);
+    setCarData(null);
+  };
+
+  // console.log(carData);
+  const modalHandler = async (status) => {
+    // console.log(status, selectedCarId);
+    try {
+      const data = await updateUserCarStatus(selectedCarId, status);
+      refetch();
+
+      if (status === "accepted") {
+        const { _id, CarStatus, ...newCarData } = carData;
+        console.log(newCarData);
+        const data = await addCar(newCarData);
+        console.log(data);
+      }
+      toast.success(`Car is ${status}`);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    } finally {
+      setIsOpen(false);
+    }
+  };
+
   const handleErrorUpdate = (item) => {
     toast.error(`${item} can not be updated after accepted`);
   };
@@ -62,57 +104,57 @@ const UserGarage = () => {
         {/* ===== */}
         <div>
           <h1 className="text-center font-bold text-3xl text-purple-600 lg:mb-16 underline">
-            My Garage
+            Accept User's Cars
           </h1>
         </div>
 
         {/* ===== */}
         {/* <form>
-          <div className="flex flex-col lg:flex-row gap-4">
-            <div className="space-y-1 text-sm">
-              <p className="font-semibold text-slate-500">Category</p>
-              <select
-                required
-                className="py-3 w-[150px] border-2 border-slate-300 focus:outline-purple-500 rounded-md"
-                name="category"
-                onChange={handleSelectCategory}
-              >
-                {categories.map((category) => (
-                  <option value={category?.label} key={category?.label}>
-                    {category?.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="space-y-1 text-sm">
-              <p className="font-semibold text-slate-500">Car Condition</p>
-              <select
-                required
-                className="py-3 w-[130px] border-2 border-slate-300 focus:outline-purple-500 rounded-md"
-                name="condition"
-                onChange={handleSelectCondition}
-              >
-                {userAddedCarByEmail.map((item) => (
-                  <option value={item?.type} key={item?.type}>
-                    {item?.type}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="lg:ml-auto">
-              <p className="font-semibold text-slate-500">Search By Model</p>
-              <input
-                className="px-4 py-3 w-[300px] text-gray-800 border border-slate-400 focus:outline-purple-500 rounded-md "
-                name="carModel"
-                type="text"
-                placeholder="car model"
-                required
-                onChange={handleInputChange}
-              />
-            </div>
+        <div className="flex flex-col lg:flex-row gap-4">
+          <div className="space-y-1 text-sm">
+            <p className="font-semibold text-slate-500">Category</p>
+            <select
+              required
+              className="py-3 w-[150px] border-2 border-slate-300 focus:outline-purple-500 rounded-md"
+              name="category"
+              onChange={handleSelectCategory}
+            >
+              {categories.map((category) => (
+                <option value={category?.label} key={category?.label}>
+                  {category?.label}
+                </option>
+              ))}
+            </select>
           </div>
-        </form> */}
+          <div className="space-y-1 text-sm">
+            <p className="font-semibold text-slate-500">Car Condition</p>
+            <select
+              required
+              className="py-3 w-[130px] border-2 border-slate-300 focus:outline-purple-500 rounded-md"
+              name="condition"
+              onChange={handleSelectCondition}
+            >
+              {userAddedCarByEmail.map((item) => (
+                <option value={item?.type} key={item?.type}>
+                  {item?.type}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lg:ml-auto">
+            <p className="font-semibold text-slate-500">Search By Model</p>
+            <input
+              className="px-4 py-3 w-[300px] text-gray-800 border border-slate-400 focus:outline-purple-500 rounded-md "
+              name="carModel"
+              type="text"
+              placeholder="car model"
+              required
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+      </form> */}
         <table className="table">
           {/* head */}
           <thead>
@@ -130,7 +172,7 @@ const UserGarage = () => {
             </tr>
           </thead>
           <tbody className="text-[16px] font-semibold">
-            {userAddedCarByEmail?.map((item, index) => (
+            {allUserAddedCar?.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td className="">
@@ -149,7 +191,7 @@ const UserGarage = () => {
                 <td>
                   {item?.CarStatus === "pending" ? (
                     <div className="flex items-center justify-center">
-                      <div className="w-8 h-8">
+                      <div className="w-10 h-10">
                         <img src={pending} alt="" />
                       </div>
                     </div>
@@ -158,7 +200,7 @@ const UserGarage = () => {
                   )}
                   {item?.CarStatus === "cancel" ? (
                     <div className="flex items-center justify-center">
-                      <div className="w-8 h-8">
+                      <div className="w-10 h-10">
                         <img src={cancel} alt="" />
                       </div>
                     </div>
@@ -167,14 +209,13 @@ const UserGarage = () => {
                   )}
                   {item?.CarStatus === "accepted" ? (
                     <div className="flex items-center justify-center">
-                      <div className="w-8 h-8">
+                      <div className="w-10 h-10">
                         <img src={approve} alt="" />
                       </div>
                     </div>
                   ) : (
                     " "
                   )}
-
                   {item?.CarStatus}
                 </td>
                 <td>
@@ -186,24 +227,25 @@ const UserGarage = () => {
                     alt=""
                   />
                 </td>
-                <td>
+                <td className="">
                   {item?.CarStatus === "accepted" ? (
-                    <img
-                      onClick={() => handleErrorUpdate(item?.CarModel)}
-                      src={update}
-                      className="cursor-pointer"
-                      width={35}
-                      alt=""
-                    />
-                  ) : (
-                    <Link to={`/dashboard/user-addedCar-update/${item?._id}`}>
+                    <div onClick={() => handleErrorUpdate(item?.CarModel)}>
                       <img
                         src={update}
                         className="cursor-pointer"
                         width={35}
                         alt=""
                       />
-                    </Link>
+                    </div>
+                  ) : (
+                    <div onClick={() => handleOpenModal(item?._id, item)}>
+                      <img
+                        src={update}
+                        className="cursor-pointer"
+                        width={35}
+                        alt=""
+                      />
+                    </div>
                   )}
                 </td>
                 <td>
@@ -226,8 +268,13 @@ const UserGarage = () => {
         isOpen={isDetailOpen}
         handleCloseDetails={handleCloseDetails}
       />
+      <CarStatusModal
+        isOpen={isOpen}
+        handleCloseModal={handleCloseModal}
+        modalHandler={modalHandler}
+      />
     </>
   );
 };
 
-export default UserGarage;
+export default UserCarAcceptance;

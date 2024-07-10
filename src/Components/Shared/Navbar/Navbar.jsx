@@ -1,5 +1,6 @@
 import Container from "../Container";
 import Logo from "../Logo";
+import BottomNavigation from "./BottomNavigation";
 import MenuDropdown from "./MenuDropdown";
 
 const Navbar = () => {
@@ -14,6 +15,9 @@ const Navbar = () => {
             <MenuDropdown />
           </div>
         </Container>
+        <section className="block lg:hidden">
+          <BottomNavigation />
+        </section>
       </div>
     </div>
   );
