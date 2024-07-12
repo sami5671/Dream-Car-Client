@@ -4,11 +4,13 @@ import { categories } from "../../../Categories/CategoriesData";
 import { addCar } from "../../../../api/Cars";
 import toast from "react-hot-toast";
 import uploadImg from "../../../../assets/Images/upload.gif";
+import { useNavigate } from "react-router-dom";
 
 const AddCar = () => {
   const [images, setImages] = useState([]);
   const [uploadButtonText, setUploadButtonText] = useState("Upload Car Images");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const carCondition = [
     {
@@ -89,6 +91,7 @@ const AddCar = () => {
       const data = await addCar(carData);
       toast.success("Car added successfully");
       console.log(data);
+      navigate("/dashboard/manage-car");
     } catch (error) {
       console.log(error);
     } finally {

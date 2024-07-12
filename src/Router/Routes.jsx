@@ -30,6 +30,10 @@ import AddUserCar from "../Components/Dashboard/Users/AddUserCar";
 import UserGarage from "../Components/Dashboard/Users/UserGarage";
 import UserCarAcceptance from "../Components/Dashboard/Admin/ManageCarAccept/UserCarAcceptance";
 import UpdateUserAddedCar from "../Components/Dashboard/Users/UpdateUserAddedCar";
+import MyProfile from "../Components/ProfileInfo/MyProfile";
+import Success from "../Payment/SSLCommerce/Success";
+import Cancel from "../Payment/SSLCommerce/Cancel";
+import Fail from "../Payment/SSLCommerce/Fail";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +75,30 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UserFavoriteCars />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/success",
+        element: (
+          <PrivateRoute>
+            <Success />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/cancel",
+        element: (
+          <PrivateRoute>
+            <Cancel />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/fail",
+        element: (
+          <PrivateRoute>
+            <Fail />
           </PrivateRoute>
         ),
       },
@@ -198,6 +226,16 @@ export const router = createBrowserRouter([
             <AdminRoute>
               <UserCarAcceptance />
             </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+
+      // others
+      {
+        path: "my-profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
           </PrivateRoute>
         ),
       },

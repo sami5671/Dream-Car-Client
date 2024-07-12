@@ -18,10 +18,13 @@ const BottomNavigation = () => {
           <span className="btm-nav-label font-semibold">Cars</span>
         </button>
       </NavLink>
-      <button className="items-center flex flex-col justify-center">
-        <img src={profile} className="w-[25px]" alt="" />
-        <span className="btm-nav-label font-semibold">Profile</span>
-      </button>
+
+      <NavLink to="/dashboard/my-profile">
+        <button className="items-center flex flex-col justify-center">
+          <img src={profile} className="w-[25px]" alt="" />
+          <span className="btm-nav-label font-semibold">Profile</span>
+        </button>
+      </NavLink>
     </div>
   );
 };

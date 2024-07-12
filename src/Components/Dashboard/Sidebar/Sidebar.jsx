@@ -86,7 +86,7 @@ const Sidebar = () => {
           <MenuItem
             icon={IoSettingsSharp}
             label="Profile"
-            address="/dashboard/profile"
+            address="/dashboard/my-profile"
           />
           <button
             onClick={logOut}

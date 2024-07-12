@@ -229,7 +229,7 @@ const CarDetails = () => {
             {/* stripe payment will be START here */}
             <Payment car={car} />
             {/* stripe payment will be ENDhere */}
-            <SSLCommerce />
+            <SSLCommerce car={car} />
           </div>
         </div>
       </Container>

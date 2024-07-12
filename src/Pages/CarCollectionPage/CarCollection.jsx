@@ -2,7 +2,6 @@ import { useState } from "react";
 import EmptyData from "../../Components/EmptyData/EmptyData";
 import CarCard from "../../Components/Shared/CarCard";
 import Container from "../../Components/Shared/Container";
-
 import "./CarSortInput.css";
 import { FaCar } from "react-icons/fa6";
 import Pagination from "../../Components/Pagination/Pagination";

@@ -44,7 +44,7 @@ const UserFavoriteCarCard = ({ car }) => {
 
         <div className="flex justify-center">
           <img
-            src={car?.favoriteCar?.Images?.[3]?.url}
+            src={car?.favoriteCar?.Images?.[2]?.url}
             className="w-[250px] h-[150px] rounded-lg group-hover:scale-110 transition object-cover"
             alt={car?.favoriteCar?.CarModel}
           />

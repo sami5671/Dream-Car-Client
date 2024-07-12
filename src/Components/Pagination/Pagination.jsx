@@ -3,7 +3,7 @@ const Pagination = ({ pageNumbers, currentPage, paginate }) => {
     <>
       <div>
         <ul className="flex justify-center gap-1 mt-8 overflow-x-auto">
-          {pageNumbers.map((number) => (
+          {pageNumbers?.map((number) => (
             <li
               key={number}
               className={`px-2 py-1 cursor-pointer ${
