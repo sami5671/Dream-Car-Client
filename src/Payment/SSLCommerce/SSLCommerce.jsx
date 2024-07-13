@@ -6,13 +6,60 @@ import cityBank from "../../assets/Images/citybank-removebg-preview.png";
 import bkash from "../../assets/Images/bkash-removebg-preview.png";
 import nagad from "../../assets/Images/nagad-removebg-preview.png";
 import axios from "axios";
+import useAuth from "../../Hooks/UseAuth";
+import { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { ImSpinner9 } from "react-icons/im";
+
 const SSLCommerce = ({ car }) => {
   // console.log(car);
-  const handleCreatePayment = () => {
+  const [billerPhoneNumber, setBillerPhoneNumber] = useState("");
+  const [receiverPhoneNumber, setReceiverPhoneNumber] = useState("");
+  const [processing, setProcessing] = useState(false);
+
+  const { user } = useAuth();
+  console.log(user);
+
+  const userData = {
+    email: user.email,
+    photo: user.photoURL,
+  };
+
+  const handleCreatePayment = async (event) => {
+    // ----------------------------------------------------------------
+    event.preventDefault();
+    console.log("clicked");
+    // =================================================================
+    const form = event.target;
+
+    const billerName = form.billerName.value;
+    const billerZipCode = form.zipCodeBiller.value;
+    const billerEmail = form.billerEmail.value;
+    const billerPhone = billerPhoneNumber;
+
+    const shippingAddress = form.shippingAddress.value;
+    const receiverName = form.receiverName.value;
+    const receiverEmail = form.receiverEmail.value;
+    const receiverPhone = receiverPhoneNumber;
+
+    const customerInfo = {
+      billerName,
+      billerZipCode,
+      billerEmail,
+      billerPhone,
+      receiverName,
+      shippingAddress,
+      receiverEmail,
+      receiverPhone,
+    };
+    console.log(customerInfo);
+    // ----------------------------------------------------------------
     axios
       .post("http://localhost:5000/create-payment", {
-        amount: 10000,
-        currency: "USD",
+        car,
+        customerInfo,
+        userData,
       })
       .then((response) => {
         console.log(response);
@@ -21,7 +68,7 @@ const SSLCommerce = ({ car }) => {
           window.location.replace(redirectUrl);
         }
       });
-    console.log("hi");
+    // console.log("hi");
   };
   return (
     <>
@@ -43,11 +90,192 @@ const SSLCommerce = ({ car }) => {
         </div>
       </div>
 
-      <div onClick={handleCreatePayment} className="mt-4">
-        <p className="bg-blue-800 rounded-lg px-2 py-2 hover:bg-blue-600 text-white font-bold text-center cursor-pointer">
-          <button>Pay now</button>
-        </p>
-      </div>
+      {/* -------------------------------- */}
+
+      <form onSubmit={handleCreatePayment}>
+        <div>
+          {/* billing */}
+          <div className="mt-8">
+            <h1 className="text-xl font-semibold">Billing Info</h1>
+            <hr />
+            <div className="flex gap-2 mt-4">
+              <div className="space-y-1 text-sm">
+                <label htmlFor="biller name" className="block text-gray-600">
+                  Name
+                </label>
+                <input
+                  className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
+                  name="billerName"
+                  type="text"
+                  placeholder="Biller Name"
+                  required
+                  defaultValue={user?.displayName}
+                />
+              </div>
+              <div className="space-y-1 text-sm">
+                <label htmlFor="zip code" className="block text-gray-600">
+                  Zip Code
+                </label>
+                <input
+                  className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
+                  name="zipCodeBiller"
+                  type="text"
+                  placeholder="Zip"
+                  required
+                />
+              </div>
+            </div>
+            <div className="space-y-1 text-sm mt-2">
+              <label htmlFor="biller email" className="block text-gray-600">
+                Email
+              </label>
+              <input
+                className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
+                name="billerEmail"
+                type="text"
+                placeholder="Biller Email"
+                disabled
+                defaultValue={user?.email}
+              />
+            </div>
+            <div className="space-y-1 text-sm mt-2">
+              <label
+                htmlFor="biller phone number"
+                className="block text-gray-600"
+              >
+                Phone Number
+              </label>
+              <PhoneInput
+                country={"ar"}
+                value={billerPhoneNumber}
+                onChange={setBillerPhoneNumber}
+                inputStyle={{
+                  width: "100%",
+                  padding: "12px 24px",
+                  border: "1px solid #a855f7",
+                  borderRadius: "8px",
+                  color: "#1f2937",
+                  fontSize: "14px",
+                }}
+                buttonStyle={{
+                  border: "1px solid #a855f7",
+                  borderRadius: "8px 0 0 8px",
+                }}
+                dropdownStyle={{
+                  borderRadius: "8px",
+                  border: "1px solid #a855f7",
+                  maxHeight: "200px",
+                  overflowY: "scroll",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* shipping  */}
+          <div className="mt-8">
+            <h1 className="text-xl font-semibold">Shipping Info</h1>
+            <hr />
+            <div className="space-y-1 text-sm mt-2">
+              <label htmlFor="shipping address" className="block text-gray-600">
+                Shipping Address
+              </label>
+              <input
+                className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
+                name="shippingAddress"
+                type="text"
+                placeholder="Shipping Location"
+                required
+              />
+            </div>
+            <div className="flex gap-2 mt-4">
+              <div className="space-y-1 text-sm">
+                <label htmlFor="receiver name" className="block text-gray-600">
+                  Receiver's Name
+                </label>
+                <input
+                  className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
+                  name="receiverName"
+                  type="text"
+                  placeholder="Receiver Name"
+                  required
+                />
+              </div>
+              <div className="space-y-1 text-sm">
+                <label htmlFor="zip code" className="block text-gray-600">
+                  Zip Code
+                </label>
+                <input
+                  className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
+                  name="zipCodeS"
+                  type="text"
+                  placeholder="Zip"
+                  required
+                />
+              </div>
+            </div>
+            <div className="space-y-1 text-sm mt-2">
+              <label htmlFor="receiver email" className="block text-gray-600">
+                Receiver's Email
+              </label>
+              <input
+                className="w-full px-4 py-3 text-gray-800 border border-purple-400 focus:outline-purple-500 rounded-md "
+                name="receiverEmail"
+                type="text"
+                placeholder="Receiver Email"
+                required
+              />
+            </div>
+            <div className="space-y-1 text-sm mt-2">
+              <label
+                htmlFor="receiver phone number"
+                className="block text-gray-600"
+              >
+                Phone Number
+              </label>
+              <PhoneInput
+                country={"br"}
+                value={receiverPhoneNumber}
+                onChange={setReceiverPhoneNumber}
+                inputStyle={{
+                  width: "100%",
+                  padding: "12px 24px",
+                  border: "1px solid #a855f7",
+                  borderRadius: "8px",
+                  color: "#1f2937",
+                  fontSize: "14px",
+                }}
+                buttonStyle={{
+                  border: "1px solid #a855f7",
+                  borderRadius: "8px 0 0 8px",
+                }}
+                dropdownStyle={{
+                  borderRadius: "8px",
+                  border: "1px solid #a855f7",
+                  maxHeight: "200px",
+                  overflowY: "scroll",
+                }}
+              />
+            </div>
+          </div>
+          <div className="mt-4">
+            {processing ? (
+              <button className="bg-blue-800 rounded-lg px-2 py-2 hover:bg-blue-600 text-white font-bold text-center cursor-pointer">
+                <ImSpinner9 />
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="bg-blue-800  rounded-lg w-full py-2 hover:bg-blue-600 text-white font-bold text-center cursor-pointer"
+              >
+                Pay now
+              </button>
+            )}
+          </div>
+        </div>
+      </form>
+      {/* other details */}
+
+      {/* -------------------------------- */}
     </>
   );
 };
