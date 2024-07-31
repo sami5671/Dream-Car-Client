@@ -125,6 +125,7 @@ const CheckoutForm = ({ closeModal, car }) => {
         email: user.email,
         photo: user.photoURL,
         status: "processing",
+        paymentStatus: "Success",
         customerInfo,
         car,
       };
@@ -363,7 +364,7 @@ const CheckoutForm = ({ closeModal, car }) => {
         <div className="flex mt-2 justify-around">
           <button
             type="button"
-            className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+            className="w-full rounded-md border border-transparent bg-red-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
             onClick={closeModal}
           >
             Cancel
@@ -371,7 +372,7 @@ const CheckoutForm = ({ closeModal, car }) => {
           <button
             type="submit"
             disabled={!stripe || !clientSecret || processing}
-            className="inline-flex justify-center cursor-pointer rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+            className="w-full ml-2 cursor-pointer rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
           >
             {processing ? (
               <ImSpinner9 className="m-auto animate-spin" size={24} />

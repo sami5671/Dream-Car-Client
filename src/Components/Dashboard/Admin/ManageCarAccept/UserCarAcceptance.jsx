@@ -1,6 +1,7 @@
 import UseToGetAllUserAddedCar from "../../../../Hooks/UseToGetAllUserAddedCar";
 import details from "../../../../assets/Images/details.png";
 import update from "../../../../assets/Images/update.png";
+import message from "../../../../assets/Images/message.png";
 import deleteImg from "../../../../assets/Images/delete.png";
 import pending from "../../../../assets/Images/pending.gif";
 import cancel from "../../../../assets/Images/cancel.gif";
@@ -15,12 +16,25 @@ import {
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import CarStatusModal from "./CarStatusModal";
+import CommentModal from "./CommentModal";
 
 const UserCarAcceptance = () => {
   const [allUserAddedCar, refetch] = UseToGetAllUserAddedCar();
   const [isDetailOpen, setDetailOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState([]);
   const [carData, setCarData] = useState([]);
+
+  const [isOpenComment, setIsOpenComment] = useState(false);
+  const [selectedCarIdComment, setSelectedCarIdComment] = useState(null);
+
+  const handleOpenModalComment = (id) => {
+    setSelectedCarIdComment(id);
+    // console.log(selectedCarIdComment);
+    setIsOpenComment(true);
+  };
+  const handleCloseModalComment = () => {
+    setIsOpenComment(false);
+  };
 
   const handleOpenDetails = (item) => {
     setSelectedCar(item);
@@ -168,6 +182,7 @@ const UserCarAcceptance = () => {
               <th>Status</th>
               <th>Details</th>
               <th>Update</th>
+              <th>Comment</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -219,13 +234,15 @@ const UserCarAcceptance = () => {
                   {item?.CarStatus}
                 </td>
                 <td>
-                  <img
-                    src={details}
-                    onClick={() => handleOpenDetails(item)}
-                    className="cursor-pointer"
-                    width={35}
-                    alt=""
-                  />
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={details}
+                      onClick={() => handleOpenDetails(item)}
+                      className="cursor-pointer"
+                      width={35}
+                      alt=""
+                    />
+                  </div>
                 </td>
                 <td className="">
                   {item?.CarStatus === "accepted" ? (
@@ -238,7 +255,10 @@ const UserCarAcceptance = () => {
                       />
                     </div>
                   ) : (
-                    <div onClick={() => handleOpenModal(item?._id, item)}>
+                    <div
+                      className="flex items-center justify-center"
+                      onClick={() => handleOpenModal(item?._id, item)}
+                    >
                       <img
                         src={update}
                         className="cursor-pointer"
@@ -247,6 +267,23 @@ const UserCarAcceptance = () => {
                       />
                     </div>
                   )}
+                </td>
+                <td>
+                  <div
+                    onClick={() => handleOpenModalComment(item)}
+                    className="flex items-center justify-center"
+                  >
+                    <img
+                      onClick={() => handleOpenModalComment(item)}
+                      src={message}
+                      className="cursor-pointer"
+                      width={35}
+                      alt=""
+                    />
+                    <span className="absolute px-2 cursor-pointer rounded-badge bg-red-700 text-white ml-3 mt-4">
+                      {item?.comments?.length}
+                    </span>
+                  </div>
                 </td>
                 <td>
                   <img
@@ -272,6 +309,12 @@ const UserCarAcceptance = () => {
         isOpen={isOpen}
         handleCloseModal={handleCloseModal}
         modalHandler={modalHandler}
+      />
+      <CommentModal
+        isOpen={isOpenComment}
+        handleCloseModalComment={handleCloseModalComment}
+        selectedCarIdComment={selectedCarIdComment}
+        refetchComment={refetch}
       />
     </>
   );

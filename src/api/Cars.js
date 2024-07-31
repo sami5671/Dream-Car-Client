@@ -136,3 +136,15 @@ export const updateUserCarStatus = async (id, status) => {
   });
   return data;
 };
+
+export const commentUserAddedCar = async (id, { content }) => {
+  const { data } = await axiosSecure.patch(`/userAddedCar/comment/${id}`, {
+    content,
+  });
+  return data;
+};
+
+export const deleteAdminComment = async (id) => {
+  const { data } = await axiosSecure.delete(`/removeComment/${id}`);
+  return data;
+};

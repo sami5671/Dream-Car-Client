@@ -34,6 +34,9 @@ import MyProfile from "../Components/ProfileInfo/MyProfile";
 import Success from "../Payment/SSLCommerce/Success";
 import Cancel from "../Payment/SSLCommerce/Cancel";
 import Fail from "../Payment/SSLCommerce/Fail";
+import AdminDashboard from "../Components/Dashboard/Admin/AdminDashboard/AdminDashboard";
+import ModeratorDashboard from "../Components/Dashboard/Moderator/ModeratorDashboard/ModeratorDashboard";
+import UserDashboard from "../Components/Dashboard/Users/UserDashboard/UserDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -114,6 +117,16 @@ export const router = createBrowserRouter([
     children: [
       // moderator routes
       {
+        path: "moderator-dashboard",
+        element: (
+          <PrivateRoute>
+            <ModeratorRoute>
+              <ModeratorDashboard />
+            </ModeratorRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "add-car",
         element: (
           <PrivateRoute>
@@ -167,6 +180,14 @@ export const router = createBrowserRouter([
       },
       //users dashboard
       {
+        path: "user-dashboard",
+        element: (
+          <PrivateRoute>
+            <UserDashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "add-user-car",
         element: (
           <PrivateRoute>
@@ -209,6 +230,16 @@ export const router = createBrowserRouter([
         loader: ({ params }) => getSoldCarForUser(params.id),
       },
       // admin  routes
+      {
+        path: "admin-dashboard",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
       {
         path: "manage-users",
         element: (

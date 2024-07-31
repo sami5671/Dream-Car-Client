@@ -1,6 +1,7 @@
 import UseToGetUserAddedCarByEmail from "../../../Hooks/UseToGetUserAddedCarByEmail";
 import details from "../../../assets/Images/details.png";
 import update from "../../../assets/Images/update.png";
+import message from "../../../assets/Images/message.png";
 import deleteImg from "../../../assets/Images/delete.png";
 import pending from "../../../assets/Images/pending.gif";
 import approve from "../../../assets/Images/approve.gif";
@@ -11,13 +12,25 @@ import CarDetailsModal from "../Moderator/MaanageCar/CarDetailsModal";
 import { deleteUserAddedCar } from "../../../api/Cars";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import UserCommentModal from "./UserCommentModal";
 
 const UserGarage = () => {
   const [userAddedCarByEmail, refetch] = UseToGetUserAddedCarByEmail();
-  // console.log(userAddedCarByEmail);
+  console.log(userAddedCarByEmail);
 
   const [isDetailOpen, setDetailOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState([]);
+
+  const [isOpenComment, setIsOpenComment] = useState(false);
+  const [selectedCarComment, setSelectedCarComment] = useState(null);
+
+  const handleOpenModalComment = (item) => {
+    setSelectedCarComment(item);
+    setIsOpenComment(true);
+  };
+  const handleCloseModalComment = () => {
+    setIsOpenComment(false);
+  };
 
   const handleOpenDetails = (item) => {
     setSelectedCar(item);
@@ -126,6 +139,7 @@ const UserGarage = () => {
               <th>Status</th>
               <th>Details</th>
               <th>Update</th>
+              <th>Comment</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -207,6 +221,22 @@ const UserGarage = () => {
                   )}
                 </td>
                 <td>
+                  <div
+                    onClick={() => handleOpenModalComment(item)}
+                    className="flex items-center justify-center"
+                  >
+                    <img
+                      src={message}
+                      className="cursor-pointer"
+                      width={40}
+                      alt=""
+                    />
+                    <span className="absolute px-2 cursor-pointer rounded-badge bg-red-700 text-white ml-3 mt-4">
+                      {item?.comments?.length}
+                    </span>
+                  </div>
+                </td>
+                <td>
                   <img
                     onClick={() => handleDeleteCar(item?._id)}
                     src={deleteImg}
@@ -225,6 +255,11 @@ const UserGarage = () => {
         car={selectedCar}
         isOpen={isDetailOpen}
         handleCloseDetails={handleCloseDetails}
+      />
+      <UserCommentModal
+        isOpen={isOpenComment}
+        handleCloseModalComment={handleCloseModalComment}
+        selectedCarComment={selectedCarComment}
       />
     </>
   );

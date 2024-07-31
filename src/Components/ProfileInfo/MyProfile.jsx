@@ -5,9 +5,14 @@ import { imageUpload } from "../../api/utils";
 import toast from "react-hot-toast";
 import Container from "../Shared/Container";
 import ProfileModal from "./ProfileModal";
+import UseAdmin from "../../Hooks/UseAdmin";
+import UseModerator from "./../../Hooks/UseModerator";
 
 const MyProfile = () => {
   const { user, updateUserProfile } = useAuth();
+  const [isAdmin] = UseAdmin();
+  const [isModerator] = UseModerator();
+
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +57,20 @@ const MyProfile = () => {
               src={user.photoURL}
               className="rounded-full h-24 w-24 border-4 border-purple-800 shadow-lg"
             />
-            <p className="mt-4 text-2xl font-semibold text-gray-800">
+            {isAdmin ? (
+              <span className="bg-purple-500 px-2 py-1 rounded-full absolute mb-6 lg:mb-0 lg:mt-2 text-white font-bold">
+                Admin
+              </span>
+            ) : isModerator ? (
+              <span className="bg-purple-500 px-2 py-1 rounded-full absolute mb-6 lg:mb-0 lg:mt-2 text-white font-bold">
+                Moderator
+              </span>
+            ) : (
+              <span className="bg-purple-500 px-2 py-1 rounded-full absolute mb-6 lg:mb-0 lg:mt-2 text-white font-bold">
+                User
+              </span>
+            )}
+            <p className="mt-12 text-2xl font-semibold text-gray-800">
               {user.displayName}
             </p>
             <p className="mt-1 text-sm text-gray-500">{user.email}</p>

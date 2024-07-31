@@ -58,6 +58,20 @@ const Sidebar = () => {
             <hr />
           </div>
 
+          <div>
+            <h1>
+              {isAdmin ? (
+                <p className="text-center text-purple-700 font-bold">Admin</p>
+              ) : isModerator ? (
+                <p className="text-center text-purple-700 font-bold">
+                  Moderator
+                </p>
+              ) : (
+                <p className="text-center text-purple-700 font-bold"></p>
+              )}
+            </h1>
+          </div>
+
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-1">
             {/* If a user is host */}

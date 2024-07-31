@@ -7,7 +7,7 @@ import { MdCarCrash } from "react-icons/md";
 const UserMenu = () => {
   return (
     <>
-      <MenuItem icon={MdDashboard} label="Dashboard" address="my-dashboard" />
+      <MenuItem icon={MdDashboard} label="Dashboard" address="user-dashboard" />
       <MenuItem
         icon={MdCarCrash}
         label="Sell Your Car"

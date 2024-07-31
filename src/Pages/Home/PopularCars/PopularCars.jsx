@@ -35,21 +35,23 @@ const PopularCars = () => {
   // =================================================================
   return (
     <Container>
-      {cars.length > 0 ? (
-        <div className="pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {cars?.map((car) => (
-            <CarCard key={car._id} car={car}></CarCard>
-          ))}
-        </div>
-      ) : (
-        <div className="flex items-center justify-center min-h-[calc(100vh-300px)]">
-          <EmptyData
-            center={true}
-            title="Sorry!!😔😔 This category cars are not available"
-            subtitle="Please Select Other Categories."
-          />
-        </div>
-      )}
+      <section>
+        {cars.length > 0 ? (
+          <div className="pt-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
+            {cars?.map((car) => (
+              <CarCard key={car._id} car={car}></CarCard>
+            ))}
+          </div>
+        ) : (
+          <div className="flex items-center justify-center min-h-[calc(100vh-300px)]">
+            <EmptyData
+              center={true}
+              title="Sorry!!😔😔 This category cars are not available"
+              subtitle="Please Select Other Categories."
+            />
+          </div>
+        )}
+      </section>
     </Container>
   );
 };

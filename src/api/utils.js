@@ -1,5 +1,5 @@
 import axios from "axios";
-import axiosSecure from ".";
+import moment from "moment";
 
 export const imageUpload = async (image) => {
   const formData = new FormData();
@@ -22,4 +22,20 @@ export const uploadCloudinary = async (file) => {
   );
   return { publicId: data?.public_id, url: data?.secure_url };
   // return data;
+};
+
+export const dateFormate = (isoDate) => {
+  const formateDate = moment(isoDate).format("MMMM Do YYYY, h:mm:ss a");
+  return formateDate;
+};
+
+export const getGreeting = () => {
+  const currentHour = new Date().getHours();
+  if (currentHour < 12) {
+    return "Good Morning 🌄";
+  } else if (currentHour < 18) {
+    return "Good Afternoon 🌇";
+  } else {
+    return "Good Evening 🌃";
+  }
 };

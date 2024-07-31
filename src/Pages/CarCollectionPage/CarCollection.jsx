@@ -8,10 +8,12 @@ import Pagination from "../../Components/Pagination/Pagination";
 import { Helmet } from "react-helmet-async";
 import UseAllCar from "../../Hooks/UseAllCar";
 import Logo2 from "../../Components/Shared/Logo2";
+import { LoaderIcon } from "react-hot-toast";
+import Loader from "./../../Components/Loader/Loader";
 
 const CarCollection = () => {
-  const [allCar] = UseAllCar();
-  console.log(allCar);
+  const [allCar, refetch, isLoading] = UseAllCar();
+  // console.log(allCar);
 
   const [filterAllCar, setFilterAllCar] = useState(true);
   const [filterBrandNew, setFilterBrandNew] = useState(false);
@@ -24,7 +26,7 @@ const CarCollection = () => {
 
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
+    // console.log(name, value);
     switch (name) {
       case "filterAllCar":
         setFilterAllCar(true);
@@ -202,6 +204,9 @@ const CarCollection = () => {
               <option value="Gray" className="bg-gray-500 text-white">
                 Gray
               </option>
+              <option value="Yellow" className="bg-yellow-500 text-white">
+                Yellow
+              </option>
             </select>
           </div>
           <div className="mb-2 mt-6">
@@ -269,8 +274,12 @@ const CarCollection = () => {
               <FaCar className="text-gray-500" />
             </p>
           </div>
-          {currentCars.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {isLoading ? (
+            <div className="flex justify-center items-center h-[600px]">
+              <Loader />
+            </div>
+          ) : currentCars.length > 0 ? (
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {currentCars.map((car) => (
                 <CarCard key={car._id} car={car} />
               ))}

@@ -34,11 +34,13 @@ const CarCard = ({ car }) => {
   };
 
   return (
-    <div className="bg-slate-100 w-[300px] py-4 px-2 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
+    <div className="bg-slate-100 border-2 border-cyan-50 lg:border-none w-[160px] lg:w-[290px] lg:py-4 px-1 lg:px-2 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer mb-6">
       {/* here is the card head */}
-      <div className="flex justify-between gap-2">
+      <div className="flex justify-between gap-2 h-[100px] lg:h-[90px]">
         <div>
-          <h1 className="text-xl font-bold text-gray-800">{car?.CarModel}</h1>
+          <h1 className="text-sm lg:text-xl font-bold text-gray-800">
+            {car?.CarModel}
+          </h1>
           <p className="mt-2 font-semibold text-slate-400">{car?.Category}</p>
         </div>
         <div>
@@ -51,37 +53,37 @@ const CarCard = ({ car }) => {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="flex justify-center">
         <img
           src={car?.Images?.[2]?.url}
-          className="w-full h-48 object-cover transition-transform duration-300 transform hover:scale-105"
-          alt="Car"
+          className="w-full h-[80px] lg:w-full lg:h-[150px] rounded-lg group-hover:scale-110 transition object-cover"
+          alt={car?.CarModel}
         />
       </div>
 
       {/* driving ,fuel, people */}
-      <div className="flex gap-3 mt-4">
-        <div className="flex gap-1 items-center">
+      <div className="flex flex-col lg:flex-row gap-3 mt-4">
+        <div className="flex gap-1">
           <img className="w-[25px]" src={fuel} alt="" />
-          <p className="text-slate-500 font-bold">{car?.FuelCapacity}</p>
+          <p>80L</p>
         </div>
         <div className="flex gap-1">
           <img className="w-[25px]" src={driving} alt="" />
-          <p className="text-slate-500 font-bold ">{car?.Transmission}</p>
+          <p>Automatic</p>
         </div>
         <div className="flex gap-1">
           <img className="w-[25px]" src={people} alt="" />
-          <p className="text-slate-500 font-bold">{car?.Seating} People</p>
+          <p>{car?.Seating} People</p>
         </div>
       </div>
-      <div className="flex justify-between items-center mb-5 mt-4">
-        <div>
-          <span className="font-bold text-xl">${car?.CarPriceNew}/</span>
-          <span className="text-[10px] font-bold">New</span>
+      <div className="flex justify-between items-center mb-5 mt-6">
+        <div className="text-[12px] lg:text-xl">
+          <span className="font-bold ">${car?.CarPriceNew}/</span>
+          <span className="font-bold">New</span>
         </div>
         <Link to={`/carDetailsPage/${car?._id}`}>
           <div>
-            <button className="bg-purple-800 px-2 py-1 text-white font-semibold rounded-2xl hover:bg-purple-600">
+            <button className="bg-purple-800 text-[10px] lg:text-sm px-2 py-1 text-white font-semibold rounded-2xl hover:bg-purple-600">
               More Info
             </button>
           </div>

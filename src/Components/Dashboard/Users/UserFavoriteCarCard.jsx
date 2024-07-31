@@ -8,7 +8,7 @@ import UseUserFavoriteCar from "../../../Hooks/UseUserFavoriteCar";
 
 const UserFavoriteCarCard = ({ car }) => {
   const [, refetch] = UseUserFavoriteCar();
-  console.log(car);
+  // console.log(car);
 
   // console.log(car);
   const handleDeleteCar = async (id) => {
@@ -21,11 +21,11 @@ const UserFavoriteCarCard = ({ car }) => {
 
   return (
     <section className="mt-12">
-      <div className="bg-slate-100 w-[290px] py-4 px-2 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
+      <div className="bg-slate-100 border-2 border-cyan-50 lg:border-none w-[160px] lg:w-[290px] lg:py-4 px-1 lg:px-2 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
         {/* here is the card head */}
-        <div className="flex justify-between gap-2">
+        <div className="flex justify-between gap-2 h-[100px] lg:h-[90px]">
           <div>
-            <h1 className="text-xl font-bold text-gray-800">
+            <h1 className="text-sm lg:text-xl font-bold text-gray-800">
               {car?.favoriteCar?.CarModel}
             </h1>
             <p className="mt-2 font-semibold text-slate-400">
@@ -45,13 +45,13 @@ const UserFavoriteCarCard = ({ car }) => {
         <div className="flex justify-center">
           <img
             src={car?.favoriteCar?.Images?.[2]?.url}
-            className="w-[250px] h-[150px] rounded-lg group-hover:scale-110 transition object-cover"
+            className="w-full h-[80px] lg:w-full lg:h-[150px] rounded-lg group-hover:scale-110 transition object-cover"
             alt={car?.favoriteCar?.CarModel}
           />
         </div>
 
         {/* driving ,fuel, people */}
-        <div className="flex gap-3 mt-4">
+        <div className="flex flex-col lg:flex-row gap-3 mt-4">
           <div className="flex gap-1">
             <img className="w-[25px]" src={fuel} alt="" />
             <p>80L</p>
@@ -66,15 +66,15 @@ const UserFavoriteCarCard = ({ car }) => {
           </div>
         </div>
         <div className="flex justify-between items-center mb-5 mt-6">
-          <div>
-            <span className="font-bold text-xl">
+          <div className="text-[12px] lg:text-xl">
+            <span className="font-bold ">
               ${car?.favoriteCar?.CarPriceNew}/
             </span>
-            <span className="text-[10px] font-bold">New</span>
+            <span className="font-bold">New</span>
           </div>
 
           <div className="">
-            <button className="text-purple-600 font-semibold hover:text-purple-800">
+            <button className="text-purple-600 text-[12px] lg:text-normal font-semibold hover:text-purple-800">
               Buy Now
             </button>
           </div>

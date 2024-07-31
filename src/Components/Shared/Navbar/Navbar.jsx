@@ -1,6 +1,7 @@
 import Container from "../Container";
 import Logo from "../Logo";
 import BottomNavigation from "./BottomNavigation";
+import LargeScreenNavbar from "./LargeScreenNavbar";
 import MenuDropdown from "./MenuDropdown";
 
 const Navbar = () => {
@@ -11,6 +12,8 @@ const Navbar = () => {
           <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
             {/* Logo */}
             <Logo />
+            {/* large screen navbar */}
+            <LargeScreenNavbar />
             {/* Dropdown Menu */}
             <MenuDropdown />
           </div>

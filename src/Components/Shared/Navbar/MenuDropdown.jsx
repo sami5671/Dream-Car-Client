@@ -12,11 +12,14 @@ import "./MenuDropdown.css";
 import { FaUser } from "react-icons/fa6";
 import { IoIosMan } from "react-icons/io";
 import UseUserFavoriteCar from "../../../Hooks/UseUserFavoriteCar";
+import UseAdmin from "../../../Hooks/UseAdmin";
+import UseModerator from "../../../Hooks/UseModerator";
 
 const MenuDropdown = () => {
   // ----------------------------------------------------------------
   const { user, logOut } = useAuth();
-
+  const [isAdmin] = UseAdmin();
+  const [isModerator] = UseModerator();
   const [favoriteCar] = UseUserFavoriteCar();
   // console.log(favoriteCar.length);
 
@@ -60,6 +63,10 @@ const MenuDropdown = () => {
           " "
         )} */}
 
+        {/* ========navbar for large screen========= */}
+
+        {/* ================= */}
+
         {/* garage all car */}
         <Link to="/carCollection">
           <div className="cursor-pointer">
@@ -87,22 +94,45 @@ const MenuDropdown = () => {
               className="menu menu-sm dropdown-content mt-4 z-[1] p-2 shadow bg-base-100 rounded-box w-52 border-2"
             >
               <li>
-                <button className="text-purple-700 hover:text-black hover:font-bold">
-                  <span className="flex items-center gap-2">
-                    <FaUser /> Profile
-                  </span>
-                </button>
+                {isAdmin ? (
+                  <Link to="/dashboard/admin-dashboard">
+                    <button className="text-purple-700 hover:text-black hover:font-bold">
+                      <span className="flex items-center gap-2">
+                        <MdOutlineDashboard />
+                        Dashboard
+                      </span>
+                    </button>
+                  </Link>
+                ) : isModerator ? (
+                  <Link to="/dashboard/moderator-dashboard">
+                    <button className="text-purple-700 hover:text-black hover:font-bold">
+                      <span className="flex items-center gap-2">
+                        <MdOutlineDashboard />
+                        Dashboard
+                      </span>
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to="/dashboard/user-dashboard">
+                    <button className="text-purple-700 hover:text-black hover:font-bold">
+                      <span className="flex items-center gap-2">
+                        <MdOutlineDashboard />
+                        Dashboard
+                      </span>
+                    </button>
+                  </Link>
+                )}
               </li>
               <li>
-                <Link to="/dashboard">
+                <Link to="/dashboard/my-profile">
                   <button className="text-purple-700 hover:text-black hover:font-bold">
                     <span className="flex items-center gap-2">
-                      <MdOutlineDashboard />
-                      Dashboard
+                      <FaUser /> Profile
                     </span>
                   </button>
                 </Link>
               </li>
+
               <li>
                 <button
                   onClick={logOut}
