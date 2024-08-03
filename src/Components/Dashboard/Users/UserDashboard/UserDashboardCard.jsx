@@ -17,7 +17,7 @@ const UserDashboardCard = () => {
     (item) => item?.CarStatus === "accepted"
   );
 
-  console.log(totalSaleByEmail);
+  // console.log(totalSaleByEmail);
 
   const totalSales = totalSaleByEmail.reduce((total, item) => {
     const carPrice = parseInt(item?.car?.CarPriceNew?.replace(/,/g, ""), 10);

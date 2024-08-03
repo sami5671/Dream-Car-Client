@@ -4,7 +4,7 @@ import { dateFormate } from "./../../../../api/utils";
 const UserSoldCars = () => {
   const [totalSaleByEmail] = UseToGetUserTotalSaleByEmail();
 
-  console.log(totalSaleByEmail);
+  // console.log(totalSaleByEmail.length);
   return (
     <>
       <div>

@@ -16,7 +16,7 @@ const AdminDashboardCard = () => {
   const [soldCars] = UseToGetSoldCars();
   const [allUserAddedCar] = UseToGetAllUserAddedCar();
 
-  // console.log(soldCars);
+  console.log(allUserAddedCar);
 
   const totalCars = allCar.length;
   const newCars = allCar.filter((item) => item?.CarCondition === "Brand New");
@@ -24,6 +24,11 @@ const AdminDashboardCard = () => {
 
   const admin = users.filter((item) => item?.role === "admin");
   const moderator = users.filter((item) => item?.role === "moderator");
+
+  const pending = allUserAddedCar.filter(
+    (item) => item?.CarStatus === "pending"
+  );
+  console.log(pending.length);
 
   return (
     <div className="flex flex-col lg:flex-row  gap-4 lg:gap-5">
@@ -45,7 +50,7 @@ const AdminDashboardCard = () => {
 
       <DashboardCard
         label="Pending Car"
-        figure={allUserAddedCar.length}
+        figure={pending.length}
         img={pendingImg}
       />
       <DashboardCard

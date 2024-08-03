@@ -1,10 +1,20 @@
-import React from "react";
+import ModeratorDashboardCard from "./ModeratorDashboardCard";
+import ModeratorDashboardNavbar from "./ModeratorDashboardNavbar";
+import ModeratorDashboardStatistics from "./ModeratorDashboardStatistics";
 
 const ModeratorDashboard = () => {
   return (
-    <div>
-      <h1>moderator dashboard</h1>
-    </div>
+    <>
+      <section>
+        <ModeratorDashboardNavbar />
+      </section>
+      <section className="mt-12">
+        <ModeratorDashboardCard />
+      </section>
+      <section className="mt-12">
+        <ModeratorDashboardStatistics />
+      </section>
+    </>
   );
 };
 
