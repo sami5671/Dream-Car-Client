@@ -2,7 +2,6 @@ import { useState } from "react";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { IoSettingsSharp } from "react-icons/io5";
 import { IoCarSport } from "react-icons/io5";
-
 import { MdMenu } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
 import useAuth from "../../../Hooks/UseAuth";
@@ -44,7 +43,7 @@ const Sidebar = () => {
       </div>
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gradient-to-tl from-black via-slate-700 to-black w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && "-translate-x-full"
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
@@ -59,21 +58,19 @@ const Sidebar = () => {
           </div>
 
           <div>
-            <h1>
+            <h1 className="text-center text-white font-bold">
               {isAdmin ? (
-                <p className="text-center text-purple-700 font-bold">Admin</p>
+                <p>Admin</p>
               ) : isModerator ? (
-                <p className="text-center text-purple-700 font-bold">
-                  Moderator
-                </p>
+                <p>Moderator</p>
               ) : (
-                <p className="text-center text-purple-700 font-bold"></p>
+                <p></p>
               )}
             </h1>
           </div>
 
           {/* Nav Items */}
-          <div className="flex flex-col justify-between flex-1 mt-1">
+          <div className="flex flex-col justify-between flex-1 mt-1 ">
             {/* If a user is host */}
             {/* {role === "host" ? <ToggleBtn toggleHandler={toggleHandler} /> : ""} */}
             <nav>
@@ -104,7 +101,7 @@ const Sidebar = () => {
           />
           <button
             onClick={logOut}
-            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-purple-400   hover:text-white transition-colors duration-300 transform"
+            className="flex w-full items-center px-4 py-2 mt-5 text-gray-300 hover:bg-white hover:text-black transition-colors duration-300 transform"
           >
             <RiLogoutCircleLine />
             <span className="mx-4 font-medium">Logout</span>

@@ -13,7 +13,7 @@ import Logo2 from "../Logo2";
 const Footer = () => {
   return (
     <>
-      <footer className="footer bg-base-200 text-base-content p-10 mt-16 lg:mt-24">
+      <footer className="footer bg-gradient-to-tl from-black via-slate-700 to-black text-white p-10 mt-16 lg:mt-28">
         <aside>
           <Logo2></Logo2>
           <p>
@@ -22,6 +22,30 @@ const Footer = () => {
             Providing reliable service since 2017, <br /> Vatpara, A-54/4,
             Savar, Dhaka-1343.
           </p>
+          <div className="mt-12">
+            <h1 className="mb-8 text-xl font-bold">We Support </h1>
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-3">
+                <img className="w-[35px] lg:w-[80px]" src={bkash} alt="" />
+                <img className="w-[35px] lg:w-[70px]" src={nagad} alt="" />
+                <img className="w-[35px] lg:w-[70px]" src={dhakabank} alt="" />
+                <img
+                  className="w-[35px] lg:w-[70px]"
+                  src={premierbank}
+                  alt=""
+                />
+                <img className="w-[35px] lg:w-[70px]" src={ucb} alt="" />
+                <img className="w-[35px] lg:w-[70px]" src={citybank} alt="" />
+              </div>
+              <div className="flex gap-3">
+                <img className="w-[35px]" src={visa} alt="" />
+                <img className="w-[35px]" src={master} alt="" />
+                <img className="w-[35px]" src={american} alt="" />
+                <img className="w-[35px]" src={jcb} alt="" />
+                <img className="w-[35px]" src={discover} alt="" />
+              </div>
+            </div>
+          </div>
         </aside>
         <nav>
           <h6 className="footer-title">Services</h6>
@@ -44,8 +68,9 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </nav>
       </footer>
-      <footer className=" bg-base-200 text-base-content p-4 lg:p-10">
-        <h1 className="mb-8 text-xl font-bold text-slate-600">We Support </h1>
+
+      {/* <footer className="text-white  p-4 lg:p-10">
+        <h1 className="mb-8 text-xl font-bold">We Support </h1>
         <div className="flex flex-col lg:flex-row items-center lg:justify-between lg:gap-12">
           <div className="flex gap-3">
             <img className="w-[35px] lg:w-[80px]" src={bkash} alt="" />
@@ -63,7 +88,7 @@ const Footer = () => {
             <img className="w-[35px]" src={discover} alt="" />
           </div>
         </div>
-      </footer>
+      </footer> */}
       <div className="py-6 text-sm text-center text-gray-400">
         © 2024 Dream Car Inc. All rights reserved.
       </div>

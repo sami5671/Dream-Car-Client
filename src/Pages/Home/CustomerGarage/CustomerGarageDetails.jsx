@@ -6,6 +6,7 @@ import { FaTag } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import FrequentlyAskedQuestion from "./FrequentlyAskedQuestion";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const CustomerGarageDetails = () => {
   return (
@@ -15,21 +16,23 @@ const CustomerGarageDetails = () => {
       </Helmet>
       <Container>
         {/* banner */}
-        <div className="flex flex-col-reverse lg:flex-row justify-between">
+        <div className="flex flex-col-reverse lg:flex-row justify-between mt-12">
           <div className="lg:w-[480px]">
-            <h1 className="text-3xl lg:text-5xl font-bold mt-6 lg:mt-0">
+            <h1 className="text-3xl lg:text-5xl font-bold lg:mt-0">
               Your Garage
             </h1>
             <h3 className="text-2xl lg:text-3xl font-semibold mt-5 lg:mt-12">
               Add your car. Track its value.
             </h3>
-            <p className="mt-5 text-slate-800">
+            <p className="mt-5 text-slate-300">
               Add your car to Your Garage to track its market value and cash in
               when the time is right to sell.
-            </p>
-            <button className="mt-4 lg:mt-12 lg:text-xl bg-purple-600 px-5 py-3 rounded-full font-bold text-white border-2 hover:text-purple-700 hover:bg-slate-200 hover:border-purple-600 hover:border-dotted">
-              Get Started
-            </button>
+            </p>{" "}
+            <Link to="/dashboard/add-user-car">
+              <button className="mt-4 lg:mt-12 lg:text-xl bg-gradient-to-tl from-blue-400 via-slate-700 to-black px-5 py-2 rounded-full font-bold text-white border-2 hover:text-white hover:bg-slate-200 hover:border-purple-600 hover:border-dotted">
+                Get Started
+              </button>
+            </Link>
             <p className="mt-1 ml-1">
               Already have an account?
               <span className="font-bold underline cursor-pointer hover:decoration-white">
@@ -39,7 +42,10 @@ const CustomerGarageDetails = () => {
           </div>
 
           <div className="lg:mt-20">
-            <img src={bannerGarageImg} alt="" />
+            <img
+              src="https://res.cloudinary.com/dgz0be5p3/image/upload/v1722979438/zohtwi3ylxkuovawsad4.png"
+              alt=""
+            />
           </div>
         </div>
 
@@ -102,14 +108,14 @@ const CustomerGarageDetails = () => {
       <div className="mt-24"> </div>
       {/* get started with two step */}
 
-      <div className="bg-zinc-100">
+      <div className=" bg-gradient-to-tl from-black via-slate-700">
         <Container>
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
             <div className="lg:w-[550px]">
               <h1 className="text-4xl font-bold">Get started in two steps</h1>
               <div className="flex gap-4 mt-4">
                 <div>
-                  <p className="text-4xl font-bold text-gray-700">1</p>
+                  <p className="text-4xl font-bold text-gray-500">1</p>
                 </div>
                 <div>
                   <h1 className="text-2xl font-semibold mb-2">
@@ -123,7 +129,7 @@ const CustomerGarageDetails = () => {
               </div>
               <div className="flex gap-4 mt-4">
                 <div>
-                  <p className="text-4xl font-bold text-gray-700">2</p>
+                  <p className="text-4xl font-bold text-gray-500">2</p>
                 </div>
                 <div>
                   <h1 className="text-2xl font-semibold mb-2">Add your car</h1>
@@ -134,7 +140,7 @@ const CustomerGarageDetails = () => {
                 </div>
               </div>
 
-              <button className="mt-8 px-5 py-2 rounded-full font-semibold hover:bg-white hover:text-black hover:border-dotted border-2 hover:border-black bg-black text-white ">
+              <button className="mt-8 px-5 py-2 rounded-full bg-gradient-to-tl from-blue-400 via-slate-700 to-black font-semibold hover:bg-white hover:text-slate-300 hover:border-dotted border-2 hover:border-purple-500 bg-black text-white ">
                 Get Started
               </button>
               <p className="mt-2">
@@ -146,7 +152,10 @@ const CustomerGarageDetails = () => {
             </div>
 
             <div>
-              <img src={bannerGarageImg2} alt="" />
+              <img
+                src="https://res.cloudinary.com/dgz0be5p3/image/upload/v1722980499/pmplljndgn10ykkprtav.png"
+                alt=""
+              />
             </div>
           </div>
         </Container>

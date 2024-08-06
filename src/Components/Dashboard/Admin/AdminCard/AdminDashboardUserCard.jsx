@@ -1,7 +1,7 @@
 const AdminDashboardUserCard = ({ img, label, figure, admin, moderator }) => {
   return (
     <>
-      <div className="flex py-8 pl-6 pr-20 bg-base-50 border-2 border-slate-100 rounded-xl  shadow-lg gap-5">
+      <div className="flex py-8 pl-6 pr-20 bg-slate-50 rounded-xl shadow-xl shadow-slate-500 gap-5">
         <div>
           <img src={img} className="w-[35px]" alt="" />
         </div>

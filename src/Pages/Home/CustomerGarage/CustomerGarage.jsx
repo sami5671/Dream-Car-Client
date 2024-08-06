@@ -1,22 +1,22 @@
 import Container2 from "../../../Components/Shared/Container2";
 import { GiHomeGarage } from "react-icons/gi";
-import YourGarageImg from "../../../assets/Images/YourGarageImg.jpeg";
 import { Link } from "react-router-dom";
+
 const CustomerGarage = () => {
   return (
     <>
       <Container2>
-        <div className="border-2 border-purple-100 lg:h-[175px] mt-16 mb-12 lg:mt-24 bg-fuchsia-50 border-dashed">
+        <div className="border-2 border-slate-400 rounded-xl  mt-16  lg:mt-24 bg-gradient-to-tl from-black via-slate-700 to-black text-white border-dotted">
           <div className="flex items-center justify-between px-2 py-2">
             <div className="lg:px-4">
-              <span className="flex items-center gap-2 text-[8px] lg:text-xl text-purple-700 font-bold">
+              <span className="flex items-center gap-2  text-[8px] lg:text-xl font-bold">
                 <GiHomeGarage /> Your Garage
               </span>
               <p className="text-[12px] lg:text-4xl font-bold lg:mb-3">
                 Start Tracking Your <br /> Car's Value
               </p>
               <Link to="/customerGarageDetails">
-                <button className="border-2 bg-purple-600 text-[8px] lg:text-sm text-white rounded-lg hover:bg-white hover:text-black font-semibold px-2 py-1 ">
+                <button className="bg-gradient-to-tl from-blue-400 via-slate-700 to-black text-white text-[8px] hover:text-slate-500 lg:text-sm  rounded-lg font-semibold px-4 lg:py-2 ">
                   Learn More
                 </button>
               </Link>
@@ -24,8 +24,8 @@ const CustomerGarage = () => {
 
             <div>
               <img
-                src={YourGarageImg}
-                className="w-[120px] lg:w-[250px]"
+                src="https://i.ibb.co/bmBcnRz/customer-removebg-preview.png"
+                className="w-[120px] lg:w-[350px]"
                 alt=""
               />
             </div>

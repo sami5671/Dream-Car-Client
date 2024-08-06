@@ -1,15 +1,14 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-import BannerCarousalContainer from "./BannerCarousalContainer";
-import Container from "../../../Components/Shared/Container";
 import { useState } from "react";
 import Login from "../../Login/Login";
-import "./Banner.css";
+import { PiSignInDuotone } from "react-icons/pi";
+import { PiPlayCircleFill } from "react-icons/pi";
+import BannerVideoModal from "./BannerVideoModal";
 
 const Banner = () => {
   // ----------------------------------------------------------------
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const openLoginModal = () => {
     setIsLoginOpen(true);
@@ -17,76 +16,70 @@ const Banner = () => {
   const closeLoginModal = () => {
     setIsLoginOpen(false);
   };
+  const openVideoModal = () => {
+    setIsVideoOpen(true);
+  };
+  const closeVideoModal = () => {
+    setIsVideoOpen(false);
+  };
+
   // ----------------------------------------------------------------
 
-  const banners = [
-    {
-      image: "https://i.ibb.co/Twym7fs/roseroyal-removebg-preview.png",
-      title: "Imagine the Possibilities",
-    },
-    {
-      image: "https://i.ibb.co/Z2vqNTn/Suv1-removebg-preview.png",
-      title: "Imagine the Possibilities",
-    },
-    {
-      image: "https://i.ibb.co/5GXWv0s/lambo1-removebg-preview.png",
-      title: "Imagine the Possibilities",
-    },
-    {
-      image: "https://i.ibb.co/WtNF4Z3/pickup1-removebg-preview.png",
-      title: "Imagine the Possibilities",
-    },
-  ];
-  // ----------------------------------------------------------------
   return (
     <>
-      <div className="flex flex-col lg:flex-row justify-between bg-image text-white">
-        <div className="lg:w-1/2 lg:px-12 px-4 py-2 mt-8">
-          <h1 className="text-4xl lg:text-5xl font-bold lg:mt-0">
-            Imagine Your Possibilities
-          </h1>
-          <h3 className="text-sm lg:text-[16px] font-semibold mt-5 lg:mt-4 text-slate-300 lg:w-[490px]">
-            Add your car. Track its value. Or Buy Brand New Car Add your car to
-            Your Garage to track its market value and cash in when the time is
-            right to sell.
-          </h3>
+      <div className="relative bg-cover bg-center h-80 md:h-96 lg:h-screen flex items-center">
+        <img
+          className="absolute w-full h-full object-cover object-center opacity-95"
+          src="https://i.ibb.co/dr5mkNf/3647-01.jpg"
+          alt="Banner"
+        />
+        <div className="absolute bg-slate-950 bg-opacity-40 w-full h-full p-4 lg:p-16">
+          <div className="text-white mt-12">
+            <h1 className="text-2xl lg:text-7xl font-semibold">
+              Imagine your possibilities
+            </h1>
+            <p className="text-[12px] lg:text-[18px] lg:w-1/2 mt-4">
+              Add your car. Track its value. Or Buy Brand New Car Add your car
+              to Your Garage to track its market value and cash in when the time
+              is right to sell.
+            </p>
 
-          <button className="px-5 py-2 font-bold rounded-full mt-6 lg:mt-12 bg-blue-600 text-white hover:text-purple-700 hover:bg-slate-200 hover:border-purple-600 hover:border-dotted">
-            Get Started
-          </button>
-          <p className="mt-1 ml-1">
-            Already have an account?
-            <span
-              onClick={openLoginModal}
-              className="font-bold underline cursor-pointer hover:decoration-white"
-            >
-              Sign in
-            </span>
-          </p>
-        </div>
+            <div className="flex items-center gap-4 mt-4">
+              <div>
+                <button
+                  onClick={openLoginModal}
+                  className="border-2 mt-4 px-4 py-1 rounded-full bg-white hover:bg-slate-400 hover:text-white text-slate-700  font-semibold"
+                >
+                  <span className="flex items-center gap-2 hover:animate-pulse">
+                    Start Now <PiSignInDuotone />
+                  </span>
+                </button>
+              </div>
 
-        <div className="lg:w-[620px] lg:mt-24">
-          <Carousel
-            autoPlay={true}
-            stopOnHover={true}
-            infiniteLoop={true}
-            showStatus={false}
-            showThumbs={false}
-            showArrows={false}
-            showIndicators={false}
-            transitionTime={500}
-          >
-            {banners.map((banner, index) => (
-              <BannerCarousalContainer key={index} image={banner.image} />
-            ))}
-          </Carousel>
+              <div>
+                <button
+                  onClick={openVideoModal}
+                  className="border-2 mt-4 px-4 py-1 rounded-full  font-semibold"
+                >
+                  <span className="flex items-center gap-2 hover:animate-bounce">
+                    Watch Now <PiPlayCircleFill />
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
       <Login
         isLoginOpen={isLoginOpen}
         openLoginModal={openLoginModal}
         closeLoginModal={closeLoginModal}
+      />
+
+      <BannerVideoModal
+        isVideoOpen={isVideoOpen}
+        openVideoModal={openVideoModal}
+        closeVideoModal={closeVideoModal}
       />
     </>
   );

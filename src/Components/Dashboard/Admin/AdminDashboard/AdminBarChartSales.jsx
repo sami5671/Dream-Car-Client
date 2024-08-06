@@ -192,8 +192,8 @@ const AdminBarChartSales = () => {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="name" stroke="#fff" tick={{ fill: "#fff" }} />
+        <YAxis stroke="#fff" tick={{ fill: "#fff" }} />
         <Tooltip />
 
         <Bar

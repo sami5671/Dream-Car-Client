@@ -21,9 +21,6 @@ const CategoriesRecondition = () => {
             </div>
           </div>
           {/* header */}
-          <p className="text-slate-900 hover:text-purple-600 cursor-pointer hover:underline w-fit">
-            See all
-          </p>
         </div>
 
         {/* recondition categories */}

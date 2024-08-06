@@ -122,14 +122,14 @@ const CarCollection = () => {
       <Helmet>
         <title>Dream Car || Car Collection</title>
       </Helmet>
-      <div className="flex flex-col lg:flex-row gap-4">
+      <div className="flex flex-col lg:flex-row gap-4 mt-12">
         {/* Sorting form */}
-        <div className="lg:w-[500px] lg:h-[600px] shadow-xl bg-gray-100 rounded-xl p-4">
+        <div className="lg:w-[500px] lg:h-[600px] shadow-xl bg-gradient-to-tl from-black via-slate-700 to-black text-white rounded-xl p-4">
           <div className="flex flex-col justify-center items-center">
             <p>
               <Logo2 />
             </p>
-            <h2 className="font-semibold text-purple-800">Filter Cars</h2>
+            <h2 className="font-semibold">Filter Cars</h2>
           </div>
           <div className="mb-2 mt-12">
             <label htmlFor="filterUsed" className="font-bold text-xl">
@@ -171,8 +171,11 @@ const CarCollection = () => {
               </div>
             </div>
           </div>
-          <div className="mb-2 mt-6">
-            <label htmlFor="selectedColor" className="font-bold text-xl">
+          <div className="mb-2 mt-6 text-slate-600">
+            <label
+              htmlFor="selectedColor"
+              className="font-bold text-white text-xl"
+            >
               Color:
             </label>
             <select

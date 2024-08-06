@@ -49,41 +49,40 @@ const MyProfile = () => {
   console.log(user);
   return (
     <Container>
-      <div className="min-h-screen flex flex-col justify-center items-center">
-        <div className="bg-white border-2 border-purple-300 shadow-2xl shadow-purple-300 rounded-xl p-8 w-full max-w-md">
+      <div className="min-h-screen flex flex-col justify-center items-center text-white">
+        <div className="shadow-xl shadow-slate-500 rounded-xl p-8 w-full max-w-md">
           <div className="flex flex-col items-center justify-center mb-6">
             <img
               alt="profile"
               src={user.photoURL}
-              className="rounded-full h-24 w-24 border-4 border-purple-800 shadow-lg"
+              className="rounded-full h-24 w-24 border-4 border-white shadow-lg"
             />
             {isAdmin ? (
-              <span className="bg-purple-500 px-2 py-1 rounded-full absolute mb-6 lg:mb-0 lg:mt-2 text-white font-bold">
+              <span className="bg-white text-black px-2 py-1 rounded-full absolute mb-6 lg:mb-0 lg:mt-2 font-bold">
                 Admin
               </span>
             ) : isModerator ? (
-              <span className="bg-purple-500 px-2 py-1 rounded-full absolute mb-6 lg:mb-0 lg:mt-2 text-white font-bold">
+              <span className="bg-white text-black px-2 py-1 rounded-full absolute mb-6 lg:mb-0 lg:mt-2 font-bold">
                 Moderator
               </span>
             ) : (
-              <span className="bg-purple-500 px-2 py-1 rounded-full absolute mb-6 lg:mb-0 lg:mt-2 text-white font-bold">
+              <span className="bg-white text-black px-2 py-1 rounded-full absolute mb-6 lg:mb-0 lg:mt-2 font-bold">
                 User
               </span>
             )}
-            <p className="mt-12 text-2xl font-semibold text-gray-800">
-              {user.displayName}
-            </p>
-            <p className="mt-1 text-sm text-gray-500">{user.email}</p>
+            <p className="mt-12 text-2xl font-semibold">{user.displayName}</p>
+            <p className="mt-1 text-sm">{user.email}</p>
           </div>
           <div className="text-center mb-6">
-            <p className="text-gray-700">
-              <span className="font-medium">User ID:</span> {user.uid}
+            <p className="text-gray-400">
+              <span className="font-medium text-white">User ID:</span>{" "}
+              {user.uid}
             </p>
           </div>
           <div className="text-center">
             <button
               onClick={openModal}
-              className="bg-purple-500 text-white px-6 py-2 rounded-full hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition duration-200"
+              className="text-white  px-6 py-2 rounded-full bg-gradient-to-tl from-blue-500 via-slate-700 to-slate-100 hover:bg-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition duration-200"
             >
               Update Profile
             </button>

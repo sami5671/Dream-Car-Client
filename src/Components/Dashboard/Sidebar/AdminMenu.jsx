@@ -22,7 +22,6 @@ const AdminMenu = () => {
         address="user-car-accept"
       />
       <hr />
-      <hr />
     </div>
   );
 };

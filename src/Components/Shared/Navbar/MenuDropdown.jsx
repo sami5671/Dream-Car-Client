@@ -76,15 +76,19 @@ const MenuDropdown = () => {
         {/* garage all car */}
         {/* Dropdown btn */}
         <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-circle avatar">
-            <div className="w-10 rounded-full animate-spinner">
+          <div
+            tabIndex={0}
+            role="button"
+            className="animate-spinner rounded-full"
+          >
+            <div className="">
               <img
                 className="rounded-full"
                 referrerPolicy="no-referrer"
                 src={user && user.photoURL ? user.photoURL : userDefaultImg}
                 alt="profile"
-                height="30"
-                width="30"
+                height="40"
+                width="40"
               />
             </div>
           </div>
@@ -174,12 +178,12 @@ const MenuDropdown = () => {
         {/* for save car */}
         <Link to="/userFavoriteCar">
           <div className="">
-            <span className="text-purple-800">
+            <span className="text-white">
               <FaRegHeart className="text-xl lg:text-2xl cursor-pointer" />
             </span>
             {favoriteCar.length > 0 ? (
               <div className="absolute">
-                <span className="flex flex-col justify-center items-center font-semibold px-2 -mt-[30px] lg:-mt-[36px] ml-3 lg:ml-4 bg-purple-600 text-white rounded-badge">
+                <span className="flex flex-col justify-center items-center font-semibold px-2 -mt-[30px] lg:-mt-[36px] ml-3 lg:ml-4 bg-white text-black rounded-badge">
                   {favoriteCar.length}
                 </span>
               </div>

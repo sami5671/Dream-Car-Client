@@ -11,17 +11,17 @@ const AdminDashboardNavbar = () => {
   const greeting = getGreeting();
   return (
     <>
-      <div className="navbar bg-base-100 shadow-lg shadow-purple-50 font-roboto">
+      <div className="navbar font-roboto text-white">
         <div className="flex-1">
           <h1 className="font-bold text-xl">
-            <span className="bg-purple-400 pl-3 text-white py-1 rounded-md">
+            <span className="bg-white text-black pl-3 py-1 rounded-md">
               {greeting}
             </span>
             , {user?.displayName}
-            <p className="text-[16px] font-normal text-slate-500">
+            <p className="text-[15px] font-normal text-slate-200">
               Today, Let's catch up what's unfolding in your store
             </p>
-            <p className="text-[12px] ">{dateFormate(todayDate)}</p>
+            <p className="text-[13px] ">{dateFormate(todayDate)}</p>
           </h1>
         </div>
 

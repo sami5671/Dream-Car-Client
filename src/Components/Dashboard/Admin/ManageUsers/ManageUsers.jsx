@@ -67,7 +67,7 @@ const ManageUsers = () => {
 
   return (
     <div>
-      <h1 className="text-center mb-12 text-2xl text-purple-800 font-bold">
+      <h1 className="text-center mb-12 text-2xl text-white font-bold">
         Manage Users
         <hr />
       </h1>
@@ -76,7 +76,7 @@ const ManageUsers = () => {
         <table className="table table-auto w-full text-left border-collapse">
           {/* head */}
           <thead>
-            <tr className="bg-purple-950 text-gray-300">
+            <tr className="bg-white text-gray-700">
               <th className="px-4 py-2">No.</th>
               <th className="px-4 py-2">Name</th>
               <th className="px-4 py-2">Email</th>
@@ -91,7 +91,7 @@ const ManageUsers = () => {
             {users.map((item, index) => (
               <tr
                 key={item._id}
-                className="text-black hover:bg-slate-200 transition-colors"
+                className="text-white hover:text-black hover:bg-slate-200 transition-colors"
               >
                 <td className="px-4 py-2 font-bold">{index + 1}</td>
                 <td className="font-bold">{item?.name}</td>

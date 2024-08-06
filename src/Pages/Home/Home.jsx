@@ -7,6 +7,8 @@ import CategoriesRecondition from "../../Components/ReconditionCarCategories/Cat
 import ReconditionCar from "./ReconditionCar/ReconditionCar";
 import { useState } from "react";
 import ToggleBtnCarType from "./ToggleBtnCarType";
+import BrandLogo from "./BrandLogo/BrandLogo";
+import SpecialOffer from "./SpecialOffer/SpecialOffer";
 
 const Home = () => {
   // =================================================================
@@ -17,12 +19,14 @@ const Home = () => {
   };
   // =================================================================
   return (
-    <div>
+    <div className="">
       <Helmet>
         <title>Home | Dream Car | Buy Or Sell Your Product</title>
       </Helmet>
       {/* banner section */}
       <Banner />
+
+      <BrandLogo />
       <CustomerGarage />
 
       {/* toggle btn*/}
@@ -47,6 +51,7 @@ const Home = () => {
         </>
       )}
 
+      <SpecialOffer />
       {/* <FacebookChat /> */}
     </div>
   );

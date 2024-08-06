@@ -5,7 +5,7 @@ const Logo = () => {
     <div>
       <Link to="/">
         <div className="flex items-center">
-          <span className="text-xl font-serif font-bold bg-gradient-to-br from-purple-700 to-green-300 text-transparent bg-clip-text">
+          <span className="text-xl font-roboto font-bold bg-gradient-to-br from-blue-500 to-white text-transparent bg-clip-text">
             Dream Car
           </span>
           <img

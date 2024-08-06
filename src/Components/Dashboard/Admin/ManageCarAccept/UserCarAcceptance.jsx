@@ -117,7 +117,7 @@ const UserCarAcceptance = () => {
       <div className="overflow-x-auto">
         {/* ===== */}
         <div>
-          <h1 className="text-center font-bold text-3xl text-purple-600 lg:mb-16 underline">
+          <h1 className="text-center font-bold text-3xl text-white lg:mb-16 underline">
             Accept User's Cars
           </h1>
         </div>
@@ -172,7 +172,7 @@ const UserCarAcceptance = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="font-semibold text-xl">
+            <tr className="font-semibold text-xl text-white">
               <th>No</th>
               <th>Model</th>
               <th className="text-center">Image</th>
@@ -186,7 +186,7 @@ const UserCarAcceptance = () => {
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody className="text-[16px] font-semibold">
+          <tbody className="text-[16px] text-white font-semibold">
             {allUserAddedCar?.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>

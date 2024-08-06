@@ -108,7 +108,7 @@ const AdminBarChartCarType = () => {
           left: 0,
         }}
       >
-        <CartesianGrid stroke="#f5f5f5" />
+        <CartesianGrid stroke="#94A3B8" />
         <XAxis
           dataKey="name"
           scale="band"
@@ -116,12 +116,14 @@ const AdminBarChartCarType = () => {
           angle={-45}
           textAnchor="end"
           height={50}
+          stroke="#fff"
+          tick={{ fill: "#fff" }}
         />
-        <YAxis />
+        <YAxis stroke="#fff" tick={{ fill: "#fff" }} />
         <Tooltip />
         <Legend />
-        <Bar dataKey="car" barSize={20} fill="#413ea0" />
-        <Line type="monotone" dataKey="car" stroke="#ff7300" />
+        <Bar dataKey="car" barSize={20} fill="#94A3B8" />
+        <Line type="monotone" dataKey="car" stroke="Red" />
       </ComposedChart>
     </ResponsiveContainer>
   );

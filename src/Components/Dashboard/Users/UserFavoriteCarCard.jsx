@@ -21,11 +21,11 @@ const UserFavoriteCarCard = ({ car }) => {
 
   return (
     <section className="mt-12">
-      <div className="bg-slate-100 border-2 border-cyan-50 lg:border-none w-[160px] lg:w-[290px] lg:py-4 px-1 lg:px-2 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
+      <div className="bg-gradient-to-tl from-black via-slate-700 to-black text-white border-2 border-cyan-50 lg:border-none w-[160px] lg:w-[290px] lg:py-4 px-2 py-2 lg:px-2 rounded-3xl overflow-hidden shadow-lg hover:shadow-slate-400  hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
         {/* here is the card head */}
         <div className="flex justify-between gap-2 h-[100px] lg:h-[90px]">
           <div>
-            <h1 className="text-sm lg:text-xl font-bold text-gray-800">
+            <h1 className="text-sm lg:text-xl font-bold">
               {car?.favoriteCar?.CarModel}
             </h1>
             <p className="mt-2 font-semibold text-slate-400">
@@ -72,12 +72,11 @@ const UserFavoriteCarCard = ({ car }) => {
             </span>
             <span className="font-bold">New</span>
           </div>
-
-          <div className="">
-            <button className="text-purple-600 text-[12px] lg:text-normal font-semibold hover:text-purple-800">
-              Buy Now
-            </button>
-          </div>
+        </div>
+        <div className="absolute ml-[102px] -mt-12 lg:ml-[235px] lg:-mt-10">
+          <button className="bg-gradient-to-tl from-blue-500 via-slate-700 to-slate-100 py-1 px-2 rounded-tl-3xl rounded-br-3xl">
+            Buy <br /> Now
+          </button>
         </div>
       </div>
     </section>

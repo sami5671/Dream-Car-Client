@@ -26,12 +26,12 @@ const UserFavoriteCars = () => {
   return (
     <section>
       <Container>
-        <div className="flex items-center justify-between">
-          <div>
+        <div className="flex items-center justify-between mt-12">
+          <div className="">
             <h1 className="lg:text-4xl font-bold ">
-              <span className="flex gap-2 items-center bg-gradient-to-br from-purple-500 to-red-600 text-transparent bg-clip-text">
+              <span className="flex gap-2 items-center bg-gradient-to-br from-blue-500 to-white text-transparent bg-clip-text">
                 Your Favorites
-                <FaStar className="text-red-900/[.4]" />
+                <FaStar className="text-white" />
               </span>
             </h1>
           </div>
@@ -39,7 +39,7 @@ const UserFavoriteCars = () => {
           <div>
             <button
               onClick={handleDeleteAllCars}
-              className="text-2xl font-semibold text-purple-600 hover:underline"
+              className="text-2xl font-semibold text-white hover:underline"
             >
               Erase All
             </button>

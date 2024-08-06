@@ -13,16 +13,11 @@ const Categories = () => {
   return (
     <Container>
       <div>
-        <h1 className="text-2xl lg:text-4xl mt-8 lg:mt-8 font-bold mb-2">
+        <h1 className="text-2xl bg-gradient-to-br from-blue-400 to-white text-transparent bg-clip-text lg:text-4xl mt-8 lg:mt-8 font-bold mb-2">
           Popular categories
         </h1>
-        <Link to="/carCollection">
-          <p className="text-slate-900 hover:text-purple-600 cursor-pointer hover:underline w-fit">
-            See all
-          </p>
-        </Link>
       </div>
-      <div className="pt-4 pb-2 flex items-center gap-3 justify-between overflow-x-auto">
+      <div className="pt-4 text-white pb-2 flex items-center gap-3 justify-between overflow-x-auto">
         {categories.map((item) => (
           <CategoryBox
             key={item._id}

@@ -34,21 +34,19 @@ const CarCard = ({ car }) => {
   };
 
   return (
-    <div className="bg-slate-100 border-2 border-cyan-50 lg:border-none w-[160px] lg:w-[290px] lg:py-4 px-1 lg:px-2 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer mb-6">
+    <div className="bg-gradient-to-tl from-black via-slate-700 to-black text-white  lg:border-none w-[160px] lg:w-[290px] py-2 lg:py-8 px-2 lg:px-2 rounded-3xl overflow-hidden shadow-2xl hover:shadow-xl hover:shadow-slate-400 transition-shadow duration-300 cursor-pointer mb-6">
       {/* here is the card head */}
       <div className="flex justify-between gap-2 h-[100px] lg:h-[90px]">
         <div>
-          <h1 className="text-sm lg:text-xl font-bold text-gray-800">
-            {car?.CarModel}
-          </h1>
-          <p className="mt-2 font-semibold text-slate-400">{car?.Category}</p>
+          <h1 className="text-sm lg:text-xl font-bold">{car?.CarModel}</h1>
+          <p className="mt-2 font-semibold text-slate-300">{car?.Category}</p>
         </div>
         <div>
           <button
             onClick={() => handleFavoriteCar()}
             className="flex items-end justify-end py-2 pr-2 hover:animate-bounce"
           >
-            <FaHeart className="text-gray-400 hover:text-red-600 transition-colors duration-300" />
+            <FaHeart className=" hover:text-red-600 transition-colors duration-300" />
           </button>
         </div>
       </div>
@@ -76,19 +74,20 @@ const CarCard = ({ car }) => {
           <p>{car?.Seating} People</p>
         </div>
       </div>
-      <div className="flex justify-between items-center mb-5 mt-6">
-        <div className="text-[12px] lg:text-xl">
-          <span className="font-bold ">${car?.CarPriceNew}/</span>
+      <div className="mt-6">
+        <div className="text-[14px] lg:text-xl">
+          <span className="font-bold">${car?.CarPriceNew}/</span>
           <span className="font-bold">New</span>
         </div>
-        <Link to={`/carDetailsPage/${car?._id}`}>
-          <div>
-            <button className="bg-purple-800 text-[10px] lg:text-sm px-2 py-1 text-white font-semibold rounded-2xl hover:bg-purple-600">
-              More Info
-            </button>
-          </div>
-        </Link>
       </div>
+
+      <Link to={`/carDetailsPage/${car?._id}`}>
+        <div className="absolute ml-[99px] -mt-12 lg:ml-[229px] lg:-mt-6">
+          <button className="bg-gradient-to-tl from-blue-500 via-slate-700 to-slate-100 py-1 px-2 rounded-tl-3xl rounded-br-3xl">
+            More <br /> Info
+          </button>
+        </div>
+      </Link>
     </div>
   );
 };

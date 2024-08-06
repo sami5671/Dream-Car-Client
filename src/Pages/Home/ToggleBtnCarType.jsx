@@ -18,8 +18,8 @@ const ToggleBtnCarType = ({ handleCarTypeSelection, selectedCarType }) => {
                 onClick={() => handleCarTypeSelection("brandNew")}
                 className={
                   selectedCarType === "brandNew"
-                    ? "border-2 rounded-l-full border-l-0 border-purple-400 px-2 w-[120px] bg-purple-500 text-white font-semibold"
-                    : "border-2 rounded-l-full border-purple-400 px-2 w-[120px] hover:bg-purple-500 hover:text-white font-semibold"
+                    ? "border-2 rounded-l-full border-l-0 w-[120px] bg-gradient-to-tl from-blue-400 via-slate-700 to-black text-white px-2 font-semibold"
+                    : "border-2 rounded-l-full border-white px-2 w-[120px] bg-slate-100 text-black hover:bg-white hover:text-slate-500 font-semibold"
                 }
               >
                 Brand New
@@ -28,8 +28,8 @@ const ToggleBtnCarType = ({ handleCarTypeSelection, selectedCarType }) => {
                 onClick={() => handleCarTypeSelection("used")}
                 className={
                   selectedCarType === "used"
-                    ? "border-2 rounded-r-full border-l-0 border-purple-400 px-2 w-[120px] bg-purple-500 text-white font-semibold"
-                    : "border-2 rounded-r-full border-l-0 border-purple-400 px-2 w-[120px] hover:bg-purple-500 hover:text-white font-semibold"
+                    ? "border-2 rounded-r-full border-l-0 w-[120px] bg-gradient-to-tl from-blue-400 via-slate-700 to-black text-white px-2 font-semibold"
+                    : "border-2 rounded-r-full border-l-0 bg-slate-200 text-black border-white px-2 w-[120px] hover:bg-white hover:text-slate-500 font-semibold"
                 }
               >
                 Used
