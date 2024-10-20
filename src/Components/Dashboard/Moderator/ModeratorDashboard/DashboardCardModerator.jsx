@@ -1,7 +1,7 @@
 const DashboardCardModerator = ({ label, img, figure }) => {
   return (
     <>
-      <div className="flex items-center lg:py-0 py-6 gap-4 px-6 lg:px-10 bg-base-50 border-2 border-slate-100 rounded-xl  shadow-lg">
+      <div className="flex items-center lg:py-0 py-6 gap-4 px-6 lg:px-10 bg-slate-50 text-black rounded-xl shadow-xl shadow-slate-500">
         <div>
           <img src={img} className="w-[35px] rounded-full" alt="" />
         </div>

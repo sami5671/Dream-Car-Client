@@ -129,9 +129,9 @@ const ManageCar = () => {
 
   return (
     <>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto text-white">
         <div>
-          <h1 className="text-center font-bold text-3xl text-purple-600 lg:mb-16 underline">
+          <h1 className="text-center font-bold text-3xl lg:mb-16 underline">
             Manage All Car
           </h1>
         </div>
@@ -139,10 +139,10 @@ const ManageCar = () => {
         <form>
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="space-y-1 text-sm">
-              <p className="font-semibold text-slate-500">Category</p>
+              <p className="font-semibold text-slate-300">Category</p>
               <select
                 required
-                className="py-3 w-[150px] border-2 border-slate-300 focus:outline-purple-500 rounded-md"
+                className="py-3 w-[150px] text-black border-2 border-slate-300 focus:outline-purple-500 rounded-md"
                 name="category"
                 onChange={handleSelectCategory}
               >
@@ -154,10 +154,10 @@ const ManageCar = () => {
               </select>
             </div>
             <div className="space-y-1 text-sm">
-              <p className="font-semibold text-slate-500">Car Condition</p>
+              <p className="font-semibold text-slate-300">Car Condition</p>
               <select
                 required
-                className="py-3 w-[130px] border-2 border-slate-300 focus:outline-purple-500 rounded-md"
+                className="py-3 w-[130px] border-2 border-slate-300 text-black focus:outline-purple-500 rounded-md"
                 name="condition"
                 onChange={handleSelectCondition}
               >
@@ -170,7 +170,7 @@ const ManageCar = () => {
             </div>
 
             <div className="lg:ml-auto">
-              <p className="font-semibold text-slate-500">Search By Model</p>
+              <p className="font-semibold text-slate-300">Search By Model</p>
               <input
                 className="px-4 py-3 w-[300px] text-gray-800 border border-slate-400 focus:outline-purple-500 rounded-md"
                 name="carModel"
@@ -184,7 +184,7 @@ const ManageCar = () => {
         </form>
         <table className="table">
           <thead>
-            <tr className="font-semibold text-xl">
+            <tr className="font-semibold text-xl text-white">
               <th>No</th>
               <th>Model</th>
               <th className="text-center">Image</th>

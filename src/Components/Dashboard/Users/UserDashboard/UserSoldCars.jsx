@@ -7,15 +7,15 @@ const UserSoldCars = () => {
   // console.log(totalSaleByEmail.length);
   return (
     <>
-      <div>
-        <h1 className="mb-2 underline px-4 text-2xl font-semibold text-purple-800 flex gap-2 items-center">
+      <div className="bg-gradient-to-tl from-black via-slate-700 to-black">
+        <h1 className="mb-2 underline px-4 text-2xl font-semibold text-white flex gap-2 items-center">
           Sold Cars
         </h1>
       </div>
       <div className="h-[180px] overflow-x-auto">
         <table className="table table-pin-rows">
           <thead className="">
-            <tr className="bg-purple-700 text-white">
+            <tr className="bg-gradient-to-tl from-black via-slate-700 to-black text-white">
               <th>No</th>
               <th>Date</th>
               <th>Model</th>
@@ -53,9 +53,6 @@ const UserSoldCars = () => {
         </table>
       </div>
       {/* ===================== */}
-      <section className="bg-base-100 py-2 shadow-lg">
-        <div></div>
-      </section>
     </>
   );
 };

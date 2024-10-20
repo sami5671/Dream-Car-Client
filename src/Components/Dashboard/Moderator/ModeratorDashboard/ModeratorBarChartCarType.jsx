@@ -13,7 +13,7 @@ import UseAllCar from "../../../../Hooks/UseAllCar";
 
 const ModeratorBarChartCarType = () => {
   const [allCars] = UseAllCar();
-  console.log(allCars);
+  // console.log(allCars);
   const electric = allCars.filter((item) => item?.Category === "Electric");
   const suv = allCars.filter((item) => item?.Category === "Suv");
   const sedan = allCars.filter((item) => item?.Category === "Sedan");
@@ -116,11 +116,13 @@ const ModeratorBarChartCarType = () => {
           angle={-45}
           textAnchor="end"
           height={50}
+          stroke="#334155"
+          tick={{ fill: "#fff" }}
         />
-        <YAxis />
+        <YAxis stroke="#fff" tick={{ fill: "#fff" }} />
         <Tooltip />
         <Legend />
-        <Bar dataKey="car" barSize={20} fill="#413ea0" />
+        <Bar dataKey="car" barSize={20} fill="#cbd5e1" />
         <Line type="monotone" dataKey="car" stroke="#ff7300" />
       </ComposedChart>
     </ResponsiveContainer>

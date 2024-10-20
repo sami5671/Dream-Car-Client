@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import Container from "../../Components/Shared/Container";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import CarCarousal from "./CarCarousal";
 import { FaHeart } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import CarDetailsBanner from "./CarDetailsBanner";
@@ -56,19 +55,19 @@ const CarDetails = () => {
     <>
       <section>
         <CarDetailsBanner car={car} />
+        {/* <CarCarousal car={car} /> */}
         <Container>
           <Helmet>
             <title>Car Type || {car?.CarModel}</title>
           </Helmet>
 
-          <div className="flex flex-col lg:flex-row items-start justify-center gap-6 lg:mt-2">
+          <div className="flex flex-col lg:flex-row items-start justify-center gap-6 lg:mt-2 text-white">
             <div className="w-full lg:w-2/3">
-              <CarCarousal car={car} />
-
+              {/* ---- */}
               <div className="flex justify-between mt-8">
                 <div>
                   <p className="text-slate-500">{car?.CarCondition}</p>
-                  <h1 className="lg:text-4xl font-bold bg-gradient-to-br from-purple-600 to-green-900 text-transparent bg-clip-text">
+                  <h1 className="lg:text-4xl font-bold bg-gradient-to-br from-white to-blue-300 text-transparent bg-clip-text">
                     {car?.CarModel}
                   </h1>
                   <p className="mt-4">
@@ -93,7 +92,7 @@ const CarDetails = () => {
                 </div>
               </div>
 
-              <h1 className="text-3xl font-bold mt-12 bg-gradient-to-br from-purple-600 to-green-900 text-transparent bg-clip-text">
+              <h1 className="text-3xl font-bold mt-12 bg-gradient-to-br from-white to-blue-300 text-transparent bg-clip-text">
                 Key Specifications
               </h1>
               <div className="mt-2">
@@ -101,25 +100,21 @@ const CarDetails = () => {
                 <hr />
               </div>
               <div className="grid grid-cols-2 gap-6 mt-6">
-                <div className="border-2 bg-slate-50 flex items-center gap-4 py-2 px-2 rounded-xl">
+                <div className=" bg-gradient-to-tl from-black via-slate-700 to-blue-950 flex items-center gap-4 py-2 px-2 rounded-xl">
                   <img src={category} className="w-[80px] h-[80px] " alt="" />
                   <div>
                     <p className="font-bold text-xl">Category</p>
-                    <p className="text-purple-900 font-semibold">
-                      {car?.Category}
-                    </p>
+                    <p className=" font-semibold">{car?.Category}</p>
                   </div>
                 </div>
-                <div className="border-2 bg-slate-50 flex items-center gap-4 py-2 px-2 rounded-xl">
+                <div className=" bg-gradient-to-tl from-black via-slate-700 to-blue-950 flex items-center gap-4 py-2 px-2 rounded-xl">
                   <img src={topSpeed} className="w-[80px] h-[80px] " alt="" />
                   <div>
                     <p className="font-bold text-xl">Top Speed</p>
-                    <p className="text-purple-900 font-semibold">
-                      {car?.TopSpeed} Km
-                    </p>
+                    <p className=" font-semibold">{car?.TopSpeed} Km</p>
                   </div>
                 </div>
-                <div className="border-2 bg-slate-50 flex items-center gap-4 py-2 px-2 rounded-xl">
+                <div className=" bg-gradient-to-tl from-black via-slate-700 to-blue-950 flex items-center gap-4 py-2 px-2 rounded-xl">
                   <img
                     src={fuelCapacity}
                     className="w-[80px] h-[80px] "
@@ -127,30 +122,26 @@ const CarDetails = () => {
                   />
                   <div>
                     <p className="font-bold text-xl">Fuel Capacity</p>
-                    <p className="text-purple-900 font-semibold">
-                      {car?.FuelCapacity}
-                    </p>
+                    <p className=" font-semibold">{car?.FuelCapacity}</p>
                   </div>
                 </div>
-                <div className="border-2 bg-slate-50 flex items-center gap-4 py-2 px-2 rounded-xl">
+                <div className=" bg-gradient-to-tl from-black via-slate-700 to-blue-950 flex items-center gap-4 py-2 px-2 rounded-xl">
                   <img src={engine} className="w-[80px] h-[80px] " alt="" />
                   <div>
                     <p className="font-bold text-xl">Engine</p>
-                    <p className="text-purple-900 font-semibold">
-                      {car?.Engine}
-                    </p>
+                    <p className=" font-semibold">{car?.Engine}</p>
                   </div>
                 </div>
               </div>
 
-              <h1 className="text-4xl font-bold mt-12  bg-gradient-to-br from-purple-600 to-green-900 text-transparent bg-clip-text">
+              <h1 className="text-4xl font-bold mt-12  bg-gradient-to-br from-white to-blue-300 text-transparent bg-clip-text">
                 Basics
               </h1>
               <div className="mt-2">
                 <hr />
                 <hr />
               </div>
-              <div className="overflow-x-auto mt-6 bg-slate-100 px-4 py-2 rounded-lg">
+              <div className="overflow-x-auto mt-6 bg-gradient-to-tl from-black via-slate-700 to-blue-950 bg-slate-100 px-6 py-4 rounded-lg">
                 <table className="table-auto w-full text-left">
                   <tbody>
                     {[
@@ -172,14 +163,14 @@ const CarDetails = () => {
                 </table>
               </div>
 
-              <h1 className="font-bold text-4xl mt-12 bg-gradient-to-br from-purple-600 to-green-900 text-transparent bg-clip-text ">
+              <h1 className="font-bold text-4xl mt-12 bg-gradient-to-br from-white to-blue-300 text-transparent bg-clip-text ">
                 Features
               </h1>
               <div className="mt-2">
                 <hr />
                 <hr />
               </div>
-              <div className="overflow-x-auto mt-6 bg-slate-100 rounded-lg px-4 py-4">
+              <div className="overflow-x-auto mt-6 bg-gradient-to-tl from-black via-slate-700 to-blue-950 rounded-lg px-4 py-4">
                 <table className="table-auto w-full text-left">
                   <tbody>
                     {[
@@ -234,7 +225,7 @@ const CarDetails = () => {
               </div>
             </div>
             {/* --------- */}
-            <div className="w-full lg:w-1/3 p-4 bg-gray-100 rounded-lg lg:mt-10">
+            <div className="w-full lg:w-1/3 p-4 bg-gradient-to-tl from-black via-slate-700 to-blue-950 rounded-lg lg:mt-10">
               {/* stripe payment will be START here */}
               <Payment car={car} />
               {/* stripe payment will be ENDhere */}

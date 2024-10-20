@@ -56,7 +56,7 @@ const SSLCommerce = ({ car }) => {
     console.log(customerInfo);
     // ----------------------------------------------------------------
     axios
-      .post("http://localhost:5000/create-payment", {
+      .post("https://dream-car-server-pi.vercel.app/create-payment", {
         car,
         customerInfo,
         userData,
@@ -76,8 +76,10 @@ const SSLCommerce = ({ car }) => {
         <img src={sslLogo} className="w-[280px] " alt="" />
       </div>
       <h1 className="text-center font-bold text-3xl">
-        <span className="text-cyan-600">SSL</span>
-        <span className="text-slate-600">Commerze</span>
+        <span className="text-cyan-400">SSL</span>
+        <span className="text-slate-600 bg-white px-1 rounded-xl ml-1">
+          Commerze
+        </span>
       </h1>
       <div className="mt-12 flex items-center justify-center">
         <div className="flex flex-wrap gap-5">
@@ -100,7 +102,7 @@ const SSLCommerce = ({ car }) => {
             <hr />
             <div className="flex gap-2 mt-4">
               <div className="space-y-1 text-sm">
-                <label htmlFor="biller name" className="block text-gray-600">
+                <label htmlFor="biller name" className="block">
                   Name
                 </label>
                 <input
@@ -113,7 +115,7 @@ const SSLCommerce = ({ car }) => {
                 />
               </div>
               <div className="space-y-1 text-sm">
-                <label htmlFor="zip code" className="block text-gray-600">
+                <label htmlFor="zip code" className="block">
                   Zip Code
                 </label>
                 <input
@@ -126,7 +128,7 @@ const SSLCommerce = ({ car }) => {
               </div>
             </div>
             <div className="space-y-1 text-sm mt-2">
-              <label htmlFor="biller email" className="block text-gray-600">
+              <label htmlFor="biller email" className="block">
                 Email
               </label>
               <input
@@ -139,10 +141,7 @@ const SSLCommerce = ({ car }) => {
               />
             </div>
             <div className="space-y-1 text-sm mt-2">
-              <label
-                htmlFor="biller phone number"
-                className="block text-gray-600"
-              >
+              <label htmlFor="biller phone number" className="block">
                 Phone Number
               </label>
               <PhoneInput
@@ -176,7 +175,7 @@ const SSLCommerce = ({ car }) => {
             <h1 className="text-xl font-semibold">Shipping Info</h1>
             <hr />
             <div className="space-y-1 text-sm mt-2">
-              <label htmlFor="shipping address" className="block text-gray-600">
+              <label htmlFor="shipping address" className="block">
                 Shipping Address
               </label>
               <input
@@ -189,7 +188,7 @@ const SSLCommerce = ({ car }) => {
             </div>
             <div className="flex gap-2 mt-4">
               <div className="space-y-1 text-sm">
-                <label htmlFor="receiver name" className="block text-gray-600">
+                <label htmlFor="receiver name" className="block">
                   Receiver's Name
                 </label>
                 <input
@@ -201,7 +200,7 @@ const SSLCommerce = ({ car }) => {
                 />
               </div>
               <div className="space-y-1 text-sm">
-                <label htmlFor="zip code" className="block text-gray-600">
+                <label htmlFor="zip code" className="block">
                   Zip Code
                 </label>
                 <input
@@ -214,7 +213,7 @@ const SSLCommerce = ({ car }) => {
               </div>
             </div>
             <div className="space-y-1 text-sm mt-2">
-              <label htmlFor="receiver email" className="block text-gray-600">
+              <label htmlFor="receiver email" className="block">
                 Receiver's Email
               </label>
               <input
@@ -226,10 +225,7 @@ const SSLCommerce = ({ car }) => {
               />
             </div>
             <div className="space-y-1 text-sm mt-2">
-              <label
-                htmlFor="receiver phone number"
-                className="block text-gray-600"
-              >
+              <label htmlFor="receiver phone number" className="block">
                 Phone Number
               </label>
               <PhoneInput
@@ -259,13 +255,13 @@ const SSLCommerce = ({ car }) => {
           </div>
           <div className="mt-4">
             {processing ? (
-              <button className="bg-blue-800 rounded-lg px-2 py-2 hover:bg-blue-600 text-white font-bold text-center cursor-pointer">
+              <button className=" rounded-lg px-2 py-2 text-white font-bold text-center cursor-pointer">
                 <ImSpinner9 />
               </button>
             ) : (
               <button
                 type="submit"
-                className="bg-blue-800  rounded-lg w-full py-2 hover:bg-blue-600 text-white font-bold text-center cursor-pointer"
+                className="bg-gradient-to-tr from-blue-500 via-slate-700 to-slate-100  rounded-lg w-full py-2  text-white font-bold text-center cursor-pointer"
               >
                 Pay now
               </button>

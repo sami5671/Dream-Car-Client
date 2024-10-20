@@ -71,7 +71,9 @@ const Payment = ({ car }) => {
         </div>
         <h1 className="text-center font-bold text-3xl">
           <span className="text-cyan-600">Stripe</span>{" "}
-          <span className="text-slate-600">Payment</span>
+          <span className="text-slate-600 bg-white px-1 rounded-xl">
+            Payment
+          </span>
         </h1>
         <div className="mt-6 flex items-center justify-center">
           <div>
@@ -123,7 +125,7 @@ const Payment = ({ car }) => {
         <div className="mt-4">
           <p
             onClick={handleOpenModal}
-            className="text-center cursor-pointer font-semibold bg-purple-700 text-white px-2 py-2 rounded-lg hover:bg-purple-600"
+            className="text-center cursor-pointer font-semibold bg-gradient-to-tr from-blue-500 via-slate-700 to-slate-100 text-white px-2 py-2 rounded-lg hover:bg-purple-600"
           >
             <button>Stripe Payment</button>
           </p>

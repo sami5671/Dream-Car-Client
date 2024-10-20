@@ -122,7 +122,7 @@ const AdminBarChartCarType = () => {
         <YAxis stroke="#fff" tick={{ fill: "#fff" }} />
         <Tooltip />
         <Legend />
-        <Bar dataKey="car" barSize={20} fill="#94A3B8" />
+        <Bar dataKey="car" barSize={20} fill="#94a3b8" />
         <Line type="monotone" dataKey="car" stroke="Red" />
       </ComposedChart>
     </ResponsiveContainer>

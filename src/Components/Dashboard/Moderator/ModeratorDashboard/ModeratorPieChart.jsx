@@ -20,7 +20,7 @@ const ModeratorPieChart = () => {
     { name: "Brand New", value: newCars.length },
   ];
 
-  const COLORS = ["Purple", " Green"];
+  const COLORS = ["#67e8f9", "#d4d4d8"];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
@@ -39,7 +39,7 @@ const ModeratorPieChart = () => {
       <text
         x={x}
         y={y}
-        fill="white"
+        fill="black"
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
       >

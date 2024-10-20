@@ -6,7 +6,7 @@ const CustomerGarage = () => {
   return (
     <>
       <Container2>
-        <div className="border-2 border-slate-400 rounded-xl  mt-16  lg:mt-24 bg-gradient-to-tl from-black via-slate-700 to-black text-white border-dotted">
+        <div className="border-2 border-slate-400 rounded-xl  mt-12  lg:mt-24 bg-gradient-to-tl from-black via-slate-700 to-black text-white border-dotted">
           <div className="flex items-center justify-between px-2 py-2">
             <div className="lg:px-4">
               <span className="flex items-center gap-2  text-[8px] lg:text-xl font-bold">
@@ -22,10 +22,10 @@ const CustomerGarage = () => {
               </Link>
             </div>
 
-            <div>
+            <div className="mt-8">
               <img
-                src="https://i.ibb.co/bmBcnRz/customer-removebg-preview.png"
-                className="w-[120px] lg:w-[350px]"
+                src="https://res.cloudinary.com/dgz0be5p3/image/upload/v1722979438/zohtwi3ylxkuovawsad4.png"
+                className="w-[120px] lg:w-[430px]"
                 alt=""
               />
             </div>

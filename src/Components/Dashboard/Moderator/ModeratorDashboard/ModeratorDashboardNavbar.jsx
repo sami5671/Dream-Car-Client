@@ -10,17 +10,17 @@ const ModeratorDashboardNavbar = () => {
   const greeting = getGreeting();
   return (
     <>
-      <div className="navbar bg-base-100 shadow-lg shadow-purple-50 font-roboto">
+      <div className="navbar text-white font-roboto">
         <div className="flex-1">
           <h1 className="font-bold text-xl">
-            <span className="bg-purple-400 pl-3 text-white py-1 rounded-md">
+            <span className="pl-3 bg-white text-black py-1 rounded-md">
               {greeting}
             </span>
             , {user?.displayName}
-            <p className="text-[16px] font-normal text-slate-500">
+            <p className="text-[16px] font-normal text-slate-300">
               Today, Let's catch up what's unfolding in your store
             </p>
-            <p className="text-[12px] ">{dateFormate(todayDate)}</p>
+            <p className="text-[14px] ">{dateFormate(todayDate)}</p>
           </h1>
         </div>
 

@@ -1,4 +1,11 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+} from "recharts";
 import UseToGetUserAddedCarByEmail from "../../../../Hooks/UseToGetUserAddedCarByEmail";
 
 const UserPieChart = () => {
@@ -18,7 +25,7 @@ const UserPieChart = () => {
     { name: "Accepted Car", value: acceptedCar.length },
   ];
 
-  const COLORS = ["Red", " Green", "#FFBB28", "#FF8042"];
+  const COLORS = ["#67e8f9", "#d4d4d8"];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
@@ -37,7 +44,7 @@ const UserPieChart = () => {
       <text
         x={x}
         y={y}
-        fill="white"
+        fill="#7c2d12"
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
       >
@@ -56,6 +63,7 @@ const UserPieChart = () => {
           labelLine={false}
           label={renderCustomizedLabel}
           outerRadius={80}
+          cursor="pointer"
           fill="#8884d8"
           dataKey="value"
         >
@@ -63,6 +71,7 @@ const UserPieChart = () => {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
+        <Tooltip />
         <Legend />
       </PieChart>
     </ResponsiveContainer>

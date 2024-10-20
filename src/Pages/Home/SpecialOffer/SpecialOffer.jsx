@@ -18,10 +18,10 @@ const SpecialOffer = () => {
                 Subscribe Now
               </button>
             </div>
-            <div className="">
+            <div className="px-12 py-6">
               <img
-                className="lg:w-[400px]"
-                src="https://i.ibb.co/3vqH9RP/offer.png"
+                className="lg:w-[450px]"
+                src="https://res.cloudinary.com/dgz0be5p3/image/upload/v1722979438/zohtwi3ylxkuovawsad4.png"
                 alt=""
               />
             </div>

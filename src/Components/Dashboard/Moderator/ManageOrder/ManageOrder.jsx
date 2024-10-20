@@ -54,8 +54,8 @@ const ManageOrder = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-center mb-12 text-2xl text-purple-800 font-bold">
+    <div className="text-white">
+      <h1 className="text-center mb-12 text-2xl font-bold">
         Manage Order
         <hr />
       </h1>
@@ -64,7 +64,7 @@ const ManageOrder = () => {
         <table className="table table-auto w-full text-left border-collapse">
           {/* head */}
           <thead>
-            <tr className="bg-purple-950 text-gray-300">
+            <tr className="text-gray-300">
               <th className="px-4 py-2">No.</th>
               <th className="px-4 py-2">Biller Name</th>
               <th className="px-4 py-2">Biller Email</th>
@@ -80,7 +80,7 @@ const ManageOrder = () => {
             {soldCars.map((item, index) => (
               <tr
                 key={item._id}
-                className="text-black hover:bg-slate-200 transition-colors"
+                className="hover:bg-slate-200 hover:text-black transition-colors"
               >
                 <td className="px-4 py-2">{index + 1}</td>
                 <td className="text-center">

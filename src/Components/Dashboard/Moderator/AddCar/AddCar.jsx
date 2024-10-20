@@ -102,17 +102,15 @@ const AddCar = () => {
   return (
     <div>
       {/*add car form */}
-      <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
+      <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center bg-gradient-to-tl from-black via-slate-700 to-black rounded-2xl text-white px-4 py-4">
         <div className="mb-12">
-          <h1 className="text-2xl font-bold text-purple-700 underline">
-            Add Car
-          </h1>
+          <h1 className="text-2xl font-bold underline">Add Car</h1>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-6">
               <div className="space-y-1 text-sm">
-                <label htmlFor="car model" className="block text-gray-600">
+                <label htmlFor="car model" className="block">
                   Car Model
                 </label>
                 <input
@@ -124,7 +122,7 @@ const AddCar = () => {
                 />
               </div>
               <div className="space-y-1 text-sm">
-                <label htmlFor="category" className="block text-gray-600">
+                <label htmlFor="category" className="block">
                   Category
                 </label>
                 <select
@@ -142,7 +140,7 @@ const AddCar = () => {
 
               {/* ---  */}
               <div className="space-y-1 text-sm">
-                <label htmlFor="engineCategory" className="block text-gray-600">
+                <label htmlFor="engineCategory" className="block">
                   Engine Type
                 </label>
                 <select
@@ -159,7 +157,7 @@ const AddCar = () => {
               </div>
               <div className="flex justify-between gap-2">
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="topSpeed" className="block text-gray-600">
+                  <label htmlFor="topSpeed" className="block">
                     Top Speed
                   </label>
                   <input
@@ -172,7 +170,7 @@ const AddCar = () => {
                 </div>
 
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="fuel" className="block text-gray-600">
+                  <label htmlFor="fuel" className="block">
                     Fuel Type
                   </label>
                   <input
@@ -184,7 +182,7 @@ const AddCar = () => {
                   />
                 </div>
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="fuelCapacity" className="block text-gray-600">
+                  <label htmlFor="fuelCapacity" className="block">
                     Fuel Capacity
                   </label>
                   <input
@@ -198,7 +196,7 @@ const AddCar = () => {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="Drivetrain" className="block text-gray-600">
+                <label htmlFor="Drivetrain" className="block">
                   Drivetrain
                 </label>
                 <select
@@ -215,7 +213,7 @@ const AddCar = () => {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="transmission" className="block text-gray-600">
+                <label htmlFor="transmission" className="block">
                   Transmission
                 </label>
                 <select
@@ -234,7 +232,7 @@ const AddCar = () => {
 
             <div className="space-y-6">
               <div className="space-y-1 text-sm">
-                <label htmlFor="CarCondition" className="block text-gray-600">
+                <label htmlFor="CarCondition" className="block">
                   Car Condition
                 </label>
                 <select
@@ -260,7 +258,7 @@ const AddCar = () => {
                         multiple={true}
                         onChange={(e) => setImages(e.target.files)}
                       />
-                      <div className="bg-purple-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-purple-500">
+                      <div className="bg-gradient-to-tl from-blue-500 via-slate-700 to-slate-100 rounded font-semibold cursor-pointer p-1 px-3">
                         {uploadButtonText}
                       </div>
                     </label>
@@ -269,7 +267,7 @@ const AddCar = () => {
               </div>
               <div className="flex justify-between gap-2">
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="newPrice" className="block text-gray-600">
+                  <label htmlFor="newPrice" className="block">
                     New Price
                   </label>
                   <input
@@ -282,10 +280,7 @@ const AddCar = () => {
                 </div>
 
                 <div className="space-y-1 text-sm">
-                  <label
-                    htmlFor="previousPrice"
-                    className="block text-gray-600"
-                  >
+                  <label htmlFor="previousPrice" className="block">
                     Previous Price
                   </label>
                   <input
@@ -300,10 +295,7 @@ const AddCar = () => {
 
               <div className="flex justify-between gap-2">
                 <div className="space-y-1 text-sm">
-                  <label
-                    htmlFor="exteriorColor"
-                    className="block text-gray-600"
-                  >
+                  <label htmlFor="exteriorColor" className="block">
                     Exterior Color
                   </label>
                   <input
@@ -316,10 +308,7 @@ const AddCar = () => {
                 </div>
 
                 <div className="space-y-1 text-sm">
-                  <label
-                    htmlFor="interiorColor"
-                    className="block text-gray-600"
-                  >
+                  <label htmlFor="interiorColor" className="block">
                     Interior Color
                   </label>
                   <input
@@ -333,7 +322,7 @@ const AddCar = () => {
               </div>
               <div className="flex justify-between gap-2">
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="Mileage" className="block text-gray-600">
+                  <label htmlFor="Mileage" className="block">
                     Mileage (km)
                   </label>
                   <input
@@ -345,7 +334,7 @@ const AddCar = () => {
                   />
                 </div>
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="Seating" className="block text-gray-600">
+                  <label htmlFor="Seating" className="block">
                     Seating
                   </label>
                   <input
@@ -362,13 +351,13 @@ const AddCar = () => {
 
           <div className="mt-6">
             {loading ? (
-              <button className="w-full border-2 py-2 border-dashed border-purple-800">
+              <button className="w-full border-2 py-2 border-dashed">
                 <span className="flex justify-center">
                   <img src={uploadImg} width={30} alt="" />
                 </span>
               </button>
             ) : (
-              <button className="w-full border-2 bg-purple-600 py-2 text-white font-bold">
+              <button className="w-full bg-gradient-to-tr from-blue-500 via-slate-700 to-slate-100 py-2 text-white font-bold">
                 <span>Add Car</span>
               </button>
             )}
