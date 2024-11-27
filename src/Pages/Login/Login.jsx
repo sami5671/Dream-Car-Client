@@ -120,14 +120,16 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
                               htmlFor="email"
                               className="block mb-2 text-sm"
                             >
-                              Email address
+                              Email address <br />
+                              Moderator: moderator@gmail.com <br />
+                              M_Password: 123456
                             </label>
                             <input
                               type="email"
                               name="email"
                               id="email"
                               required
-                              placeholder="Enter Your Email Here"
+                              placeholder="Admin: admin@gmail.com || User"
                               className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-purple-500 bg-gray-200 text-gray-900"
                               data-temp-mail-org="0"
                             />
@@ -147,7 +149,7 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
                               autoComplete="current-password"
                               id="password"
                               required
-                              placeholder="@#(UIN!1"
+                              placeholder="Admin PASS: 123456"
                               className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-purple-500 bg-gray-200 text-gray-900"
                             />
                           </div>

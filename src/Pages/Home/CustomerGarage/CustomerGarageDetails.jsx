@@ -1,6 +1,4 @@
 import Container from "./../../../Components/Shared/Container";
-import bannerGarageImg from "../../../assets/Images/bannerYourGarage.png";
-import bannerGarageImg2 from "../../../assets/Images/customerGarageBanner2.png";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaTag } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
@@ -69,7 +67,7 @@ const CustomerGarageDetails = () => {
               <p className="flex justify-center items-center text-teal-600 text-4xl mb-4">
                 <FaArrowTrendUp />
               </p>
-              <h1 className="text-2xl font-semibold mb-4">
+              <h1 className="text-2xl font-semibold mb-4 text-black">
                 Track its market value
               </h1>
               <p className="text-slate-800">
@@ -81,7 +79,7 @@ const CustomerGarageDetails = () => {
               <p className="flex justify-center items-center text-teal-600 text-4xl mb-4">
                 <IoMdTime />
               </p>
-              <h1 className="text-2xl font-semibold mb-4">
+              <h1 className="text-2xl font-semibold mb-4 text-black">
                 Know the right time to sell
               </h1>
               <p className="text-slate-800">
@@ -93,7 +91,7 @@ const CustomerGarageDetails = () => {
               <p className="flex justify-center items-center text-teal-600 text-4xl mb-4">
                 <FaTag />
               </p>
-              <h1 className="text-2xl font-semibold mb-4">
+              <h1 className="text-2xl font-semibold mb-4 text-black">
                 Sell your car your way
               </h1>
               <p className="text-slate-800">
